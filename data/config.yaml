@@ -11,7 +11,7 @@ enableFooter: true
 enableContextualBacklinks: true
 enableRecentNotes: false
 enableGitHubEdit: true
-GitHubLink: https://github.com/xeome/quartz
+GitHubLink: https://github.com/xeome
 enableSemanticSearch: false
 operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
 description:
