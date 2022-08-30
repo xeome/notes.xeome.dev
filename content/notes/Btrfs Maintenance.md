@@ -1,10 +1,7 @@
 ---
-title: Btrfs Maintenance
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-06 00:04
+title: "Btrfs Maintenance"
 ---
+
 
 Links: [[Linux]], [[Post install optimizations]]
 

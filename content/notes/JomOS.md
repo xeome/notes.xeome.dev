@@ -1,9 +1,5 @@
 ---
-title: JomOS
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-11 23:03
+title: "JomOS"
 ---
 
 Links: [[Linux]], [[Post install optimizations]], [[JomOS Settings]]

@@ -1,10 +1,7 @@
 ---
-title: Unevictable LRU Infrastructure
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-18 00:22
+title: "Unevictable LRU Infrastructure"
 ---
+
 
 Links: [[Linux]], [[Zram]]
 

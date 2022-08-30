@@ -1,10 +1,7 @@
 ---
-title: Linux
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-13 21:03
+title: "Linux"
 ---
+
 
 # Linux
 

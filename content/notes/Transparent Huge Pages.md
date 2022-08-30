@@ -1,10 +1,7 @@
 ---
-title: Transparent Huge Pages
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-01 20:03
+title: "Transparent Huge Pages"
 ---
+
 
 Links: [[Linux]], [[Post install optimizations]], [[JomOS]]
 

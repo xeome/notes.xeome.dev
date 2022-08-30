@@ -1,10 +1,7 @@
 ---
-title: Zram
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-11 19:15
+title: "Zram"
 ---
+
 
 Links: [[Linux]], [[Post install optimizations]], [[JomOS Settings]]
 

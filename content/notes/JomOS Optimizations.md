@@ -1,10 +1,7 @@
 ---
-title: JomOS Optimizations
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-12 18:55
+title: "JomOS Optimizations"
 ---
+
 
 Links: [[Linux]], [[Post install optimizations]], [[JomOS Settings]], [[JomOS]]
 

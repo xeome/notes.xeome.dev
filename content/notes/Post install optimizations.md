@@ -1,10 +1,7 @@
 ---
-title: Post install optimizations
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-07-12 00:04
+title: "Post install optimizations"
 ---
+
 
 Links: [[Linux]] [[Btrfs Maintenance]] [[JomOS Settings]] [[Zram]]
 

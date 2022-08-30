@@ -1,10 +1,7 @@
 ---
-title: XDP-Tutorial
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-30 17:49
+title: "XDP-Tutorial"
 ---
+
 
 Links: [[Linux]]
 

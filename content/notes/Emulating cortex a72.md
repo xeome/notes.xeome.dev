@@ -1,10 +1,7 @@
 ---
-title: Emulating cortex a72
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-30 17:03
+title: "Emulating cortex a72"
 ---
+
 
 # Starting out (Preparing for emulation)
 

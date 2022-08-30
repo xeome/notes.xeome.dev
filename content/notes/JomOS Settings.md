@@ -1,10 +1,7 @@
 ---
-title: JomOS Settings
-tags: #linux
-toc: true
-season: summer
-date updated: 2022-08-15 17:13
+title: "JomOS Settings"
 ---
+
 
 Links: [[Linux]], [[JomOS]], [[JomOS Optimizations]]
 
