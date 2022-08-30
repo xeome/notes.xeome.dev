@@ -1,7 +1,7 @@
 ---
-title: "Zram"
+title: Zram
+date updated: 2022-08-30 20:28
 ---
-
 
 Links: [[Linux]], [[Post install optimizations]], [[JomOS Settings]]
 
@@ -27,9 +27,10 @@ It is a logarithmic value - setting it to zero means “1 page”, setting it to
 The default value is three (eight pages at a time). There may be some small benefits in tuning this to a different value if your workload is swap-intensive.
 
 Lower values mean lower latencies for initial faults, but at the same time extra faults and I/O delays for following faults if they would have been part of that consecutive pages readahead would have brought in.
-![](/assets/img/benchmarks_zram_throughput.png)
 
-![](/assets/img/benchmarks_zram_latency.png)
+![[notes/assets/img/benchmarks_zram_throughput.png]]
+
+![[notes/assets/img/benchmarks_zram_latency.png]]
 
 ## Main takeaways
 

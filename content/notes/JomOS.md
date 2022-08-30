@@ -1,5 +1,6 @@
 ---
-title: "JomOS"
+title: JomOS
+date updated: 2022-08-30 20:28
 ---
 
 Links: [[Linux]], [[Post install optimizations]], [[JomOS Settings]]
@@ -16,15 +17,16 @@ JomOS integrates these configurations & optimizations into one largely cohesive 
 
 We use tuned systctl values, udev rules and other configurations, refer to [[JomOS Settings]].  We also provide a optimized repo with march=x86-64-v3 support (CachyOS repos) which comes with a notable performance boost. It depends on your cpu if it does support that, but you dont need to worry about it - the installer will detect the correct µarch and adjust to your system. Custom tuned kernel is also planned.
 For more information refer to [[JomOS Optimizations]]
+
 ## Screenshots
 
 #### XFCE
 
-![](/assets/img/distro.png)
+![[notes/assets/img/distro.png]]
 
 #### i3-gaps
 
-![](/assets/img/newwp.png)
+![[notes/assets/img/newwp.png]]
 
 ## Credits
 
