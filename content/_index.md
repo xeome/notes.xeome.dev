@@ -2,4 +2,4 @@
 title: 🪴 Quartz 3.3
 ---
 
-TODO
+My markdown notes published using quartz
