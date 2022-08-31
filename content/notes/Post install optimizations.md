@@ -1,9 +1,9 @@
 ---
-title: "Post install optimizations"
+title: Post install optimizations
+date updated: 2022-08-31 23:37
 ---
 
-
-Links: [[Linux]], [[Btrfs Maintenance]], [[JomOS Settings]], [[Zram]]
+Links: [[notes/Linux]], [[notes/Btrfs Maintenance]], [[notes/JomOS Settings]], [[notes/Zram]]
 
 # Post install optimizations
 
@@ -19,6 +19,7 @@ HOOKS="base systemd autodetect...
 COMPRESSION="zstd"
 COMPRESSION_OPTIONS=(-2)
 ```
+
 Note: You can replace base AND udev with systemd but you will lose access to recovery shell.
 
 ### Changing io schedulers
@@ -113,7 +114,7 @@ To summarize, transparent hugepages are a framework within the Linux kernel that
 [always] madvise never
 ```
 
-There are 3 values you can choose You should try each value yourself to see if it improves your workflow, for more information click here: [[Transparent Huge Pages]].
+There are 3 values you can choose You should try each value yourself to see if it improves your workflow, for more information click here: [[notes/Transparent Huge Pages]].
 To change the value for current session:
 
 ```bash

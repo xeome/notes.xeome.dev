@@ -1,9 +1,9 @@
 ---
-title: "JomOS Optimizations"
+title: JomOS Optimizations
+date updated: 2022-08-31 23:32
 ---
 
-
-Links: [[Linux]], [[Post install optimizations]], [[JomOS Settings]], [[JomOS]]
+Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS Settings]], [[notes/JomOS]]
 
 # JomOS Optimizations
 
@@ -21,4 +21,5 @@ For compatibility with older hardware, most Linux distributions use x86-64-v2, b
 We use CachyOS v3 repositories for this. As theres no reason to create our own v3 repositories.
 
 ## Tuned sysctl and other configurations
-refer to [[JomOS Settings]]
+
+refer to [[notes/JomOS Settings]]

@@ -3,7 +3,7 @@ title: Unevictable LRU Infrastructure
 date updated: 2022-08-31 14:05
 ---
 
-Links: [[Linux]], [[Zram]]
+Links: [[notes/Linux]], [[notes/Zram]]
 
 # Unevictable LRU Infrastructure
 

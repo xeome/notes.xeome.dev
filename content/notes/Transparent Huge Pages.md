@@ -1,9 +1,9 @@
 ---
-title: "Transparent Huge Pages"
+title: Transparent Huge Pages
+date updated: 2022-08-31 23:38
 ---
 
-
-Links: [[Linux]], [[Post install optimizations]], [[JomOS]]
+Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS]]
 
 # Transparent Huge Pages
 

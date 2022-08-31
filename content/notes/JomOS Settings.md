@@ -1,9 +1,9 @@
 ---
-title: "JomOS Settings"
+title: JomOS Settings
+date updated: 2022-08-31 23:36
 ---
 
-
-Links: [[Linux]], [[JomOS]], [[JomOS Optimizations]]
+Links: [[notes/Linux]], [[notes/JomOS]], [[notes/JomOS Optimizations]]
 
 # JomOS Settings
 
@@ -78,7 +78,7 @@ Base and udev replaced with systemd for faster boots and set compression algorit
 
 ## etc/systemd/zram-generator.conf
 
-Use zstd compression by default, for more information visit [[Zram]]
+Use zstd compression by default, for more information visit [[notes/Zram]]
 
 ## Sources
 
