@@ -1,8 +1,8 @@
 ---
-title: "Emulating cortex a72"
+title: Emulating cortex a72
+date updated: 2022-08-31 14:03
 ---
-
-
+Links: [[Linux]]
 # Starting out (Preparing for emulation)
 
 - Create a Project directory.
@@ -120,9 +120,9 @@ sudo qemu-system-aarch64 \
 
 ### Some info about script
 
--  _Since QEMU doesn't natively support Raspberry Pi 4(b), our only option is to virtualize Cortex A72 (Which is CPU used in Raspberry Pi 4(b))._
--  `-nographic` because _who needs graphics._
--  `screen` is used 'cuz _why not_.
+- _Since QEMU doesn't natively support Raspberry Pi 4(b), our only option is to virtualize Cortex A72 (Which is CPU used in Raspberry Pi 4(b))._
+- `-nographic` because _who needs graphics._
+- `screen` is used 'cuz _why not_.
 
 <br>
 * Make script executable
@@ -130,15 +130,20 @@ sudo qemu-system-aarch64 \
 ```sh
 $ chmod +x rpistart.sh
 ```
-* **And you should\* be able to run QEMU instance.** 
-* LAUNCH!
+
+- **And you should* be able to run QEMU instance.**
+- LAUNCH!
+
 ```sh
 $ ./rpistart.sh
 ```
+
 # Some wacky reality.
+
 You have booted into nice Debian. Oh, btw, username is passwordless `root`.<br>But there are two problems:
-* Not enough space!
-* No internet!
+
+- Not enough space!
+- No internet!
 
 ## Not enough space!
 

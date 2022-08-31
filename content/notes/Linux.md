@@ -1,7 +1,7 @@
 ---
-title: "Linux"
+title: Linux
+date updated: 2022-08-31 14:05
 ---
-
 
 # Linux
 
@@ -13,6 +13,9 @@ title: "Linux"
 - [[x86_64-v3 benchmarks]]
 - [[Post install optimizations]]
 - [[Btrfs Maintenance]]
+- [[XDP-Tutorial]]
+- [[Unevictable LRU Infrastructure]]
+
 ## Done
 
 - [[Zram]]

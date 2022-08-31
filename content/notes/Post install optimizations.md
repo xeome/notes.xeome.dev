@@ -3,7 +3,7 @@ title: "Post install optimizations"
 ---
 
 
-Links: [[Linux]] [[Btrfs Maintenance]] [[JomOS Settings]] [[Zram]]
+Links: [[Linux]], [[Btrfs Maintenance]], [[JomOS Settings]], [[Zram]]
 
 # Post install optimizations
 

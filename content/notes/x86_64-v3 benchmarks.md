@@ -1,5 +1,6 @@
 ---
-title: "x86_64-v3 benchmarks"
+title: x86_64-v3 benchmarks
+date updated: 2022-08-31 14:05
 ---
 
 Links: [[Linux]], [[Post install optimizations]], [[JomOS]]
@@ -11,6 +12,7 @@ Links: [[Linux]], [[Post install optimizations]], [[JomOS]]
 ![[notes/assets/img/O3_generic_O3_march_haswell_Comparison.png]]
 
 ![[notes/assets/img/O3_generic_O3_march_haswell_Comparison_scimark.png]]
+
 # Sources
 
 <https://lists.archlinux.org/pipermail/arch-general/2021-March/048739.html>
