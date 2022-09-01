@@ -2,7 +2,7 @@
 title: Emulating cortex a72
 date updated: 2022-08-31 14:03
 ---
-Links: [[notes/Linux]], [[_index]]
+Links: [[notes/Linux]]
 # Starting out (Preparing for emulation)
 
 - Create a Project directory.

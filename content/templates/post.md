@@ -1,4 +1,4 @@
 ---
 title: "{{title}}"
 ---
-Links: [[_index]]
+Links:

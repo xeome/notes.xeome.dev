@@ -3,7 +3,7 @@ title: JomOS Settings
 date updated: 2022-08-31 23:36
 ---
 
-Links: [[notes/Linux]], [[notes/JomOS]], [[notes/JomOS Optimizations]], [[_index]]
+Links: [[notes/Linux]], [[notes/JomOS]], [[notes/JomOS Optimizations]]
 
 # JomOS Settings
 
