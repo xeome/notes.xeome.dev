@@ -3,7 +3,7 @@ title: JomOS
 date updated: 2022-08-30 20:28
 ---
 
-Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS Settings]], [[notes/JomOS Optimizations]]
+Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS Settings]], [[notes/JomOS Optimizations]], [[_index]]
 
 # JomOS
 

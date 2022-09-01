@@ -3,8 +3,8 @@ title: Transparent Huge Pages
 date updated: 2022-08-31 23:38
 ---
 
-Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS]]
-
+Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS]], 
+[[_index]]
 # Transparent Huge Pages
 
 When the CPU assigns memory to processes that require it, it typically does so in 4 KB page chunks. Because the CPU's MMU unit actively needs to translate virtual memory to physical memory upon incoming I/O requests, going through all 4 KB pages is naturally an expensive operation. Fortunately, it has its own TLB cache (translation lookaside buffer), which reduces the potential amount of time required to access a specific memory address by caching the most recently used memory. The only issue is that TLB cache size is typically very limited, and when it comes to gaming, especially playing triple AAA games, the high memory entropy nature of those applications causes a huge potential bottleneck.

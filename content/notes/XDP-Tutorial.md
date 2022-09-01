@@ -3,7 +3,7 @@ title: XDP-Tutorial
 date updated: 2022-08-31 14:05
 ---
 
-Links: [[notes/Linux]]
+Links: [[notes/Linux]], [[_index]]
 
 # XDP-Tutorial
 
