@@ -1,6 +1,6 @@
 ---
 title: XDP-Tutorial
-date updated: 2022-09-02 16:09
+date updated: 2022-09-02 16:41
 ---
 
 Links: [[notes/Linux]]
@@ -9,7 +9,7 @@ Links: [[notes/Linux]]
 
 ## Introduction
 
-XDP is an upstream Linux kernel component that allows users to install packet processing programs into the kernel. The programs are written in restricted C and compiled into eBPF byte code. Read the academic paper (pdf) or the Cilium BPF reference guide for a general introduction to XDP.
+XDP is an upstream Linux kernel component that allows users to install packet processing programs into the kernel. The programs are written in restricted C and compiled into eBPF byte code. Read the [the academic paper (pdf)](https://github.com/xdp-project/xdp-paper/blob/master/xdp-the-express-data-path.pdf) or the [Cilium BPF reference guide](https://cilium.readthedocs.io/en/latest/bpf/) for a general introduction to XDP.
 
 This tutorial aims to provide a hands-on introduction to the various steps required to create useful programs with the XDP system. We assume you know the basics of Linux networking and how to configure it with the iproute2 suite of tools, but you have no prior experience with eBPF or XDP. All of the lessons are written in C, and they cover basic pointer arithmetic and aliasing. This tutorial is intended to be a hands-on introduction to the various steps required to successfully write useful programs using the XDP system.
 
@@ -333,3 +333,4 @@ Many sources have influenced this tutorial, including:
 - <https://www.tigera.io/learn/guides/ebpf/ebpf-xdp/>
 - <https://www.seekret.io/blog/a-gentle-introduction-to-xdp/>
 - <https://man7.org/linux/man-pages/man2/bpf.2.html>
+- <https://gist.github.com/teknoraver/b66115e3518bb1b7f3e79f52aa2c3424>
