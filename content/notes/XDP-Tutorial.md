@@ -1,6 +1,6 @@
 ---
 title: XDP-Tutorial
-date updated: 2022-09-02 15:57
+date updated: 2022-09-02 16:09
 ---
 
 Links: [[notes/Linux]]
@@ -185,6 +185,8 @@ Each map type has the following attributes:
    *  value size in bytes
 ```
 
+Example code:
+
 ```C
 #include <stdint.h>
 #include <arpa/inet.h>
@@ -297,6 +299,9 @@ int xdp_prog_simple(struct xdp_md *ctx)
             *value += 1;
         } else {
             long temp = 1;
+            /* BPF_MAP_UPDATE_ELEM
+            Create or update an element (key/value pair) in a
+            specified map. For more information visit BPF man page*/
             bpf_map_update_elem(&cnt, &source, &temp, BPF_ANY);
         }
 
