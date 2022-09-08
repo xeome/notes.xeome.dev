@@ -1,8 +1,10 @@
 ---
 title: Emulating cortex a72
-date updated: 2022-08-31 14:03
+date updated: 2022-09-09 01:12
 ---
+
 Links: [[notes/Linux]]
+
 # Starting out (Preparing for emulation)
 
 - Create a Project directory.
@@ -120,7 +122,7 @@ sudo qemu-system-aarch64 \
 
 ### Some info about script
 
-- _Since QEMU doesn't natively support Raspberry Pi 4(b), our only option is to virtualize Cortex A72 (Which is CPU used in Raspberry Pi 4(b))._
+- Since QEMU doesn't natively support Raspberry Pi 4(b), our only option is to virtualize Cortex A72 (Which is CPU used in Raspberry Pi 4(b)).
 - `-nographic` because _who needs graphics._
 - `screen` is used 'cuz _why not_.
 
@@ -131,7 +133,7 @@ sudo qemu-system-aarch64 \
 $ chmod +x rpistart.sh
 ```
 
-- **And you should* be able to run QEMU instance.**
+- __And you should_ be able to run QEMU instance._*
 - LAUNCH!
 
 ```sh
