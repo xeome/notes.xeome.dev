@@ -63,30 +63,14 @@ As previously described, change the interface name.
 #include <stdint.h>
 #include <arpa/inet.h>
 #include <linux/bpf.h>
+#include <bpf/bpf_helpers.h>
+#include <linux/icmp.h>
 #include <linux/if_ether.h>
 #include <linux/ip.h>
-#include <linux/icmp.h>
-
-#define SEC(NAME) __attribute__((section(NAME), used))
+#include <linux/ipv6.h>
+#include <linux/tcp.h>
 
 #define OVER(x, d) (x + 1 > (typeof(x))d)
-
-/* from bpf_helpers.h */
-static unsigned long long (*bpf_get_prandom_u32)(void) =
-	(void *) BPF_FUNC_get_prandom_u32;
-
-static inline void csum_replace2(uint16_t *sum, uint16_t old, uint16_t new)
-{
-	uint16_t csum = ~*sum;
-
-	csum += ~old;
-	csum += csum < (uint16_t)~old;
-
-	csum += new;
-	csum += csum < (uint16_t)new;
-
-	*sum = ~csum;
-}
 
 SEC("prog")
 int xdp_prog_simple(struct xdp_md *ctx)
@@ -96,8 +80,7 @@ int xdp_prog_simple(struct xdp_md *ctx)
     to perform the casts */
     void *data_end = (void *)(uintptr_t)ctx->data_end;
     void *data = (void *)(uintptr_t)ctx->data;
-    uint8_t old_ttl;
-
+    
     struct ethhdr *eth = data;
     struct iphdr *iph = (struct iphdr *)(eth + 1);
     struct icmphdr *icmph = (struct icmphdr *)(iph + 1);
@@ -151,14 +134,7 @@ int xdp_prog_simple(struct xdp_md *ctx)
     /* drop icmp */
     if (iph->protocol == IPPROTO_ICMP)
         return XDP_DROP;
-
-    /* set the TTL to a pseudorandom number 1..255 */
-    old_ttl = iph->ttl;
-    iph->ttl = bpf_get_prandom_u32() & 0xff ?: 1;
-
-    /* recalculate the checksum, otherwise the IP stack wil drop it */
-    csum_replace2(&iph->check, htons(old_ttl << 8), htons(iph->ttl << 8));
-
+    
     return XDP_PASS;
 }
 
@@ -167,11 +143,11 @@ char _license[] SEC("license") = "GPL";
 
 ### Example 3 - Recording how many ICMP packets arrived
 
-In this example, we count the number of ICMP packets received from each individual source address and block incoming packets after the first five.
+In this example, we count the number of ICMP packets received from each individual source address and block incoming packets after the first five. So each source address can only send 5 ICMP packets.
 
 ![[notes/assets/img/BPF_internals.png]]
 
-We can use **eBPF maps** for storing the amount of packets received. Maps are a general-purpose data structure used to store various types of data. They allow data sharing between eBPF kernel programs as well as between kernel and user-space applications.
+As shown in the image we can use **eBPF maps** (Map Storage) for storing the amount of packets received. Maps are a general-purpose data structure used to store various types of data. They allow data sharing between eBPF kernel programs as well as between kernel and user-space applications.
 
 Each map type has the following attributes:
 
@@ -198,7 +174,6 @@ Example code:
 #include <linux/ipv6.h>
 #include <linux/tcp.h>
 
-
 #define OVER(x, d) (x + 1 > (typeof(x))d)
 
 /* Creating a BPF map for counting ICMP packets as described above */
@@ -209,20 +184,6 @@ struct bpf_map_def SEC("maps") cnt = {
     .max_entries = 65536,
 };
 
-
-static inline void csum_replace2(uint16_t *sum, uint16_t old, uint16_t new)
-{
-	uint16_t csum = ~*sum;
-
-	csum += ~old;
-	csum += csum < (uint16_t)~old;
-
-	csum += new;
-	csum += csum < (uint16_t)new;
-
-	*sum = ~csum;
-}
-
 SEC("prog")
 int xdp_prog_simple(struct xdp_md *ctx)
 {
@@ -232,7 +193,6 @@ int xdp_prog_simple(struct xdp_md *ctx)
 	void *data_end = (void *)(uintptr_t)ctx->data_end;
 	void *data = (void *)(uintptr_t)ctx->data;
 	
-    uint8_t old_ttl;
     long *value;
     
     /* Define headers */
@@ -299,9 +259,6 @@ int xdp_prog_simple(struct xdp_md *ctx)
             *value += 1;
         } else {
             long temp = 1;
-            /* BPF_MAP_UPDATE_ELEM
-            Create or update an element (key/value pair) in a
-            specified map. For more information visit BPF man page*/
             bpf_map_update_elem(&cnt, &source, &temp, BPF_ANY);
         }
 
@@ -310,15 +267,83 @@ int xdp_prog_simple(struct xdp_md *ctx)
 
         return XDP_PASS;
     }
+    
+	return XDP_PASS;
+}
+
+char _license[] SEC("license") = "GPL";
+```
+
+### Example 4 - Packet modification
+In this example, we will set TTL to a pseudorandom number between 1-255.
+
+```C
+#include <stdint.h>
+#include <arpa/inet.h>
+#include <linux/bpf.h>
+#include <bpf/bpf_helpers.h>
+#include <linux/icmp.h>
+#include <linux/if_ether.h>
+#include <linux/ip.h>
+#include <linux/ipv6.h>
+#include <linux/tcp.h>
+
+#define OVER(x, d) (x + 1 > (typeof(x))d)
+
+static inline void csum_replace2(uint16_t *sum, uint16_t old, uint16_t new)
+{
+	uint16_t csum = ~*sum;
+
+	csum += ~old;
+	csum += csum < (uint16_t)~old;
+
+	csum += new;
+	csum += csum < (uint16_t)new;
+
+	*sum = ~csum;
+}
+
+SEC("prog")
+int xdp_prog_simple(struct xdp_md *ctx)
+{
+    /* data and data_end are pointers to the beginning and end of the packet’s raw
+    memory. Note that ctx->data and ctx->data_end are of type __u32, so we have
+    to perform the casts */
+    void *data_end = (void *)(uintptr_t)ctx->data_end;
+    void *data = (void *)(uintptr_t)ctx->data;
+    uint8_t old_ttl;
+
+    struct ethhdr *eth = data;
+    struct iphdr *iph = (struct iphdr *)(eth + 1);
+    struct icmphdr *icmph = (struct icmphdr *)(iph + 1);
+
+    /* sanity check needed by the eBPF verifier
+    When accessing the data in struct ethhdr, we must make sure we don't
+    access invalid areas by checking whether data + sizeof(struct ethhdr) >
+    data_end, and returning without further action if it's true. This check
+    is compulsory by the BPF verifer that verifies your program at runtime. */
+    if (OVER(eth, data_end))
+        return XDP_DROP;
+
+    if (eth->h_proto != ntohs(ETH_P_IP))
+        return XDP_PASS;
+
+    /* sanity check needed by the eBPF verifier */
+    if (OVER(iph, data_end))
+        return XDP_DROP;
+
+    /* sanity check needed by the eBPF verifier */
+    if (OVER(icmph, data_end))
+        return XDP_DROP;
 
     /* set the TTL to a pseudorandom number 1..255 */
-	old_ttl = iph->ttl;
-	iph->ttl = bpf_get_prandom_u32() & 0xff ?: 1;
+    old_ttl = iph->ttl;
+    iph->ttl = bpf_get_prandom_u32() & 0xff ?: 1;
 
-	/* recalculate the checksum, otherwise the IP stack wil drop it */
-	csum_replace2(&iph->check, htons(old_ttl << 8), htons(iph->ttl << 8));
+    /* recalculate the checksum, otherwise the IP stack will drop it */
+    csum_replace2(&iph->check, htons(old_ttl << 8), htons(iph->ttl << 8));
 
-	return XDP_PASS;
+    return XDP_PASS;
 }
 
 char _license[] SEC("license") = "GPL";
