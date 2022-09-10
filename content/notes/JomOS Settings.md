@@ -39,7 +39,7 @@ Contains, as a percentage of total available memory that contains free pages and
 
 Contains, as a percentage of total available memory that contains free pages and reclaimable pages, the number of pages at which the background kernel flusher threads will start writing out dirty data (Default is 10).
 
-### Network tweaks
+### Network tweaks (only for CachyOS kernels)
 
 The BBR congestion control algorithm can help achieve higher bandwidths and lower latencies for internet traffic
 
