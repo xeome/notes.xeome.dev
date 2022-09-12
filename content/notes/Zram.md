@@ -3,7 +3,7 @@ title: Zram
 date updated: 2022-08-30 20:28
 ---
 
-Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS Settings]]
+Links: [[notes/Linux]], [[notes/Post Install Optimizations]], [[notes/JomOS Settings]]
 
 # Zram
 

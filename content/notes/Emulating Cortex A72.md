@@ -1,5 +1,5 @@
 ---
-title: Emulating cortex a72
+title: Emulating Cortex A72
 date updated: 2022-09-09 01:12
 ---
 
