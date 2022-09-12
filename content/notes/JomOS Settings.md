@@ -76,7 +76,7 @@ For example the [udev](https://wiki.archlinux.org/title/Udev "Udev") rule abov
 
 Base and udev replaced with systemd for faster boots and set compression algorithm to zstd and compression level to 2 because compression ratio increase isn't worth the increased boot time.
 
-## etc/systemd/zram-generator.conf
+## /etc/systemd/zram-generator.conf
 
 Use zstd compression by default, for more information visit [[notes/Zram]]
 
