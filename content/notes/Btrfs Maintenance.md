@@ -23,12 +23,16 @@ The goal is to avoid situations in which it is impossible to allocate new metada
 
 The balance operation requires enough space to shuffle data around. By workspace, we mean device space with no filesystem chunks on it, not free space as reported by df, for example.
 
-**Expected outcome:** If all underutilized chunks are removed, the total value in the output of `btrfs fi df /path` should be lower than before. Examine the logs.
-
 The balance command may fail due to a lack of space, but this is considered a minor error because the internal filesystem layout may prevent the command from finding enough workspace. This could be a good time to inspect the space manually.
 
-`sudo btrfs balance start --bg /path` to start the balance
+Running `btrfs balance start` without any filters, would re-write every Data and Metadata chunk on the disk. Usually, this is not what we want. Instead use the `usage` filter to limit what blocks should be balanced.
+
+Using `-dusage=5` we limit balance to compact data blocks that are less than 5% full. This is a good start, and we can increase it to 10-15% or more if needed. A small (less than 100GiB) filesystem may need a higher number.
+
+`sudo btrfs balance start --bg -dusage=5 /path` to start the balance
 `sudo btrfs balance status /path` to check status
+
+**Expected outcome:** If all underutilized chunks are removed, the total value in the output of `btrfs fi df /path` should be lower than before. Examine the logs.
 
 ## trimming
 

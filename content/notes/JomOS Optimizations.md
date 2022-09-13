@@ -1,6 +1,6 @@
 ---
 title: JomOS Optimizations
-date updated: 2022-09-13 15:28
+date updated: 2022-09-13 16:03
 ---
 
 Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS]]
