@@ -3,7 +3,7 @@ title: x86_64-v3 Benchmarks
 date updated: 2022-08-31 14:05
 ---
 
-Links: [[notes/Linux]], [[notes/Post Install Optimizations]], [[notes/JomOS]]
+Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS]]
 
 # x86_64-v3 Benchmarks
 

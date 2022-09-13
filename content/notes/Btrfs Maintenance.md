@@ -3,7 +3,7 @@ title: Btrfs Maintenance
 date updated: 2022-08-31 14:03
 ---
 
-Links: [[notes/Linux]], [[notes/Post Install Optimizations]]
+Links: [[notes/Linux]], [[notes/Post install optimizations]]
 
 # Btrfs Maintenance
 
