@@ -3,7 +3,7 @@ title: Post install Optimizations
 date updated: 2022-09-09 01:13
 ---
 
-Links: [[notes/Linux]], [[notes/Btrfs Maintenance]], [[notes/JomOS Settings]], [[notes/Zram]]
+Links: [[notes/Linux]], [[notes/Btrfs Maintenance]], [[notes/Zram]]
 
 # Post Install Optimizations
 

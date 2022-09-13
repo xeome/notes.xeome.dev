@@ -8,7 +8,6 @@ date updated: 2022-08-31 14:05
 ## WIP
 
 - [[notes/JomOS]]
-- [[notes/JomOS Settings]]
 - [[notes/JomOS Optimizations]]
 - [[notes/x86_64-v3 Benchmarks]]
 - [[notes/Post install optimizations]]
