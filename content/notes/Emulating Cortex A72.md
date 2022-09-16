@@ -127,7 +127,7 @@ sudo qemu-system-aarch64 \
 - `screen` is used 'cuz _why not_.
 
 <br>
-* Make script executable
+- Make script executable
 
 ```sh
 $ chmod +x rpistart.sh
