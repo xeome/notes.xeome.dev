@@ -36,6 +36,8 @@ Lower values mean lower latencies for initial faults, but at the same time extra
 
 As you can see zstd has highest compression ratio but is also slower (but still at acceptable speeds). However, compression ratio advantage is more important here because high compression ratio lets more of the working set fit in uncompressed memory, reducing the need for swap and improving performance.
 
+**If you're running desktop systems, I recommend running zstd with page-cluster set to 0, because the majority of the swapped data is most likely stale (old browser tabs). However, if you are running something that requires constant swapping, lz4 may be a better choice due to its higher throughput and lower latency.**
+
 With zstd, the decompression is so slow that that there's essentially zero throughput gain from readahead. Use vm.page-cluster=0 as higher values has a huge latency cost. (This is default on [ChromeOS](https://bugs.chromium.org/p/chromium/issues/detail?id=263561#c16=) and seems to be standard practice on [Android](https://cs.android.com/search?q=page-cluster&start=21).)
 
 The default is `vm.page-cluster=3`, which is better suited for physical swap. Git blame says it was there in 2005 when the kernel switched to git, so it might even come from a time before SSDs.

@@ -126,7 +126,6 @@ sudo qemu-system-aarch64 \
 - `-nographic` because _who needs graphics._
 - `screen` is used 'cuz _why not_.
 
-<br>
 - Make script executable
 
 ```sh
