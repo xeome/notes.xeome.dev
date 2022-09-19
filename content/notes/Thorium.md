@@ -3,7 +3,7 @@ title: Thorium
 date updated: 2022-09-19 14:41
 ---
 
-Links: [[notes/VS Code server]]
+Links: [[notes/VS Code Server]]
 
 # Thorium
 
