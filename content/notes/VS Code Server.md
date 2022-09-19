@@ -13,8 +13,8 @@ Compilations, downloads, and other similar tasks should not be done on your prim
 
 The default bundled electron isn't very optimized; however, with VS Code server, you can use your local web browser without having to launch another browser (electron). You can also maximize resource efficiency by using an optimized browser, such as [[notes/Thorium]].
 
-In this video, I'm running code server on my Raspberry Pi, and I can also access the pi from anywhere using [ZeroTier](https://www.zerotier.com/).
+I'm running code server on my Raspberry Pi, and I can also access the pi from anywhere using [ZeroTier](https://www.zerotier.com/).
 
-![[notes/assets/img/code-server.mp4]]
+[Video Demo](https://xeome.github.io/notes/assets/img/code-server.mp4)
 
 For more information visit [here](https://github.com/coder/code-server)
