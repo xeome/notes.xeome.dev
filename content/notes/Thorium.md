@@ -1,6 +1,6 @@
 ---
 title: Thorium
-date updated: 2022-09-19 22:30
+date updated: 2022-09-19 23:06
 ---
 
 Links: [[notes/VS Code Server]]
@@ -33,4 +33,4 @@ Depending on your operating system and hardware, performance improvements may va
 ![[notes/assets/img/thorium_octane.png]]
 ![[notes/assets/img/thorium_speedometer.png]]
 
-As you can see, there are significant performance improvements, but they may not be as dramatic on your device. For example, on my Ryzen 5 5500U, I get a 105 on the chromium speedometer and a 175 on the Thorium speedometer. Not a 3x score difference but still very significant.
+There are significant performance improvements, but they may not be as dramatic on your device. For example, on my Ryzen 5 5500U, I get a 105 on the chromium speedometer and a 175 on the Thorium speedometer. Not a 3x score difference but still very significant.
