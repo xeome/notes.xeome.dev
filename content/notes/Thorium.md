@@ -1,6 +1,6 @@
 ---
 title: Thorium
-date updated: 2022-09-19 14:41
+date updated: 2022-09-19 22:30
 ---
 
 Links: [[notes/VS Code Server]]
@@ -10,6 +10,8 @@ Links: [[notes/VS Code Server]]
 Chromium fork for linux named after [radioactive element No. 90](https://en.wikipedia.org/wiki/Thorium) that takes pride in being a highly optimized web browser.
 
 Thorium makes many modifications to compiler configurations which highly improve performance and responsiveness. Google tries to minimize size at any cost (including RAM usage and performance), but Thorium takes a different approach. Thorium takes up approximately ~250MB compared to ~150MB for Chrome. Me and many others appreciate speed and performance over the smallest size.
+
+You can get Thorium from <https://github.com/Alex313031/Thorium>
 
 ## Compiler Optimizations
 
