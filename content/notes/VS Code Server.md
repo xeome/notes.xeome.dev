@@ -1,11 +1,9 @@
 ---
 title: VS Code Server
-date updated: 2022-09-19 16:44
+date updated: 2022-09-25 23:31
 ---
 
 Links: [[notes/ZeroTier]]
-
-# VS Code Server
 
 Run [VS Code](https://github.com/Microsoft/vscode) on any machine anywhere and access it in the browser.
 

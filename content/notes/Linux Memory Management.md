@@ -1,11 +1,9 @@
 ---
 title: Linux Memory Management
-date updated: 2022-09-20 15:14
+date updated: 2022-09-25 23:30
 ---
 
-Links:
-
-# Linux Memory Management
+Links: [[notes/Linux]]
 
 ## Memory Management Concepts
 

@@ -1,11 +1,9 @@
 ---
 title: XDP-Tutorial
-date updated: 2022-09-02 16:41
+date updated: 2022-09-25 23:31
 ---
 
 Links: [[notes/Linux]]
-
-# XDP-Tutorial
 
 ## Introduction
 
@@ -275,6 +273,7 @@ char _license[] SEC("license") = "GPL";
 ```
 
 ### Example 4 - Packet modification
+
 In this example, we will set TTL to a pseudorandom number between 1-255.
 
 ```C

@@ -1,11 +1,9 @@
 ---
 title: Why do SSDs need trim
-date updated: 2022-09-25 23:13
+date updated: 2022-09-25 23:31
 ---
 
 Links: [[notes/Btrfs Maintenance]]
-
-# Why do SSDs need trim
 
 ## How does SSD store data
 
@@ -25,7 +23,7 @@ Assume you change a file, which corresponds to a single 4KB page change. When yo
 
 TRIM informs the drive that the blocks are no longer in use. That is, they can be deleted and used again for new data.
 
-An SSD does not understand the file system that has been written to it. As a result, it has no idea how NTFS deletes files. Now TRIM comes into play. After a file is deleted, the operating system sends a TRIM command to the SSD, along with a list of sectors that should be marked free and erased.
+An SSD does not understand the file system that has been written to it. As a result, it has no idea how NTFS (For example) deletes files. Now TRIM comes into play. After a file is deleted, the operating system sends a TRIM command to the SSD, along with a list of sectors that should be marked free and erased.
 
 The TRIM command reduces performance degradation by trimming invalid pages on a regular basis. Windows 10 for example TRIMs your SSD once a week. When that operation is run, the SSD controller cleans out all the data that has been marked as deleted by the OS from the memory cells. Yes, it still has to go through the read-modify-write operation, but it only happens once a week, so if all pages in a block are marked for deletion by the time trimming occurs, there will be no pages to copy to the cache therefore reducing writes and improving device lifespan.
 

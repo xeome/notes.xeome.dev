@@ -1,11 +1,9 @@
 ---
 title: Zram
-date updated: 2022-08-30 20:28
+date updated: 2022-09-25 23:31
 ---
 
 Links: [[notes/Linux]], [[notes/Post install optimizations]]
-
-# Zram
 
 ### Compression ratio difference
 

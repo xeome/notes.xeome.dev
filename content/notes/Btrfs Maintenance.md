@@ -1,11 +1,9 @@
 ---
 title: Btrfs Maintenance
-date updated: 2022-08-31 14:03
+date updated: 2022-09-25 23:30
 ---
 
 Links: [[notes/Linux]], [[notes/Post install optimizations]]
-
-# Btrfs Maintenance
 
 ## Btrfs scrub
 

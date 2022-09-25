@@ -1,11 +1,9 @@
 ---
 title: JomOS
-date updated: 2022-09-19 23:10
+date updated: 2022-09-25 23:30
 ---
 
 Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS Optimizations]]
-
-# JomOS
 
 ## About
 

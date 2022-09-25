@@ -1,9 +1,7 @@
 ---
 title: Linux
-date updated: 2022-09-20 15:17
+date updated: 2022-09-25 23:30
 ---
-
-# Linux
 
 ## WIP
 

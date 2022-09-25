@@ -1,11 +1,9 @@
 ---
 title: Post install Optimizations
-date updated: 2022-09-09 01:13
+date updated: 2022-09-25 23:30
 ---
 
 Links: [[notes/Linux]], [[notes/Btrfs Maintenance]], [[notes/Zram]]
-
-# Post Install Optimizations
 
 ### Editing mkinitcpio.conf for faster boot times
 
