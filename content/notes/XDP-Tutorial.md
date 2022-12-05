@@ -3,8 +3,6 @@ title: XDP-Tutorial
 date updated: 2022-09-25 23:31
 ---
 
-Links: [[notes/Linux]]
-
 ## Introduction
 
 XDP is an upstream Linux kernel component that allows users to install packet processing programs into the kernel. The programs are written in restricted C and compiled into eBPF byte code. Read the [the academic paper (pdf)](https://github.com/xdp-project/xdp-paper/blob/master/xdp-the-express-data-path.pdf) or the [Cilium BPF reference guide](https://cilium.readthedocs.io/en/latest/bpf/) for a general introduction to XDP.

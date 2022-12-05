@@ -3,5 +3,3 @@ title: "{{title}}"
 ---
 
 Links:
-
-# {{title}}

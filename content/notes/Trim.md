@@ -3,8 +3,6 @@ title: Why do SSDs need trim
 date updated: 2022-09-25 23:31
 ---
 
-Links: [[notes/Btrfs Maintenance]]
-
 ## How does SSD store data
 
 Let's look at the structure of the SSD to understand the problems it faces and why we need TRIM operation to solve them. Data is typically stored in pages, which are groups of 4KB cells. For most SSDs, the pages are then grouped into clusters of 128 pages called Blocks, with each block containing 512KB.

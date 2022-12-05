@@ -3,8 +3,6 @@ title: Post install Optimizations
 date updated: 2022-09-25 23:30
 ---
 
-Links: [[notes/Linux]], [[notes/Btrfs Maintenance]], [[notes/Zram]]
-
 ### Editing mkinitcpio.conf for faster boot times
 
 Replace udev with systemd for faster boots and set compression algorithm to zstd and compression level to 2 because compression ratio increase isn't worth the increased boot time.

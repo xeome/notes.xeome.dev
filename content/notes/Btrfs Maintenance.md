@@ -3,8 +3,6 @@ title: Btrfs Maintenance
 date updated: 2022-09-25 23:30
 ---
 
-Links: [[notes/Linux]], [[notes/Post install optimizations]]
-
 ## Btrfs scrub
 
 Scrubbing reads all data and metadata from devices and verifies checksums. It is not mandatory, but it may detect problems with faulty hardware early because it touches data that may not be in use and causes bit rot.

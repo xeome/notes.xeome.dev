@@ -3,8 +3,6 @@ title: JomOS Optimizations
 date updated: 2022-09-25 23:30
 ---
 
-Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS]]
-
 ## Optimized repositories
 
 JomOS adds optimized repositories automatically to improve performance and system responsiveness. These repositories also include custom kernels with various CPU schedulers and other goodies.

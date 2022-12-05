@@ -3,8 +3,6 @@ title: Zram
 date updated: 2022-09-25 23:31
 ---
 
-Links: [[notes/Linux]], [[notes/Post install optimizations]]
-
 ### Compression ratio difference
 
 | Algorithm | Cp time | Data | Compressed |  Total | Ratio |

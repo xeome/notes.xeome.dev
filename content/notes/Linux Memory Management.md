@@ -3,8 +3,6 @@ title: Linux Memory Management
 date updated: 2022-09-25 23:30
 ---
 
-Links: [[notes/Linux]]
-
 ## Memory Management Concepts
 
 ### Virtual Memory

@@ -3,8 +3,6 @@ title: JomOS
 date updated: 2022-09-25 23:30
 ---
 
-Links: [[notes/Linux]], [[notes/Post install optimizations]], [[notes/JomOS Optimizations]]
-
 ## About
 
 JomOS is an aggressively optimized meta Linux distribution designed for people who wants to get most out of their hardware. It allows users to mix-and-match well tested configurations and optimizations with little to no effort.

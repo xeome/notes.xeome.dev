@@ -3,8 +3,6 @@ title: VS Code Server
 date updated: 2022-09-25 23:31
 ---
 
-Links: [[notes/ZeroTier]]
-
 Run [VS Code](https://github.com/Microsoft/vscode) on any machine anywhere and access it in the browser.
 
 Compilations, downloads, and other similar tasks should not be done on your primary computer. To avoid straining your current device, you can perform all of these tasks on a remote machine. Extensions can also be run remotely, consuming fewer system resources.
