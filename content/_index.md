@@ -1,11 +1,11 @@
 ---
 title: xeome.github.io
-date updated: 2022-09-20 23:53
+date updated: 2022-12-20 01:31
 ---
 
 ### About me
 
-Hi, I'm a computer science student in my first year of university. I work with Linux and Unix-like systems. I enjoy optimizing systems to get the most out of hardware. I'm working on my own Linux distribution and also contribute to CachyOS, which is a similar distribution to mine. I also write Linux internals documentation. I've recently started learning eBPF and XDP.
+I have a strong interest in Linux and other Unix-like operating systems, with a particular focus on optimization, efficiency, and low-level system programming. I enjoy reading kernel documentation and learning about low-level optimizations and the clever tricks that have been used to make the most of limited hardware. I am currently working on creating my own Linux distribution and writing documentation on various topics related to the Linux internals and other low-level systems programming topics, such as network programming(XDP) and the use of languages like C and x86 assembly. Overall, I have a passion for exploring and learning about the inner workings of low-level systems and finding ways to optimize and improve their performance.
 
 Github: <https://github.com/xeome>
 

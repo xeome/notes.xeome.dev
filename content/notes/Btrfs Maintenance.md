@@ -1,15 +1,23 @@
 ---
 title: Btrfs Maintenance
-date updated: 2022-09-25 23:30
+date updated: 2022-12-20 01:22
 ---
 
-## Btrfs scrub
+## Btrfs Scrub
 
-Scrubbing reads all data and metadata from devices and verifies checksums. It is not mandatory, but it may detect problems with faulty hardware early because it touches data that may not be in use and causes bit rot.
+The Btrfs scrub operation reads all data and metadata from devices and verifies their checksums. This can help to detect problems with faulty hardware early, as it touches data that may not be in use and may be vulnerable to bit rot. If there is data/metadata redundancy in the file system, such as DUP or RAID1/5/6 profiles, scrub can automatically repair the data if a good copy is available.
 
-If there is data/metadata redundancy, such as DUP or RAID1/5/6 profiles, scrub can automatically repair the data if a good copy is available.
+To start a scrub operation, use the following command:
 
-You can use `sudo btrfs scrub start /` to start the scan and `sudo btrfs scrub status /` to check the status of it.
+```bash
+sudo btrfs scrub start /
+```
+
+To check the status of a scrub operation, use the following command:
+
+```bash
+sudo btrfs scrub status /
+```
 
 ## Btrfs balance
 
