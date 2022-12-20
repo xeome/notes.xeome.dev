@@ -5,7 +5,7 @@ function htmlToElement(html) {
   return template.content.firstChild
 }
 
-function initPopover(baseURL, useContextualBacklinks, renderLatex) {
+function initPopover(baseURL, useContextualBacklinks) {
   const basePath = baseURL.replace(window.location.origin, "")
   fetchData.then(({ content }) => {
     const links = [...document.getElementsByClassName("internal-link")]
@@ -27,7 +27,7 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
             let splitLink = li.href.split("#")
             let cleanedContent = removeMarkdown(linkDest.content)
             if (splitLink.length > 1) {
-              let headingName = splitLink[1].replace(/\-/g, " ")
+              let headingName = decodeURIComponent(splitLink[1]).replace(/\-/g, " ")
               let headingIndex = cleanedContent.toLowerCase().indexOf("<b>" + headingName + "</b>")
               cleanedContent = cleanedContent.substring(headingIndex, cleanedContent.length)
             }
@@ -42,13 +42,11 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
 
         if (el) {
           li.appendChild(el)
-          if (renderLatex) {
+          if (LATEX_ENABLED) {
             renderMathInElement(el, {
               delimiters: [
                 { left: '$$', right: '$$', display: false },
                 { left: '$', right: '$', display: false },
-                { left: '\\(', right: '\\)', display: false },
-                { left: '\\[', right: '\\]', display: false }
               ],
               throwOnError: false
             })
