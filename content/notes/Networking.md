@@ -11,3 +11,4 @@ Welcome to the networking section of my digital garden. In this section, you wil
 # Index
 
 - [[notes/OSPF]]
+- [[notes/VLAN]]
