@@ -12,3 +12,6 @@ Welcome to the networking section of my digital garden. In this section, you wil
 
 - [[notes/OSPF]]
 - [[notes/VLAN]]
+- [[notes/STP]]
+- [[notes/XDP-Tutorial]]
+- [[notes/Socket programming]]

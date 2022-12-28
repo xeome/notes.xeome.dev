@@ -37,6 +37,10 @@ If you get an output saying `x86-64-v3 (supported, searched)` then congratulatio
 
 This repository is provided by CachyOS. As theres no reason to create our own v3 repositories. Many thanks to the CachyOS team for creating and maintaining this repository.
 
+## Default browser Thorium
+
+As far as I am aware, Thorium is the fastest browser available. It also makes use of some of the compiler optimizations we use, as well as others; for more information, see [[notes/Thorium]].
+
 ## Tuned sysctl values and other configurations
 
 ### /etc/sysctl.d/99-JomOS-settings.conf

@@ -1,5 +1,3 @@
 ---
 title: "{{title}}"
 ---
-
-Links:
