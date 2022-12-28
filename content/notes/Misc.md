@@ -9,3 +9,4 @@ title: Misc
 - [[notes/Recommended Tools]]
 - [[notes/Thorium]]
 - [[notes/Trim]]
+- [[notes/Data Structures]]

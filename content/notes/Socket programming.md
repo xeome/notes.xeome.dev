@@ -46,7 +46,8 @@ int main(int argc, char *argv[]) {
     socket_desc = socket(AF_INET, SOCK_STREAM, 0);  
     if (socket_desc == -1) {  
         printf("Could not create socket");  
-    }    puts("Socket created");  
+    }
+    puts("Socket created");  
   
     // Prepare the sockaddr_in structure  
     server.sin_family = AF_INET;  
@@ -58,7 +59,8 @@ int main(int argc, char *argv[]) {
         // print the error message  
         perror("bind failed. Error");  
         return 1;  
-    }    puts("bind done");  
+    }
+    puts("bind done");  
   
     // Listen  
     listen(socket_desc, 3);  
