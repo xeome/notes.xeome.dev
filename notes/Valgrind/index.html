@@ -1,0 +1,227 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Overview Valgrind is a tool that aids in debugging and profiling programs written in C, C++, and other languages. It helps developers identify and fix issues such as memory leaks, buffer overflows, and other problems that can cause bugs and crashes."><title>C debugging</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://xeome.github.io//icon.png><link href=https://xeome.github.io/styles.706bb6073ba85d26809f9096dae23a6b.min.css rel=stylesheet><link href=https://xeome.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://xeome.github.io/js/darkmode.7f967d9bd2d1cac02e762b5c57efc6ae.min.js></script>
+<script src=https://xeome.github.io/js/util.5e39932758f9ecaf45fd54506ed61416.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://xeome.github.io/js/popover.6da9b273c092cc16fc1aa904d71a2163.min.js></script>
+<script src=https://xeome.github.io/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://xeome.github.io/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://xeome.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=null,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://xeome.github.io/",fetchData=Promise.all([fetch("https://xeome.github.io/indices/linkIndex.c56498780bb64a1e3296d0752fab8cd0.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://xeome.github.io/indices/contentIndex.39bdcfdcbbee1d9019273fd52c133ab4.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://xeome.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!0;drawGraph("https://xeome.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/xeome.github.io\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://xeome.github.io/js/full-text-search.51f0b1753e9b30839d053f8a98cc20d1.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://xeome.github.io/>🪴 Quartz 3.3</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>C debugging</h1><p class=meta>Last updated
+Dec 29, 2022
+<a href=https://github.com/xeome/notes/Valgrind.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents></nav></details></aside><a href=#overview><h1 id=overview><span class=hanchor arialabel=Anchor># </span>Overview</h1></a><p>Valgrind is a tool that aids in debugging and profiling programs written in C, C++, and other languages. It helps developers identify and fix issues such as memory leaks, buffer overflows, and other problems that can cause bugs and crashes.</p><p>Valgrind works by executing a program in a simulated environment and monitoring its behavior. It can identify a variety of problems, including:</p><ul><li><p>Memory leaks: Valgrind can detect when a program fails to free memory that it has allocated, resulting in an accumulation of unused memory over time.</p></li><li><p>Memory errors: Valgrind can detect when a program accesses memory that it is not intended to, such as when it reads from or writes to uninitialized memory or memory that has already been freed.</p></li><li><p>Buffer overflows: Valgrind can detect when a program writes more data to a buffer than it is designed to hold, potentially causing a crash or introducing security vulnerabilities.</p></li><li><p>Race conditions: Valgrind can detect when multiple threads of a program access shared resources in an inconsistent or conflicting manner, leading to unpredictable or incorrect behavior.</p></li></ul><a href=#common-paremeters><h1 id=common-paremeters><span class=hanchor arialabel=Anchor># </span>Common paremeters</h1></a><p>Valgrind has many options and parameters that can be used to customize its behavior and the types of problems it can detect. Here are a few of the more commonly used options:</p><ul><li><p><code>--leak-check=full</code>: This option enables Valgrind&rsquo;s memory leak detection features, and provides a detailed report of any memory that was allocated but not freed by the program.</p></li><li><p><code>--track-origins=yes</code>: This option enables Valgrind&rsquo;s origin tracking feature, which can help identify the source of uninitialized memory reads and other errors.</p></li><li><p><code>--tool=&lt;toolname></code>: This option allows you to specify which tool Valgrind should use to analyze the program. Valgrind comes with a number of different tools, including <code>memcheck</code> for memory error detection, <code>cachegrind</code> for cache profiling, and <code>helgrind</code> for detecting threading errors.</p></li><li><p><code>--log-file=&lt;filename></code>: This option specifies a file to which Valgrind should write its output. By default, Valgrind writes its output to <code>stderr</code>, but this option allows you to redirect the output to a file for easier analysis.</p></li><li><p><code>--suppressions=&lt;filename></code>: This option specifies a file containing suppression rules that tell Valgrind to ignore certain errors or warnings. This can be useful if you are running Valgrind on a program that generates a lot of false positives or if you are only interested in certain types of errors.</p></li></ul><p>These are just a few examples of the many options and parameters that are available in Valgrind.</p><a href=#more-examples><h1 id=more-examples><span class=hanchor arialabel=Anchor># </span>More examples</h1></a><p>Example 1: How Valgrind can be used to detect a memory leak in a C program:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-C data-lang=C><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;stdlib.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span><span class=o>**</span> <span class=n>argv</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kt>char</span><span class=o>*</span> <span class=n>ptr</span> <span class=o>=</span> <span class=p>(</span><span class=kt>char</span><span class=o>*</span><span class=p>)</span> <span class=n>malloc</span><span class=p>(</span><span class=mi>100</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// Do something with ptr
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>If we compile and run this program using Valgrind, it will report that there is a 100-byte memory leak, because the program allocated memory with <code>malloc</code> but did not release it with <code>free</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ valgrind --leak-check<span class=o>=</span>full ./a.out
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span> Memcheck, a memory error <span class=nv>detector</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span> Copyright <span class=o>(</span>C<span class=o>)</span> 2002-2022, and GNU GPL<span class=err>&#39;</span>d, by Julian Seward et al.
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span> Using Valgrind-3.19.0 and LibVEX<span class=p>;</span> rerun with -h <span class=k>for</span> copyright <span class=nv>info</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span> Command: ./a.out
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span> HEAP SUMMARY:
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>     in use at exit: <span class=m>100</span> bytes in <span class=m>1</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>   total heap usage: <span class=m>1</span> allocs, <span class=m>0</span> frees, <span class=m>100</span> bytes <span class=nv>allocated</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span> <span class=m>100</span> bytes in <span class=m>1</span> blocks are definitely lost in loss record <span class=m>1</span> of <span class=nv>1</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>    at 0x4841888: malloc <span class=o>(</span>in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>    by 0x109151: main <span class=o>(</span>mem_leak.c:4<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span> LEAK SUMMARY:
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>    definitely lost: <span class=m>100</span> bytes in <span class=m>1</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>    indirectly lost: <span class=m>0</span> bytes in <span class=m>0</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>      possibly lost: <span class=m>0</span> bytes in <span class=m>0</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>    still reachable: <span class=m>0</span> bytes in <span class=m>0</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>         suppressed: <span class=m>0</span> bytes in <span class=m>0</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span> For lists of detected and suppressed errors, rerun with: -s
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>4410</span><span class=o>==</span> ERROR SUMMARY: <span class=m>1</span> errors from <span class=m>1</span> contexts <span class=o>(</span>suppressed: <span class=m>0</span> from 0<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>Example 2: Detecting a buffer overflow:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-C data-lang=C><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;stdio.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span><span class=o>**</span> <span class=n>argv</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kt>char</span> <span class=o>*</span><span class=n>buffer</span> <span class=o>=</span> <span class=n>malloc</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>snprintf</span><span class=p>(</span><span class=n>buffer</span><span class=p>,</span> <span class=mi>20</span><span class=p>,</span> <span class=s>&#34;Hello, world!&#34;</span><span class=p>);</span> <span class=c1>// buffer is too small
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%s</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>buffer</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Valgrind is not the best tool for detecting static buffer overflows, but because the code uses dynamically allocated buffers, it works fine.
+When we run this program through Valgrind, we get an error because the program tries to write more data to the buffer than it was designed to hold:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ valgrind --leak-check<span class=o>=</span>full ./a.out
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span> Memcheck, a memory error <span class=nv>detector</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span> Copyright <span class=o>(</span>C<span class=o>)</span> 2002-2022, and GNU GPL<span class=s1>&#39;d, by Julian Seward et al.
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark> Using Valgrind-3.19.0 and LibVEX; rerun with -h for copyright info
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark> Command: ./a.out
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark> Invalid write of size 1
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    at 0x48FF7A5: _IO_default_xsputn (genops.c:394)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    by 0x48FF7A5: _IO_default_xsputn (genops.c:370)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    by 0x48D8932: outstring_func (vfprintf-internal.c:239)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    by 0x48D8932: __vfprintf_internal (vfprintf-internal.c:767)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    by 0x48FAA9D: __vsnprintf_internal (vsnprintf.c:114)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    by 0x48D4FA5: snprintf (snprintf.c:31)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    by 0x109192: main (buffer_overflow.c:6)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>  Address 0x4a6904a is 0 bytes after a block of size 10 alloc&#39;</span><span class=nv>d</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    at 0x4841888: malloc <span class=o>(</span>in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x109171: main <span class=o>(</span>buffer_overflow.c:5<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span> Invalid write of size <span class=nv>1</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    at 0x48FAAAA: __vsnprintf_internal <span class=o>(</span>vsnprintf.c:117<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x48D4FA5: snprintf <span class=o>(</span>snprintf.c:31<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x109192: main <span class=o>(</span>buffer_overflow.c:6<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>  Address 0x4a6904d is <span class=m>3</span> bytes after a block of size <span class=m>10</span> alloc<span class=s1>&#39;d
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    at 0x4841888: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    by 0x109171: main (buffer_overflow.c:5)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark> Invalid read of size 1
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    at 0x4847D14: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    by 0x48F3AB7: puts (ioputs.c:35)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>    by 0x10919E: main (buffer_overflow.c:7)
+</span></span></span><span class=line><span class=cl><span class=s1><mark>6888</mark>  Address 0x4a6904a is 0 bytes after a block of size 10 alloc&#39;</span><span class=nv>d</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    at 0x4841888: malloc <span class=o>(</span>in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x109171: main <span class=o>(</span>buffer_overflow.c:5<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span> Invalid <span class=nb>read</span> of size <span class=nv>1</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    at 0x48FF713: _IO_default_xsputn <span class=o>(</span>genops.c:399<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x48FF713: _IO_default_xsputn <span class=o>(</span>genops.c:370<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x48FDB34: _IO_new_file_xsputn <span class=o>(</span>fileops.c:1264<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x48FDB34: _IO_file_xsputn@@GLIBC_2.2.5 <span class=o>(</span>fileops.c:1196<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x48F3B6B: puts <span class=o>(</span>ioputs.c:40<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x10919E: main <span class=o>(</span>buffer_overflow.c:7<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>  Address 0x4a6904a is <span class=m>0</span> bytes after a block of size <span class=m>10</span> alloc<span class=err>&#39;</span><span class=nv>d</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    at 0x4841888: malloc <span class=o>(</span>in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x109171: main <span class=o>(</span>buffer_overflow.c:5<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>
+</span></span><span class=line><span class=cl>Hello, world!
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span> HEAP SUMMARY:
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>     in use at exit: <span class=m>10</span> bytes in <span class=m>1</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>   total heap usage: <span class=m>2</span> allocs, <span class=m>1</span> frees, 1,034 bytes <span class=nv>allocated</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span> <span class=m>10</span> bytes in <span class=m>1</span> blocks are definitely lost in loss record <span class=m>1</span> of <span class=nv>1</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    at 0x4841888: malloc <span class=o>(</span>in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    by 0x109171: main <span class=o>(</span>buffer_overflow.c:5<span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span> LEAK SUMMARY:
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    definitely lost: <span class=m>10</span> bytes in <span class=m>1</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    indirectly lost: <span class=m>0</span> bytes in <span class=m>0</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>      possibly lost: <span class=m>0</span> bytes in <span class=m>0</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>    still reachable: <span class=m>0</span> bytes in <span class=m>0</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>         suppressed: <span class=m>0</span> bytes in <span class=m>0</span> <span class=nv>blocks</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span>
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span> For lists of detected and suppressed errors, rerun with: -s
+</span></span><span class=line><span class=cl><span class=o>==</span><span class=nv>6888</span><span class=o>==</span> ERROR SUMMARY: <span class=m>12</span> errors from <span class=m>5</span> contexts <span class=o>(</span>suppressed: <span class=m>0</span> from 0<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://xeome.github.io/js/graph.abd4bc2af3869a96524d7d23b76152c7.js></script></div></div><div id=contact_buttons><footer><p>Made by xeome using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://xeome.github.io/>Home</a></li><li><a href=https://github.com/xeome>Github</a></li></ul></footer></div></div></body></html>
