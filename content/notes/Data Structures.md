@@ -1,7 +1,7 @@
 ---
 title: Data Structures
 date created: 2022-12-28 21:14
-date updated: 2022-12-28 23:51
+date updated: 2023-01-04 22:58
 ---
 
 # Overview
@@ -91,3 +91,15 @@ Methods available:
 
 Implementation:
 <https://github.com/xeome/data-structures-implementations/blob/master/linked_list.c>
+
+## Queues
+
+Methods available:
+
+- enqueue(value) - adds item at end of available storage
+- dequeue() - returns value and removes least recently added element
+- empty()
+- full()
+
+Implementation:
+<https://github.com/xeome/data-structures-implementations/blob/master/queue.c>

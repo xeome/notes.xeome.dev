@@ -1,5 +1,6 @@
 ---
 title: Misc
+date updated: 2022-12-30 00:57
 ---
 
 # Index
@@ -11,3 +12,4 @@ title: Misc
 - [[notes/Trim]]
 - [[notes/Data Structures]]
 - [[notes/Valgrind]]
+- [[notes/C++ multithreading]]
