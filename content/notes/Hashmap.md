@@ -1,7 +1,7 @@
 ---
 title: Hashmap
 date created: 2023-01-07 02:20
-date updated: 2023-01-07 02:30
+date updated: 2023-01-07 02:49
 ---
 
 Following text is explanation for this code:
@@ -22,6 +22,36 @@ The `hash_map_destroy` function frees the memory allocated for the buckets array
 # hash_siphash and hash_djb2
 
 The `hash_siphash` function is a SipHash implementation, which is a cryptographic hash function that can be used to compute a hash value for a given string. The `hash_djb2` function is an alternative, simpler hash function called DJB2.
+
+djb2 is a simple, fast hashing function created by Dan Bernstein. It is designed to be easy to implement and produce good hash values with a minimum of collisions.
+
+The function works by iterating over the characters in a string and performing a series of operations on each character to generate a numerical hash value. The basic structure of the function is as follows:
+
+```C
+unsigned long djb2_hash(unsigned char *str) {
+    unsigned long hash = 5381;
+    int c;
+
+    while (c = *str++)
+        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+
+    return hash;
+}
+```
+
+The first line initializes the hash value to 5381. This is a magic number that has been found to work well with djb2. The second line declares an integer c that will be used to store the current character being processed. The third line is a while loop that iterates over the characters in the string. The loop terminates when all characters have been processed or when a null character is encountered.
+
+Inside the loop, the current character is fetched from the string and stored in c. Then, the hash value is updated using the following expression:
+
+hash = ((hash << 5) + hash) + c;
+
+This expression first shifts the current value of hash left by 5 bits. This has the effect of multiplying the hash value by 32. Then, the original value of hash is added to the result, effectively multiplying the hash value by 33. Finally, the character value c is added to the hash value.
+
+The result of this operation is that each character in the string is used to update the hash value in a way that is dependent on all of the previous characters. This helps to ensure that the hash value is spread evenly over the range of possible values and minimizes the likelihood of collisions.
+
+Once all characters have been processed, the final value of hash is returned as the hash value for the string.
+
+Overall, djb2 is a simple, fast, and effective hashing function that is widely used in a variety of applications. Its simplicity makes it easy to implement and its good performance makes it well-suited for use in a wide range of situations.
 
 # hash_map_insert
 
