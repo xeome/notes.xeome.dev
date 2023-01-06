@@ -1,7 +1,7 @@
 ---
 title: Data Structures
 date created: 2022-12-28 21:14
-date updated: 2023-01-04 22:58
+date updated: 2023-01-07 02:34
 ---
 
 # Overview
@@ -92,7 +92,7 @@ Methods available:
 Implementation:
 <https://github.com/xeome/data-structures-implementations/blob/master/linked_list.c>
 
-## Queues
+## Queue
 
 Methods available:
 
@@ -103,3 +103,19 @@ Methods available:
 
 Implementation:
 <https://github.com/xeome/data-structures-implementations/blob/master/queue.c>
+
+## Hashmap
+
+Methods available:
+
+- hash_map_init
+- hash_map_destroy
+- hash_siphash
+- hash_map_insert
+- hash_map_lookup
+
+Implementation:
+<https://github.com/xeome/data-structures-implementations/blob/master/hashmap.c>
+
+Explanation:
+[[notes/Hashmap]]
