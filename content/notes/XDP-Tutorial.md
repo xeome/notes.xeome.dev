@@ -141,7 +141,7 @@ char _license[] SEC("license") = "GPL";
 
 In this example, we count the number of ICMP packets received from each individual source address and block incoming packets after the first five. So each source address can only send 5 ICMP packets.
 
-![[notes/assets/img/BPF_internals.png]]
+![[notes/assets/img/O_BPF_internals.png]]
 
 As shown in the image we can use **eBPF maps** (Map Storage) for storing the amount of packets received. Maps are a general-purpose data structure used to store various types of data. They allow data sharing between eBPF kernel programs as well as between kernel and user-space applications.
 

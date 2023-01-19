@@ -8,18 +8,18 @@ These are some of the tools and programs that I recommend and use. I'll keep add
 ## gping
 
 Ping, but with graph and statistics. Works fine on tty.
-![[notes/assets/img/gping.png]]
+![[notes/assets/img/O_gping.png]]
 
 ## Bat
 
 Cat clone with syntax highlighting and git integration.
-![[notes/assets/img/bat.png]]
+![[notes/assets/img/O_bat.png]]
 
 
 ## grc
 
 Generic colorizer that works on many commands.
 
-![[notes/assets/img/Pasted image 20221229141033.png]]
+![[notes/assets/img/O_Pasted image 20221229141033.png]]
 
-![[notes/assets/img/Pasted image 20221229141309.png]]
+![[notes/assets/img/O_Pasted image 20221229141309.png]]

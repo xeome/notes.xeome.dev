@@ -26,7 +26,7 @@ These are the four x86-64 microarchitecture levels on top of the x86-64 baseline
 
 Most Linux distributions use x86-64-v2 for compatibility with older hardware, but this may limit performance on newer hardware. We detect whether your CPU supports x86-64-v3 and add repositories accordingly. The performance improvement could range from 10% to 35% depending on the processor and software used.
 
-![[notes/assets/img/benchmarks.png]]
+![[notes/assets/img/O_benchmarks.png]]
 
 ![[notes/assets/img/O3_generic_O3_march_haswell_Comparison.png]]
 

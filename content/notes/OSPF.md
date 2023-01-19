@@ -46,11 +46,11 @@ These five types of OSPF packets are used to establish and maintain neighbor rel
 
 In Open Shortest Path First (OSPF), there are three types of entries or tables that are used to store information about the network. These tables are:
 
-1. Router table: The router table, also known as the forwarding table, stores information about all known network destinations' routes. It is used by the router to determine the next hop for a forwarded packet. The router table is filled with data from the link-state database.![[notes/assets/img/Pasted image 20221224185350.png]]
+1. Router table: The router table, also known as the forwarding table, stores information about all known network destinations' routes. It is used by the router to determine the next hop for a forwarded packet. The router table is filled with data from the link-state database.![[notes/assets/img/O_Pasted image 20221224185350.png]]
 
-2. Link-state database: The link-state database stores a detailed representation of the entire network, including information about the links and neighbors of each router, as well as the cost or metric of each link. The link-state database is populated using link-state advertisements (LSAs) received from other routers. `display ospf lsdb` command to view lsdb information.![[notes/assets/img/Pasted image 20221224185330.png]]
+2. Link-state database: The link-state database stores a detailed representation of the entire network, including information about the links and neighbors of each router, as well as the cost or metric of each link. The link-state database is populated using link-state advertisements (LSAs) received from other routers. `display ospf lsdb` command to view lsdb information.![[notes/assets/img/O_Pasted image 20221224185330.png]]
 
-3. Neighbor table: The neighbor table stores data about the routers that are directly connected to the local router. It contains the router's ID, the link to the neighbor, and the neighbor's status (up or down). The neighbor table is used to keep track of neighbors and exchange link-state information with other routers. `display ospf peer` command to view status information.![[notes/assets/img/Pasted image 20221224185301.png]]
+3. Neighbor table: The neighbor table stores data about the routers that are directly connected to the local router. It contains the router's ID, the link to the neighbor, and the neighbor's status (up or down). The neighbor table is used to keep track of neighbors and exchange link-state information with other routers. `display ospf peer` command to view status information.![[notes/assets/img/O_Pasted image 20221224185301.png]]
 
 These three tables are used by OSPF routers to exchange information about the network and determine the best route for forwarding packets to their destination.
 
@@ -68,7 +68,7 @@ After establishing a neighbor relationship, the routers begin exchanging link-st
 
 Both routers are considered fully adjacent once they have a complete copy of each other's link-state database. They can then exchange routing information and forward packets to one another.
 
-![[notes/assets/img/Pasted image 20221224191057.png]]
+![[notes/assets/img/O_Pasted image 20221224191057.png]]
 
 ## DR and BDR
 

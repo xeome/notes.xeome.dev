@@ -14,3 +14,4 @@ date updated: 2022-12-30 00:57
 - [[notes/Valgrind]]
 - [[notes/C++ multithreading]]
 - [[notes/Hashmap]]
+- [[notes/Optimizing images]]

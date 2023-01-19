@@ -21,12 +21,12 @@ Depending on your operating system and hardware, performance improvements may va
 
 ### Chromium
 
-![[notes/assets/img/chromium_octane.png]]
-![[notes/assets/img/chromium_speedometer.png]]
+![[notes/assets/img/O_chromium_octane.png]]
+![[notes/assets/img/O_chromium_speedometer.png]]
 
 ### Thorium
 
-![[notes/assets/img/thorium_octane.png]]
-![[notes/assets/img/thorium_speedometer.png]]
+![[notes/assets/img/O_thorium_octane.png]]
+![[notes/assets/img/O_thorium_speedometer.png]]
 
 There are significant performance improvements, but they may not be as dramatic on your device. For example, on my Ryzen 5 5500U, I get a 105 on the chromium speedometer and a 175 on the Thorium speedometer. Not a 3x score difference but still very significant.

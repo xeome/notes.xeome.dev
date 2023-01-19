@@ -24,9 +24,9 @@ The default value is three (eight pages at a time). There may be some small bene
 
 Lower values mean lower latencies for initial faults, but at the same time extra faults and I/O delays for following faults if they would have been part of that consecutive pages readahead would have brought in.
 
-![[notes/assets/img/benchmarks_zram_throughput.png]]
+![[notes/assets/img/O_benchmarks_zram_throughput.png]]
 
-![[notes/assets/img/benchmarks_zram_latency.png]]
+![[notes/assets/img/O_benchmarks_zram_latency.png]]
 
 ## Main takeaways
 

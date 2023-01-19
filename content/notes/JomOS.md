@@ -17,7 +17,7 @@ For more information refer to [[notes/JomOS Optimizations]].
 
 ## Screenshots
 
-![[notes/assets/img/distro.png]]
+![[notes/assets/img/O_distro.png]]
 
 ## Credits
 

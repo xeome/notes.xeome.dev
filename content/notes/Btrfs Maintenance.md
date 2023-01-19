@@ -59,7 +59,7 @@ to check status of balance operation:
 As the above explanation from project's github readme states, you can use this tool for checking and reporting duplicate extents to kernel.
 
 I saved an estimate of around 17G on 180GiB of mixed data, photos, videos, games, documents etc.
-![[notes/assets/img/Pasted image 20230119010141.png]]
+![[notes/assets/img/O_Pasted image 20230119010141.png]]
 Here is how I use this tool:
 
 ```bash
