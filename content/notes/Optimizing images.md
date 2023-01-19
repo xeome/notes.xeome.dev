@@ -1,7 +1,7 @@
 ---
 title: Optimizing images
 date created: 2023-01-19 21:47
-date updated: 2023-01-20 00:16
+date updated: 2023-01-20 00:23
 ---
 
 # Overview
@@ -62,7 +62,7 @@ values range from 0 to 6. Default value is 4.  When higher values are used, the 
 
 ### Lossy
 
-Following command can be used to losslessly compress a png file to webp with highest compression settings:
+Following command can be used to lossy compress a png file to webp with highest compression settings:
 
 ```C
 cwebp -quiet -v -mt -af -m 6 -q 97 input.png -o output.webp
