@@ -1,6 +1,6 @@
 ---
 title: Misc
-date updated: 2022-12-30 00:57
+date updated: 2023-01-22 00:06
 ---
 
 # Index
@@ -15,3 +15,4 @@ date updated: 2022-12-30 00:57
 - [[notes/C++ multithreading]]
 - [[notes/Hashmap]]
 - [[notes/Optimizing images]]
+- [[notes/Socks5 Proxy]]
