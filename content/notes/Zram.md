@@ -1,9 +1,17 @@
 ---
 title: Zram
-date updated: 2022-09-25 23:31
+date updated: 2023-01-21 22:56
 ---
 
-### Compression ratio difference
+# Zram Performance Analysis
+
+## Introduction
+
+Zram is a kernel module that utilizes a compressed virtual memory block device allowing for efficient memory management. In this document we will analyze the performance of various compression algorithms used in Zram and their impact on the system. We will also discuss the effects of different page-cluster values on the system's latencies and throughput.
+
+## Compression Algorithm Comparison
+
+The following table compares the performance of different compression algorithms used in Zram, in terms of compression time, data size, compressed size, total size, and compression ratio.
 
 | Algorithm | Cp time | Data | Compressed |  Total | Ratio |
 | :-------: | :-----: | :--: | :--------: | :----: | :---: |
@@ -14,29 +22,29 @@ date updated: 2022-09-25 23:31
 |    842    | 22.574s | 1.1G |   538.6M   | 570.5M | 1.929 |
 |    zstd   |  7.897s | 1.1G |   285.3M   | 298.8M | 3.961 |
 
-### Page-cluster values, latency difference
+As the table shows, the zstd algorithm has the highest compression ratio but is also slower than the other algorithms. However, the compression ratio advantage is more important in this case as it allows more of the working set to fit in uncompressed memory, reducing the need for swap and thus improving performance.
 
-page-cluster controls the number of pages up to which consecutive pages are read in from swap in a single attempt. This is the swap counterpart to page cache readahead. The mentioned consecutivity is not in terms of virtual/physical addresses, but consecutive on swap space - that means they were swapped out together.
+### Page-cluster Values and Latency
 
-It is a logarithmic value - setting it to zero means “1 page”, setting it to 1 means “2 pages”, setting it to 2 means “4 pages”, etc. Zero disables swap readahead completely.
+The page-cluster value controls the number of pages that are read in from swap in a single attempt, similar to the page cache readahead. The consecutive pages are not based on virtual or physical addresses, but consecutive on swap space, meaning they were swapped out together.
 
-The default value is three (eight pages at a time). There may be some small benefits in tuning this to a different value if your workload is swap-intensive.
+The page-cluster value is a logarithmic value. Setting it to zero means one page, setting it to one means two pages, setting it to two means four pages, etc. A value of zero disables swap readahead completely.
 
-Lower values mean lower latencies for initial faults, but at the same time extra faults and I/O delays for following faults if they would have been part of that consecutive pages readahead would have brought in.
+The default value is three (eight pages at a time). However, tuning this value to a different value may provide small benefits if the workload is swap-intensive. Lower values mean lower latencies for initial faults, but at the same time, extra faults and I/O delays for following faults if they would have been part of that consecutive pages readahead would have brought in.
 
 ![[notes/assets/img/O_benchmarks_zram_throughput.png]]
 
 ![[notes/assets/img/O_benchmarks_zram_latency.png]]
 
-## Main takeaways
+## Conclusion
 
-As you can see zstd has highest compression ratio but is also slower (but still at acceptable speeds). However, compression ratio advantage is more important here because high compression ratio lets more of the working set fit in uncompressed memory, reducing the need for swap and improving performance.
+In the analysis of Zram performance, it was determined that the zstd algorithm provides the highest compression ratio while still maintaining acceptable speeds. The high compression ratio allows more of the working set to fit in uncompressed memory, reducing the need for swap and ultimately improving performance.
 
-**If you're running desktop systems, I recommend running zstd with page-cluster set to 0, because the majority of the swapped data is most likely stale (old browser tabs). However, if you are running something that requires constant swapping, lz4 may be a better choice due to its higher throughput and lower latency.**
+For average desktop system, it is recommended to use zstd with `page-cluster=0` as the majority of swapped data is likely stale (old browser tabs). In contrast, systems that require constant swapping may benefit from using the lz4 algorithm due to its higher throughput and lower latency.
 
-With zstd, the decompression is so slow that that there's essentially zero throughput gain from readahead. Use vm.page-cluster=0 as higher values has a huge latency cost. (This is default on [ChromeOS](https://bugs.chromium.org/p/chromium/issues/detail?id=263561#c16=) and seems to be standard practice on [Android](https://cs.android.com/search?q=page-cluster&start=21).)
+It is important to note that the decompression of zstd is slow and results in a lack of throughput gain from readahead. Therefore, `page-cluster=0` should be used for zstd. This is the default setting on [ChromeOS](https://bugs.chromium.org/p/chromium/issues/detail?id=263561#c16=) and seems to be standard practice on [Android](https://cs.android.com/search?q=page-cluster&start=21).
 
-The default is `vm.page-cluster=3`, which is better suited for physical swap. Git blame says it was there in 2005 when the kernel switched to git, so it might even come from a time before SSDs.
+The default `page-cluster` value is set to 3, which is better suited for physical swap. This value dates back to 2005, when the kernel switched to git, and may have been used in a time before the widespread use of SSDs. It is recommended to consider the specific requirements of the system and workload when configuring Zram.
 
 # Sources
 

@@ -1,7 +1,7 @@
 ---
 title: STP
 date created: 2022-12-25 20:49
-date updated: 2022-12-25 23:14
+date updated: 2023-01-21 23:31
 ---
 
 # Overview
@@ -12,7 +12,7 @@ STP selects a single path between two devices and blocks all other paths. STP wi
 
 STP uses a tree-based algorithm to determine the best path between two devices and is based on the IEEE 802.1D standard. It determines the best path using a set of parameters, including the cost of the link and the port identifier. STP is implemented in switches and is transparent to end devices, which means it operates behind the scenes and does not require any end-user configuration.
 
-# Root bridge selection
+# Root Bridge Selection
 
 Spanning Tree Protocol (STP) is a networking protocol that is used to prevent loops in a network by selecting a root bridge (also called a root switch) and blocking unnecessary links. The root bridge is the central reference point in the network, and all other switches in the network determine their position relative to the root bridge.
 
@@ -20,13 +20,15 @@ The root bridge is selected based on the bridge identifier (BID), which consists
 
 Once the root bridge is selected, the root path cost is calculated for each switch. The root path cost is the total cost of the path from the root bridge to the switch. The cost is determined based on the speed of the link and the type of network media being used. The switch with the lowest root path cost becomes the root port for each switch, which is the port that is used to forward traffic to the root bridge.
 
-# Root ports
+# Root Port and Designated Port
 
 The port identifier (PID) is a value that is used to identify and manage the ports on a switch. The PID consists of a priority value and the port number, and it is used by the switch to determine the root port and the designated port for each switch.
 
 The priority value is a numerical value that can be manually configured on each port, and it is used to determine the root port and the designated port for each switch. The port with the lowest priority becomes the root port and the designated port for the switch. If multiple ports have the same priority, the port with the lowest port number becomes the root port and the designated port.
 
-The root port is the port that is used to forward traffic to the root bridge, and the designated port is the port that is used to forward traffic from the switch to other parts of the network. The designated port is selected based on the lowest PID, and it is used to ensure that there is only one active path between any two points in the network, which prevents loops and improves network performance.
+A **designated port** is a port on a switch that is connected to the segment with the lowest-cost path to the root bridge. It is responsible for forwarding traffic on that segment and is in a forwarding state. Only one port on a switch can be the designated port for a specific segment.
+
+A **root port** is a port on a switch that has the lowest-cost path to the root bridge. It is responsible for forwarding traffic from the switch to the root bridge and is in a forwarding state. Each switch in the network has one and only one root port.
 
 # Bridge Protocol Data Unit (BPDU)
 
@@ -46,12 +48,26 @@ Topology Change Notification (TCN) BPDUs are used to inform other switches in th
 
 In Spanning Tree Protocol (STP), there are five port states that a port can be in:
 
-1. Disabled: In the disabled state, a port is not participating in the forwarding of traffic and is not receiving or sending any traffic. This state is usually used for administrative purposes, such as when a port is being configured or troubleshooted.
+1. Disabled: Not participating in traffic forwarding, not receiving or sending any traffic. Typically used for administrative purposes like configuration or troubleshooting.
 
-2. Blocking: In the blocking state, a port does not participate in the forwarding of traffic, and it blocks all incoming traffic except for STP BPDUs. This state is used to prevent loops in the network by ensuring that there is only one active path between any two points in the network.
+2. Blocking: Not forwarding traffic, only allowing STP BPDUs to prevent loops in the network by ensuring only one active path between any two points.
 
-3. Listening: In the listening state, a port is preparing to forward traffic, and it listens for BPDUs to ensure that the network is stable. The port blocks all incoming traffic except for STP BPDUs and sends BPDUs to confirm the network topology.
+3. Listening: Preparing to forward traffic, and it listens for BPDUs to ensure that the network is stable. The port blocks all incoming traffic except for STP BPDUs and sends BPDUs to confirm the network topology.
 
-4. Learning: In the learning state, a port is learning about the network and building its MAC address table. The port blocks all incoming traffic except for STP BPDUs and begins to forward traffic to the root bridge.
+4. Learning: The port does not forward frames but can receive and process frames. The port is learning the MAC addresses of devices connected to the network.
 
-5. Forwarding: In the forwarding state, a port is actively forwarding traffic and is participating in the normal operation of the network. The port accepts and forwards all incoming traffic.
+5. Forwarding: Actively forwarding traffic and participating in normal network operation, accepting and forwarding all incoming traffic. Only the root port or designated port can enter Forwarding state.
+
+## STP State Transition Timing
+
+STP uses a timer-based mechanism to transition between states. The following are the default timer values for each state transition:
+
+- **Blocking to Listening**: 15 seconds
+- **Listening to Learning**: 15 seconds
+- **Learning to Forwarding**: 15 seconds
+
+Once the network has converged, the STP algorithm will continuously monitor the network for changes. In case of a topology change, the STP will re-converge, which can take from 50 to 60 seconds.
+
+## Rapid Spanning Tree Protocol (RSTP)
+
+Rapid Spanning Tree Protocol (RSTP) is an evolution of STP that improves the convergence time of the network after a topology change. RSTP uses a more efficient negotiation process to determine the root bridge and active paths in the network. This results in faster convergence times, typically within 2-3 seconds. RSTP has only three port states: Discarding, Learning, and Forwarding. This reduction in states allows ports to transition to the forwarding state more quickly compared to normal STP.
