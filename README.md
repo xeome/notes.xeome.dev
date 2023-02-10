@@ -1,6 +1,7 @@
 # Quartz
 
-Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
+This is a fork of the Quartz repository, where you can host your own digital garden and second brain for free.  
+With Quartz, you can enjoy features such as:
 
 1. Extremely fast natural-language search
 2. Customizable and hackable design based on Hugo
