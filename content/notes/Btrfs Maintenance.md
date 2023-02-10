@@ -1,6 +1,6 @@
 ---
 title: Btrfs Maintenance
-date updated: 2023-01-19 01:05
+date updated: 2023-02-11 01:15
 ---
 
 ## Btrfs Scrub
@@ -97,6 +97,8 @@ On devices that support the discard operation, trim all mounted filesystems list
 `--verbose`:
 
 Verbose execution. With this option fstrim will output the number of bytes passed from the filesystem down the block stack to the device for potential discard. This number is a maximum discard amount from the storage device’s perspective, because FITRIM ioctl called repeated will keep sending the same sectors for discard repeatedly.
+
+You can read more about trim here [[notes/Trim]].
 
 ## Sources
 
