@@ -1,7 +1,7 @@
 ---
 title: Optimizing images
 date created: 2023-01-19 21:47
-date updated: 2023-01-20 00:23
+date updated: 2023-01-22 01:42
 ---
 
 # Overview
@@ -12,13 +12,13 @@ Lossy and lossless compression are 2 types of compression. Lossy compression alg
 
 There are a lot of different image formats out there, and some aren't as good at compression as others, but they might work better with certain things. I personally like WEBP because it has both lossless and lossy compression options and it's pretty popular. This guide will also show you how to get the best compression with each format. If you don't care about compatibility and just want to shrink the file size as much as possible you can try using less mainstream formats like AVIF or JPEG XL (not to be confused with regular JPEG).
 
-# Optimizing PNG files
+# Optimizing PNG Files
 
 I personally optimize with oxipng, a multithreaded lossless PNG compression optimizer. Because it is a command line tool, it may not be appropriate for non-power users.
 
 ## Examples:
 
-#### Optimizing every .png file in a directory
+#### Optimizing Every .png File In A Directory
 
 ```C
 oxipng -o max --strip safe *.png
@@ -28,7 +28,7 @@ This command will optimize all png files in the current directory. This command 
 
 `-o max` sets optimization level to maximum, its a stable alias for maximum compression.
 
-## Optimization levels for oxipng
+## Optimization Levels for Oxipng
 
 Optimization levels:
 
@@ -78,3 +78,9 @@ values range from 0 to 6. Default value is 4.  When higher values are used, the 
 `-q 97` Controls quality level.
 
 Additionally, `-hint` can be used to specify a hint about the type of input image. The following values are possible: photo, picture or graph. By knowing what type of data is being compressed, webp can potentially achieve higher compression.
+
+# See Also
+
+- <https://github.com/shssoichiro/oxipng>
+- <https://developers.google.com/speed/webp/docs/cwebp>
+- <https://github.com/libjxl/libjxl>

@@ -1,29 +1,50 @@
 ---
 title: Emulating Cortex A72
-date updated: 2022-09-09 01:12
+date updated: 2023-01-22 01:58
 ---
 
-# Starting out (Preparing for emulation)
+# Introduction
 
-- Create a Project directory.
+This document provides a step-by-step guide on how to emulate Cortex A72 using a Debian RasPi4 image. Please note that this is not intended for production. Use at your own risk.
+
+## Prerequisites
+
+- A Linux or macOS (I haven't tried this on MacOS) system
+- `wget` to download the Debian RasPi4 image
+- `xz` to decompress the image
+- `fdisk` to determine the starting sector number
+- `qemu-img` to convert the image to qcow2
+- `nano` or any other text editor of your choice to edit the fstab file
+
+# Preparation
+
+### Create a Project directory
+
+Create a directory to store the project files:
 
 ```sh
 $ mkdir rpi_image
 $ cd rpi_image
 ```
 
-- Download and decompress the Debian RasPi4 image.
+### Download and decompress the Debian RasPi4 image
+
+Download the Debian RasPi4 image and decompress it:
 
 ```sh
 $ wget https://raspi.debian.net/tested/20220808_raspi_4_bookworm.img.xz
 $ xz --decompress 20220808_raspi_4_bookworm.img.xz
 ```
 
-- Using `fdisk`, determine the starting sector number.
+### Determine the starting sector number
+
+Using `fdisk`, determine the starting sector number of the image:
 
 ```sh
 $ fdisk -l 20220808_raspi_4_bookworm.img
 ```
+
+This will give you output similar to this:
 
 ```
 Disk 20220808_raspi_4_bookworm.img: 1,95 GiB, 2097152000 bytes, 4096000 sectors
@@ -38,28 +59,38 @@ Device         Boot  Start     End Sectors  Size Id Type
 20220808_raspi_4_bookworm.img2      819200 4095999 3276800  1,6G 83 Linux
 ```
 
-- Before we mount the image to do some stuff, we need to get an offset in order to correctly mount.<br>Find the `Start` number in the second partition `$something.img2`. It's `819200` in my case. Multiply it by 512, which equals `419430400` in my case.
+### Get offset for mounting
 
-- Create a mount directory:
+To mount the image, we need to find the offset by finding the `Start` number in the second partition (in this case, `20220808_raspi_4_bookworm.img2`). In this example, the start number is 819200. Multiply this number by 512 to get the offset, which is 419430400.
+
+### Create a mount directory
+
+Create a mount directory:
 
 ```sh
 $ mkdir /mnt/raspi4
 ```
 
-- We can now mount image:
+### Mount the image
+
+Mount the image using the offset:
 
 ```sh
 $ sudo mount -o offset=419430400 20220808_raspi_4_bookworm.img /mnt/raspi4
 ```
 
-- Now we can extract kernel and initrd from image:<br>(NOTE: We are cd'd into rpi_image directory)
+### Extract kernel and initrd
+
+Now we can extract kernel and initrd from image:<br>(NOTE: We are cd'd into rpi_image directory):
 
 ```sh
 $ cp /mnt/raspi4/vmlinuz .
 $ cp /mnt/raspi4/initrd.img .
 ```
 
-- Finally, we need to edit `fstab` for slicker(?) mounting via QEMU
+### Edit fstab for slicker(?) QEMU operation
+
+Finally, we need to edit `fstab` for slicker(?) mounting via QEMU:
 
 ```
 $ nano /mnt/raspi4/etc/fstab
@@ -76,7 +107,7 @@ LABEL=RASPIFIRM /boot/firmware vfat rw 0 2
 
 - Replace `LABEL=RASPIFIRM` with `/dev/vda1`
 
-- The file should look something like this.
+The file should look something like this:
 
 ```sh
 # The root file system has fs_passno=1 as per fstab(5) for automatic fsck.
@@ -85,7 +116,7 @@ LABEL=RASPIFIRM /boot/firmware vfat rw 0 2
 /dev/vda1 /boot/firmware vfat rw 0 2
 ```
 
-- We can now convert the image to qcow2.
+We can now convert the image to qcow2:
 
 ```sh
 qemu-img convert -f raw -O qcow2 20220808_raspi_4_bookworm.img rpi.qcow2
@@ -93,7 +124,7 @@ qemu-img convert -f raw -O qcow2 20220808_raspi_4_bookworm.img rpi.qcow2
 
 # Emulation Time!
 
-- We can finally start making our launch script.
+We can finally start making our launch script.
 
 ```sh
 $ nano rpistart.sh
@@ -116,12 +147,14 @@ sudo qemu-system-aarch64 \
 -nographic
 ```
 
-- Paste the above into the script and save.
+Paste the above into the script and save.
 
 ### Some info about script
 
 - Since QEMU doesn't natively support Raspberry Pi 4(b), our only option is to virtualize Cortex A72 (Which is CPU used in Raspberry Pi 4(b)).
+
 - `-nographic` because _who needs graphics._
+
 - `screen` is used 'cuz _why not_.
 
 - Make script executable
@@ -160,9 +193,7 @@ VM$ poweroff
 $ qemu-img resize rpi.qcow2 +4G
 ```
 
-```sh
-# Side note: You can also set exact size by getting rid of that + sign.
-```
+Side note: You can also set exact size by getting rid of that + sign.
 
 - Now we need to boot into VM once again:
 

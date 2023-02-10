@@ -1,6 +1,6 @@
 ---
 title: Misc
-date updated: 2023-01-22 00:06
+date updated: 2023-02-11 01:00
 ---
 
 # Index
@@ -16,3 +16,5 @@ date updated: 2023-01-22 00:06
 - [[notes/Hashmap]]
 - [[notes/Optimizing images]]
 - [[notes/Socks5 Proxy]]
+- [[notes/Fedora On Headless Raspberry PI 4]]
+- [[notes/Optimization Techniques]]

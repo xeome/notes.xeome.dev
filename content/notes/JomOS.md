@@ -1,6 +1,6 @@
 ---
 title: JomOS
-date updated: 2022-09-25 23:30
+date updated: 2023-01-22 02:00
 ---
 
 ## About
@@ -13,7 +13,6 @@ JomOS integrates these configurations & optimizations into one largely cohesive 
 
 We use tuned systctl values, udev rules and other configurations. We also provide a optimized repo with march=x86-64-v3 support (CachyOS repos) which comes with a notable performance boost. It depends on your cpu if it does support that, but you dont need to worry about it - the installer will detect the correct µarch and adjust to your system. Custom tuned kernel is also planned.
 For more information refer to [[notes/JomOS Optimizations]].
-
 
 ## Screenshots
 
