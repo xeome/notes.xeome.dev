@@ -1,0 +1,170 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="In this guide, we will walk through the steps to set up Fedora Server on your Raspberry Pi 4. This guide assumes that you have some knowledge of using Linux, and have access to the necessary hardware and software components."><title>Fedora On Raspberry PI 4</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://xeome.github.io//icon.png><link href=https://xeome.github.io/styles.8a561834731a022a9b34655f81e594cd.min.css rel=stylesheet><link href=https://xeome.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://xeome.github.io/js/darkmode.7f967d9bd2d1cac02e762b5c57efc6ae.min.js></script>
+<script src=https://xeome.github.io/js/util.5e39932758f9ecaf45fd54506ed61416.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://xeome.github.io/js/popover.6da9b273c092cc16fc1aa904d71a2163.min.js></script>
+<script src=https://xeome.github.io/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://xeome.github.io/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://xeome.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=null,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://xeome.github.io/",fetchData=Promise.all([fetch("https://xeome.github.io/indices/linkIndex.bc40ee55ec3504886b502668ddbfb2cf.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://xeome.github.io/indices/contentIndex.8ffa8c96699e0a8f6a9b60880dd93cf9.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://xeome.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!0;drawGraph("https://xeome.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/xeome.github.io\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://xeome.github.io/js/full-text-search.51f0b1753e9b30839d053f8a98cc20d1.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://xeome.github.io/>🪴 Quartz 3.3</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Fedora On Raspberry PI 4</h1><p class=meta>Last updated
+Feb 11, 2023
+<a href=https://github.com/xeome/xeome.github.io/tree/hugo/content/notes/Fedora%20On%20Headless%20Raspberry%20PI%204.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><ol><li></li><li><a href=#step-1-download-fedora-server-image>Step 1: Download Fedora Server Image</a></li><li><a href=#step-2-download-uefi-firmware>Step 2: Download UEFI Firmware</a></li><li><a href=#step-3-preparing-the-raw-image>Step 3: Preparing The Raw Image</a></li><li><a href=#step-4--working-directly-within-the-image>Step 4: Working Directly Within The Image</a></li><li><a href=#step-5-installing-the-modified-image>Step 5: Installing the modified image</a></li><li><a href=#step-6-validation>Step 6: Validation</a></li></ol></li></ol></nav></details></aside><p>In this guide, we will walk through the steps to set up Fedora Server on your Raspberry Pi 4. This guide assumes that you have some knowledge of using Linux, and have access to the necessary hardware and software components. Note that this guide has been created based on multiple sources and has been modified to reflect the specific requirements for a successful installation on the author&rsquo;s device.</p><a href=#hardware-requirements><h5 id=hardware-requirements><span class=hanchor arialabel=Anchor># </span>Hardware Requirements</h5></a><ul><li>Raspberry Pi 4 Model B</li><li>A microSD card with a capacity of at least 8GB</li><li>A power supply for Raspberry Pi 4</li><li>A microSD card reader</li></ul><a href=#software-requirements><h5 id=software-requirements><span class=hanchor arialabel=Anchor># </span>Software Requirements</h5></a><ul><li>arm-image-installer</li><li>A terminal emulator</li><li>qemu-user-static</li><li>qemu-user-static-binfmt</li></ul><a href=#step-1-download-fedora-server-image><h3 id=step-1-download-fedora-server-image><span class=hanchor arialabel=Anchor># </span>Step 1: Download Fedora Server Image</h3></a><p>Download current raw image for aarch64 from
+<a href=https://getfedora.org/en/server/download/ rel=noopener>https://getfedora.org/en/server/download/</a>.</p><a href=#step-2-download-uefi-firmware><h3 id=step-2-download-uefi-firmware><span class=hanchor arialabel=Anchor># </span>Step 2: Download UEFI Firmware</h3></a><p>Next, download the current UEFI firmware for Raspberry Pi 4 from the following link:
+<a href=https://github.com/pftf/RPi4/releases rel=noopener>https://github.com/pftf/RPi4/releases</a>. Unzip the file in a temporary location, such as the Downloads folder.</p><a href=#step-3-preparing-the-raw-image><h3 id=step-3-preparing-the-raw-image><span class=hanchor arialabel=Anchor># </span>Step 3: Preparing The Raw Image</h3></a><p>In this step, we will decompress the raw image and prepare it for use.</p><p>Decompress the image:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>xz --decompress Fedora-Server-37-1.7.aarch64.raw.xz
+</span></span></code></pre></td></tr></table></div></div><p>This will delete the original xz file after decompression and you will be left with <code>Fedora-Server-37-1.7.aarch64.raw</code>. You can add <code>--keep</code> to keep the compressed version.</p><p>Next, list the partitions in the raw image with fdisk:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ fdisk -l Fedora-Server-37-1.7.aarch64.raw
+</span></span><span class=line><span class=cl>Disk Fedora-Server-37-1.7.aarch64.raw: <span class=m>7</span> GiB, <span class=m>7516192768</span> bytes, <span class=m>14680064</span> sectors
+</span></span><span class=line><span class=cl>Units: sectors of <span class=m>1</span> * <span class=nv>512</span> <span class=o>=</span> <span class=m>512</span> bytes
+</span></span><span class=line><span class=cl>Sector size <span class=o>(</span>logical/physical<span class=o>)</span>: <span class=m>512</span> bytes / <span class=m>512</span> bytes
+</span></span><span class=line><span class=cl>I/O size <span class=o>(</span>minimum/optimal<span class=o>)</span>: <span class=m>512</span> bytes / <span class=m>512</span> bytes
+</span></span><span class=line><span class=cl>Disklabel type: dos
+</span></span><span class=line><span class=cl>Disk identifier: 0x5c5e303a
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Device                            Boot   Start      End  Sectors  Size Id Type
+</span></span><span class=line><span class=cl>Fedora-Server-37-1.7.aarch64.raw1 *       <span class=m>2048</span>  <span class=m>1230847</span>  <span class=m>1228800</span>  600M  <span class=m>6</span> FAT16
+</span></span><span class=line><span class=cl>Fedora-Server-37-1.7.aarch64.raw2      <span class=m>1230848</span>  <span class=m>3327999</span>  <span class=m>2097152</span>    1G <span class=m>83</span> Linux
+</span></span><span class=line><span class=cl>Fedora-Server-37-1.7.aarch64.raw3      <span class=m>3328000</span> <span class=m>14680063</span> <span class=m>11352064</span>  5,4G 8e Linux LVM
+</span></span></code></pre></td></tr></table></div></div><p>The raw image has three partitions: <code>.raw1</code> is the bootloader partition, <code>.raw2</code> is the Linux boot partition (id 83), and <code>.raw3</code> is the partition we want, a Linux LVM partition (id 8e) where Fedora is installed.</p><p>To mount the image at the right place, we need to calculate the mount offset as follows:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sector size <span class=o>(</span>512<span class=o>)</span> x start sector <span class=o>(</span>3328000<span class=o>)</span> <span class=o>=</span> <span class=m>1703936000</span>
+</span></span></code></pre></td></tr></table></div></div><p>However, if we mount the image with this offset, it will fail:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ sudo mount -o loop,offset<span class=o>=</span><span class=m>1703936000</span> Fedora-Server-37-1.7.aarch64.raw /mnt/raw3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>mount: /mnt/raw3: unknown filesystem <span class=nb>type</span> <span class=s1>&#39;LVM2_member&#39;</span>.
+</span></span></code></pre></td></tr></table></div></div><p>To solve this issue, we need to use a tool like <code>kpartx</code>. This utility creates a virtual device in <code>/dev/mapper</code> that we can manipulate as a real device. Run the following command to add a device verbosely:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ sudo kpartx -a -v Fedora-Server-37-1.7.aarch64.raw
+</span></span><span class=line><span class=cl>add map loop0p1 <span class=o>(</span>253:0<span class=o>)</span>: <span class=m>0</span> <span class=m>1228800</span> linear 7:0 <span class=m>2048</span>
+</span></span><span class=line><span class=cl>add map loop0p2 <span class=o>(</span>253:1<span class=o>)</span>: <span class=m>0</span> <span class=m>2097152</span> linear 7:0 <span class=m>1230848</span>
+</span></span><span class=line><span class=cl>add map loop0p3 <span class=o>(</span>253:2<span class=o>)</span>: <span class=m>0</span> <span class=m>11352064</span> linear 7:0 <span class=m>3328000</span>
+</span></span></code></pre></td></tr></table></div></div><p>Then verify the new partitions in <code>/dev/mapper</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ ls -l /dev/mapper/
+</span></span><span class=line><span class=cl>total <span class=m>0</span>
+</span></span><span class=line><span class=cl>crw------- <span class=m>1</span> root root 10, <span class=m>236</span> Şub <span class=m>10</span> 11:28 control
+</span></span><span class=line><span class=cl>lrwxrwxrwx <span class=m>1</span> root root       <span class=m>7</span> Şub <span class=m>11</span> 00:17 fedora-root -&gt; ../dm-3
+</span></span><span class=line><span class=cl>lrwxrwxrwx <span class=m>1</span> root root       <span class=m>7</span> Şub <span class=m>11</span> 00:17 loop0p1 -&gt; ../dm-0
+</span></span><span class=line><span class=cl>lrwxrwxrwx <span class=m>1</span> root root       <span class=m>7</span> Şub <span class=m>11</span> 00:17 loop0p2 -&gt; ../dm-1
+</span></span><span class=line><span class=cl>lrwxrwxrwx <span class=m>1</span> root root       <span class=m>7</span> Şub <span class=m>11</span> 00:17 loop0p3 -&gt; ../dm-2
+</span></span></code></pre></td></tr></table></div></div><p>Finally, create a directory and mount the LVM partition to the new directory:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo mkdir /mnt/raw3  
+</span></span><span class=line><span class=cl>sudo mount /dev/fedora/root /mnt/raw3
+</span></span></code></pre></td></tr></table></div></div><a href=#step-4--working-directly-within-the-image><h3 id=step-4--working-directly-within-the-image><span class=hanchor arialabel=Anchor># </span>Step 4: Working Directly Within The Image</h3></a><p>It&rsquo;s time to start making changes to the image. To do this, we&rsquo;ll use <code>chroot</code> to change the working root of our session to the root from the image, or alternatively <code>systemd-nspawn</code>. To support emulation between architectures, we&rsquo;ll need to install <code>qemu-user-static</code>, <code>qemu-user-static-binfmt</code> and restart <code>systemd-binfmt.service</code>.</p><p>Chroot to the mounted disk image and start a shell:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo chroot /mnt/raw3 /bin/bash
+</span></span></code></pre></td></tr></table></div></div><p>Ensure that the architecture is <code>aarch64</code> and not <code>x86_64</code> (use <code>uname -a</code>).</p><p>Next, we&rsquo;ll create a local user that we&rsquo;ll use to connect via SSH later. The following commands create a group and user named <code>pi</code>. The user will have a UID of 1000 and be assigned to the <code>pi</code> and <code>wheel</code> groups:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/usr/sbin/groupadd pi  
+</span></span><span class=line><span class=cl>/usr/sbin/useradd -g pi -G wheel -m -u <span class=m>1000</span> pi
+</span></span></code></pre></td></tr></table></div></div><p>Create the <code>.ssh</code> directory, the <code>authorized_keys</code> file, and set proper permissions:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir /home/pi/.ssh  
+</span></span><span class=line><span class=cl>chmod <span class=m>700</span> /home/pi/.ssh  
+</span></span><span class=line><span class=cl>touch /home/pi/.ssh/authorized_keys  
+</span></span><span class=line><span class=cl>chmod <span class=m>600</span> /home/pi/.ssh/authorized_keys  
+</span></span><span class=line><span class=cl>chown -R pi.pi /home/pi/.ssh/
+</span></span></code></pre></td></tr></table></div></div><p>Add your public key (<code>~/.ssh/id_rsa.pub</code>) to the <code>authorized_keys</code> file.</p><p>Since our new user belongs to the <em>wheel</em> group, allow this group to use sudo without password:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;%wheel ALL=(ALL) NOPASSWD:ALL&#34;</span> &gt;&gt; /etc/sudoers.d/wheel-nopasswd
+</span></span></code></pre></td></tr></table></div></div><p>Also, Fedora prompts you to finish the setup on the first boot. To avoid that, disable the initial setup:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>unlink /etc/systemd/system/multi-user.target.wants/initial-setup.service  
+</span></span><span class=line><span class=cl>unlink /etc/systemd/system/graphical.target.wants/initial-setup.service
+</span></span></code></pre></td></tr></table></div></div><p>Change the current directory to the EFI partition. Rename <code>config.txt</code> to <code>config.txt.save</code>.
+And then you can ssh. Congratulations! You successfully connected to your new Fedora Server on your Raspberry Pi!
+In the EFI partition, copy the updated firmware files that were downloaded in Step 2. This will replace several files and add a new <code>config.txt</code> file:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cp -r ~/Downloads/rpi4efi/* .
+</span></span></code></pre></td></tr></table></div></div><p>In the EFI partition edit config.txt. It should have the following contents:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-ini data-lang=ini><span class=line><span class=cl><span class=na>arm_64bit</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>enable_uart</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>uart_2ndstage</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>enable_gic</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>armstub</span><span class=o>=</span><span class=s>RPI_EFI.fd</span>
+</span></span><span class=line><span class=cl><span class=na>disable_commandline_tags</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>disable_overscan</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>device_tree_address</span><span class=o>=</span><span class=s>0x1f0000</span>
+</span></span><span class=line><span class=cl><span class=na>device_tree_end</span><span class=o>=</span><span class=s>0x200000</span>
+</span></span><span class=line><span class=cl><span class=na>dtoverlay</span><span class=o>=</span><span class=s>miniuart-bt</span>
+</span></span></code></pre></td></tr></table></div></div><p>Change the contents to look like the contents below. The two changes are an addition of the kernel line a the top and comment out the armstub line. <strong>Be sure to comment out or delete the start_x=1 line if it exists.</strong> Save and exit the file:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-ini data-lang=ini><span class=line><span class=cl><span class=na>kernel</span><span class=o>=</span><span class=s>rpi4-u-boot.bin</span>
+</span></span><span class=line><span class=cl><span class=na>arm_64bit</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>enable_uart</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>uart_2ndstage</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>enable_gic</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=c1># armstub=RPI_EFI.fd</span>
+</span></span><span class=line><span class=cl><span class=na>disable_commandline_tags</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>disable_overscan</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl><span class=na>device_tree_address</span><span class=o>=</span><span class=s>0x1f0000</span>
+</span></span><span class=line><span class=cl><span class=na>device_tree_end</span><span class=o>=</span><span class=s>0x200000</span>
+</span></span><span class=line><span class=cl><span class=na>dtoverlay</span><span class=o>=</span><span class=s>miniuart-bt</span>
+</span></span></code></pre></td></tr></table></div></div><p>That’s all we need to change. Exit the chroot and unmount the disk image:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>exit</span>  
+</span></span><span class=line><span class=cl>sudo umount /mnt/raw3
+</span></span></code></pre></td></tr></table></div></div><p>Deactivate the logical volume inside the volume group <strong>fedora</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo vgchange --activate n fedora
+</span></span></code></pre></td></tr></table></div></div><p>Then delete the virtual device:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo kpartx -d Fedora-Server-37-1.7.aarch64.raw
+</span></span></code></pre></td></tr></table></div></div><a href=#step-5-installing-the-modified-image><h3 id=step-5-installing-the-modified-image><span class=hanchor arialabel=Anchor># </span>Step 5: Installing the modified image</h3></a><p>Two time-consuming tasks remain: compressing the image and installing it on a microSD card.</p><p>Compress the raw disk image to a <code>.xz</code> file, but this time keep the <code>.raw</code> file:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>xz --compress Fedora-Server-37-1.7.aarch64.raw --keep
+</span></span></code></pre></td></tr></table></div></div><p>I recommend you keep the raw file if you want to make incremental changes in the future. Otherwise, remove the <code>--keep</code> parameter.</p><blockquote><p>This command will take a while.</p></blockquote><p>Finally, copy the modified disk image to a microSD card:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo arm-image-installer --image<span class=o>=</span>Fedora-Server-37-1.7.aarch64.raw.xz --media<span class=o>=</span>/dev/sda --target<span class=o>=</span>rpi4 --addkey<span class=o>=</span>/home/xeome/.ssh/id_rsa.pub --norootpass --relabel --resizefs -y
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>This command will take some time as well.</p></blockquote><a href=#step-6-validation><h3 id=step-6-validation><span class=hanchor arialabel=Anchor># </span>Step 6: Validation</h3></a><p>Power on the RPi4. Observe the behavior of the red and green LED lights and the network lights during the boot process, which may take several minutes. The red and green led lights on one end will variously blink, or stay steady, or go out. The network leds will stay steady for several minutes and go out at least twice. At the end, the red and green leds will go out and the network lights will start to blink, indicating that Fedora is now booted and requesting an IP address from your network&rsquo;s DHCP service.</p><p>Subsequent boots are much faster.</p><p>Find the dynamic IP address assigned to your Raspberry Pi using <code>nmap</code> or a similar tool on a Fedora machine or any other computer connected to your home network. Replace the CIDR range as necessary:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ sudo nmap -sn 192.168.1.100/25
+</span></span><span class=line><span class=cl>Nmap scan report <span class=k>for</span> 192.168.1.106
+</span></span><span class=line><span class=cl>Host is up <span class=o>(</span>0.0048s latency<span class=o>)</span>.
+</span></span><span class=line><span class=cl>MAC Address: E4:5F:01:AA:BB:CC <span class=o>(</span>Raspberry Pi Trading<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>Connect to your new Fedora Server on the Raspberry Pi using <code>ssh</code>. Congratulations! You have successfully connected to your new Fedora Server on your Raspberry Pi!</p><a href=#sources><h4 id=sources><span class=hanchor arialabel=Anchor># </span>Sources</h4></a><ul><li><a href=https://medium.com/geekculture/how-to-install-fedora-on-a-headless-raspberry-pi-62adfb7efc5 rel=noopener>https://medium.com/geekculture/how-to-install-fedora-on-a-headless-raspberry-pi-62adfb7efc5</a></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=292630" rel=noopener>https://forums.raspberrypi.com/viewtopic.php?t=292630</a></li></ul></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li><a href=/notes/Misc/ data-ctx="notes/Fedora On Headless Raspberry PI 4" data-src=/notes/Misc class=internal-link>Misc</a></li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://xeome.github.io/js/graph.abd4bc2af3869a96524d7d23b76152c7.js></script></div></div><div id=contact_buttons><footer><p>Made by xeome using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://xeome.github.io/>Home</a></li><li><a href=https://github.com/xeome>Github</a></li></ul></footer></div></div></body></html>
