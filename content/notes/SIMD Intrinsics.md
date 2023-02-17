@@ -57,10 +57,10 @@ __m128 a4 = _mm_set_ps( 4.0f, 4.1f, 4.2f, 4.3f );
 __m128 b4 = _mm_set_ps( 1.0f, 1.0f, 1.0f, 1.0f );
 ```
 
-To add them together, we use
+To add them together, we use `__mm_add_ps`:
 
 ```C
-__mm_add_ps: __m128 sum4 = _mm_add_ps( a4, b4 );
+__m128 sum4 = _mm_add_ps( a4, b4 );
 ```
 
 The `__mm_set_ps` and `_mm_add_ps` keywords are called intrinsics. SSE and AVX intrinsics all compile to a single assembler instruction; using these means that we are essentially writing assembler code directly in our program.
@@ -199,6 +199,6 @@ Evade fancy SIMD libraries Vectorization is hard, and it feels unnatural to writ
 - <http://ftp.cvut.cz/kernel/people/geoff/cell/ps3-linux-docs/CellProgrammingTutorial/BasicsOfSIMDProgramming.html>
 - <https://www.agner.org/optimize/>
 - <https://software.intel.com/sites/landingpage/IntrinsicsGuide/>
-- <http://www.cs.uu.nl/docs/vakken/magr/2017-2018/files/SIMD%20Tutorial.pdf>
+-  [http://www.cs.uu.nl/docs/vakken/magr/2017-2018/files/SIMD%20Tutorial.pdf](https://envs.sh/5o)
 - <https://en.wikipedia.org/wiki/Advanced_Vector_Extensions>
 - <https://stackoverflow.blog/2020/07/08/improving-performance-with-simd-intrinsics-in-three-use-cases/>
