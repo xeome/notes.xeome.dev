@@ -1,6 +1,6 @@
 ---
 title: Computer Science
-date updated: 2022-12-28 20:16
+date updated: 2023-02-19 02:45
 ---
 
 # Index
@@ -8,3 +8,4 @@ date updated: 2022-12-28 20:16
 - [[notes/Linux]]
 - [[notes/Networking]]
 - [[notes/Misc]]
+- [[notes/Resources]]
