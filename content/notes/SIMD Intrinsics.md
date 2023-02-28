@@ -190,7 +190,7 @@ Support for SIMD is well-integrated in the Jetbrains Clion. It allows for effort
 
 When using AVX/AVX2 instructions, ensure that the target hardware is compatible. If the code is not compatible, provide an alternative implementation for older hardware. Failing to do so may cause unexpected crashes or performance issues.
 
-Focus vectorization efforts on bottlenecks only. In the Mandelbrot example, the Plot method was vectorized, even though it consumed only a small portion of time. In real-world situations, it is best to focus vectorization efforts on bottlenecks only, such as a large loop that updates variables.
+Focus vectorization efforts on bottlenecks only. In real-world situations, it is best to focus vectorization efforts on bottlenecks only, such as a large loop that updates variables.
 
 Evade fancy SIMD libraries Vectorization is hard, and it feels unnatural to write `_mm_mul_ps(a,b)` when you meant to write `a * b`. Resist the urge to write your own operators; get used to the raw intrinsics. Anything more complex is bound to hide inefficiencies or even introduce them. Besides, some SIMD in your code makes it look like wizardry (which it is, in fact). If you must use something convenient, consider Agner Fog’s vector library: <http://www.agner.org/optimize/#vectorclass> . Also read the rest of his site, the man is a guru of software optimization.
 
