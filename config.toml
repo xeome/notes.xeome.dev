@@ -1,6 +1,5 @@
 baseURL = "https://xeome.github.io/"
 languageCode = "en-us"
-googleAnalytics = "G-XYFD95KB4J"
 relativeURLs = false
 disablePathToLower = true
 ignoreFiles = [

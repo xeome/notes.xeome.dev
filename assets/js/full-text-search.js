@@ -35,7 +35,7 @@
   })
 
   registerHandlers((e) => {
-    term = e.target.value
+    const term = e.target.value
     const searchResults = contentIndex.search(term, [
       {
         field: "content",
@@ -56,6 +56,6 @@
     }
     const allIds = new Set([...getByField("title"), ...getByField("content")])
     const finalResults = [...allIds].map(formatForDisplay)
-    displayResults(finalResults, true)
+    displayResults(term, finalResults, true)
   })
 })()
