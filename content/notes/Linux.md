@@ -1,6 +1,6 @@
 ---
 title: Linux
-date updated: 2022-12-28 20:20
+date updated: 2023-03-06 15:57
 ---
 
 - [[notes/Btrfs Maintenance]]
@@ -12,3 +12,4 @@ date updated: 2022-12-28 20:20
 - [[notes/Transparent Huge Pages]]
 - [[notes/XDP-Tutorial]]
 - [[notes/Zram]]
+- [[notes/Cockpit nginx reverse proxy]]
