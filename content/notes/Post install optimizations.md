@@ -59,7 +59,7 @@ Since it is enabled by default, [disable zswap](https://wiki.archlinux.org/titl
 ##### Recommended configurations for zswap
 
 ```C
-# echo zstd > /sys/module/zswap/parameters/compressor
+# echo lz4 > /sys/module/zswap/parameters/compressor
 
 # echo 10 > /sys/module/zswap/parameters/max_pool_percent
 ```
@@ -70,7 +70,7 @@ Above will change zswap settings only for current session, to make the setting c
 for ssd:
 
 ```ini
-vm.page-cluster = 1 
+vm.page-cluster = 0
 ```
 
 for hdd:
@@ -86,7 +86,7 @@ vm.page-cluster = 2
 ```ini
 [zram0]
 zram-size = ram * 1
-compression-algorithm = zstd
+compression-algorithm = lz4
 ```
 
 Above config file is for [systemd zram generator](https://github.com/systemd/zram-generator)

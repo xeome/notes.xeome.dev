@@ -1,6 +1,6 @@
 ---
 title: Zram
-date updated: 2023-03-08 02:03
+date updated: 2023-03-13 17:57
 ---
 
 # Zram Performance Analysis
@@ -26,31 +26,45 @@ Data from [Linux Reviews](https://linuxreviews.org/Zram):
 
 Data from u/VenditatioDelendaEst:
 
-|   algo  | ratio |
-| :-----: | :---: |
-|   lz4   |  2.63 |
-| lzo-rle |  2.74 |
-|   lzo   |  2.77 |
-|   zstd  |  3.37 |
+| algo    | page-cluster | MiB/s |   IOPS  | Mean Latency (ns) | 99% Latency (ns) | comp_ratio |
+| ------- | :----------: | :---: | :-----: | :---------------: | :--------------: | :--------: |
+| lzo     |       0      |  5821 | 1490274 |        2428       |       7456       |    2.77    |
+| lzo     |       1      |  6668 |  853514 |        4436       |       11968      |    2.77    |
+| lzo     |       2      |  7193 |  460352 |        8438       |       21120      |    2.77    |
+| lzo     |       3      |  7496 |  239875 |       16426       |       39168      |    2.77    |
+| lzo-rle |       0      |  6264 | 1603776 |        2235       |       6304       |    2.74    |
+| lzo-rle |       1      |  7270 |  930642 |        4045       |       10560      |    2.74    |
+| lzo-rle |       2      |  7832 |  501248 |        7710       |       19584      |    2.74    |
+| lzo-rle |       3      |  8248 |  263963 |       14897       |       37120      |    2.74    |
+| lz4     |       0      |  7943 | 2033515 |        1708       |       3600       |    2.63    |
+| lz4     |       1      |  9628 | 1232494 |        2990       |       6304       |    2.63    |
+| lz4     |       2      | 10756 |  688430 |        5560       |       11456      |    2.63    |
+| lz4     |       3      | 11434 |  365893 |       10674       |       21376      |    2.63    |
+| zstd    |       0      |  2612 |  668715 |        5714       |       13120      |    3.37    |
+| zstd    |       1      |  2816 |  360533 |       10847       |       24960      |    3.37    |
+| zstd    |       2      |  2931 |  187608 |       21073       |       48896      |    3.37    |
+| zstd    |       3      |  3005 |  96181  |       41343       |       95744      |    3.37    |
 
-| algo    | page-cluster | MiB/s |   IOPS  | Mean Latency (ns) | 99% Latency (ns) |
-| ------- | :----------: | :---: | :-----: | :---------------: | :--------------: |
-| lzo     |       0      |  5821 | 1490274 |        2428       |       7456       |
-| lzo     |       1      |  6668 |  853514 |        4436       |       11968      |
-| lzo     |       2      |  7193 |  460352 |        8438       |       21120      |
-| lzo     |       3      |  7496 |  239875 |       16426       |       39168      |
-| lzo-rle |       0      |  6264 | 1603776 |        2235       |       6304       |
-| lzo-rle |       1      |  7270 |  930642 |        4045       |       10560      |
-| lzo-rle |       2      |  7832 |  501248 |        7710       |       19584      |
-| lzo-rle |       3      |  8248 |  263963 |       14897       |       37120      |
-| lz4     |       0      |  7943 | 2033515 |        1708       |       3600       |
-| lz4     |       1      |  9628 | 1232494 |        2990       |       6304       |
-| lz4     |       2      | 10756 |  688430 |        5560       |       11456      |
-| lz4     |       3      | 11434 |  365893 |       10674       |       21376      |
-| zstd    |       0      |  2612 |  668715 |        5714       |       13120      |
-| zstd    |       1      |  2816 |  360533 |       10847       |       24960      |
-| zstd    |       2      |  2931 |  187608 |       21073       |       48896      |
-| zstd    |       3      |  3005 |  96181  |       41343       |       95744      |
+Data from my raspberry pi 4, 2gb model:
+
+| algo    | page-cluster |  MiB/s  |    IOPS   | Mean Latency (ns) | 99% Latency (ns) | comp_ratio |
+| ------- | :----------: | :-----: | :-------: | :---------------: | :--------------: | :--------: |
+| lzo     |       0      | 1275.19 | 326448.93 |      9965.14      |     18816.00     |    1.62    |
+| lzo     |       1      | 1892.08 | 242186.68 |      14178.77     |     31104.00     |    1.62    |
+| lzo     |       2      | 2451.65 | 156905.52 |      23083.55     |     56064.00     |    1.62    |
+| lzo     |       3      | 2786.33 |  89162.46 |      42224.49     |     107008.00    |    1.62    |
+| lzo-rle |       0      | 1271.53 | 325511.42 |      9997.72      |     20096.00     |    1.62    |
+| lzo-rle |       1      | 1842.69 | 235863.95 |      14627.23     |     34048.00     |    1.62    |
+| lzo-rle |       2      | 2404.35 | 153878.65 |      23592.19     |     60160.00     |    1.62    |
+| lzo-rle |       3      | 2766.61 |  88531.46 |      42579.14     |     114176.00    |    1.62    |
+| lz4     |       0      | 1329.87 | 340447.83 |      9421.35      |     15936.00     |    1.59    |
+| lz4     |       1      | 2004.43 | 256567.19 |      13238.78     |     25216.00     |    1.59    |
+| lz4     |       2      | 2687.75 | 172015.93 |      20807.00     |     43264.00     |    1.59    |
+| lz4     |       3      | 3157.29 | 101033.42 |      36901.36     |     80384.00     |    1.59    |
+| zstd    |       0      |  818.88 | 209633.97 |      16672.13     |     38656.00     |    1.97    |
+| zstd    |       1      | 1069.07 | 136840.50 |      26777.05     |     69120.00     |    1.97    |
+| zstd    |       2      | 1286.17 |  82314.84 |      46059.39     |     127488.00    |    1.97    |
+| zstd    |       3      | 1427.75 |  45688.14 |      84876.56     |     246784.00    |    1.97    |
 
 The table presents the performance metrics of different compression algorithms, including LZO, LZO-RLE, LZ4, and ZSTD. The metrics include throughput, compression ratio, and latency, which are important factors to consider for selecting the optimal compression algorithm.
 ![[notes/assets/img/zram_weighed.png]]
@@ -104,6 +118,15 @@ print(f"Best algorithm: {best_algo}")
 print(f"Best page cluster: {best_page_cluster}")
 ```
 
+Data from me:
+
+Compiling memory intensive code ([vtm](https://github.com/netxs-group/vtm) ). Test was done on raspberry pi 4b, 2gb ram.
+
+| algo |   time  |
+| :--: | :-----: |
+|  lz4 | 433.63s |
+| zstd | 459.34s |
+
 ### Page-cluster Values and Latency
 
 The page-cluster value controls the number of pages that are read in from swap in a single attempt, similar to the page cache readahead. The consecutive pages are not based on virtual or physical addresses, but consecutive on swap space, meaning they were swapped out together.
@@ -120,7 +143,7 @@ The default value is 3 (8 pages at a time). However, tuning this value to a diff
 
 In the analysis of Zram performance, it was determined that the zstd algorithm provides the highest compression ratio while still maintaining acceptable speeds. The high compression ratio allows more of the working set to fit in uncompressed memory, reducing the need for swap and ultimately improving performance.
 
-For daily use, it is recommended to use zstd with `page-cluster=0` as the majority of swapped data is likely stale (old browser tabs). However, systems that require constant swapping may benefit from using the lz4 algorithm due to its higher throughput and lower latency. 
+For daily use (non latency sensitive), it is recommended to use zstd with `page-cluster=0` as the majority of swapped data is likely stale (old browser tabs). However, systems that require constant swapping may benefit from using the lz4 algorithm due to its higher throughput and lower latency.
 
 It is important to note that the decompression of zstd is slow and results in a lack of throughput gain from readahead. Therefore, `page-cluster=0` should be used for zstd. This is the default setting on [ChromeOS](https://bugs.chromium.org/p/chromium/issues/detail?id=263561#c16=) and seems to be standard practice on [Android](https://cs.android.com/search?q=page-cluster&start=21).
 
