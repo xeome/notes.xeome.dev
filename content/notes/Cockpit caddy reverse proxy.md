@@ -28,16 +28,10 @@ In the Caddyfile, add the following lines to define a reverse proxy rule for you
 
 ```nginx
 panel.example.com {
-        reverse_proxy localhost:9090 {
-                header_up Host {host}
-                header_up X-Real-IP {remote}
-        }
-
+        reverse_proxy localhost:9090
         tls /etc/caddy/certs/fullchain.pem /etc/caddy/certs/privkey.pem
 }
 ```
-
-The `header_upstream` lines are optional, but they can help ensure that the backend server (Cockpit) receives the correct information about the incoming request.
 
 Save the Caddyfile and restart Caddy to apply the changes. You can use the following command to restart Caddy:
 
