@@ -1,7 +1,7 @@
 ---
 title: Setting up Cockpit with caddy reverse proxy
 date created: 2023-03-16 01:02
-date updated: 2023-03-16 01:18
+date updated: 2023-03-16 12:33
 ---
 
 Cockpit is a web-based server management tool that provides a user-friendly interface for administrators to manage their servers. In this article, we will walk through the process of setting up Cockpit with Caddy reverse proxy.
@@ -44,3 +44,11 @@ Save the Caddyfile and restart Caddy to apply the changes. You can use the follo
 ```bash
 sudo systemctl restart caddy
 ```
+
+# Step 3: Make Cockpit proxy aware
+
+<https://github.com/cockpit-project/cockpit/wiki/Proxying-Cockpit-over-nginx#make-cockpit-proxy-aware>
+
+# See Also
+
+- <https://github.com/caddyserver/caddy>

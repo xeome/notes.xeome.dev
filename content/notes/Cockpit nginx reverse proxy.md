@@ -1,7 +1,7 @@
 ---
 title: Setting up Cockpit with nginx reverse proxy
 date created: 2023-03-06 15:01
-date updated: 2023-03-06 16:02
+date updated: 2023-03-16 12:32
 ---
 
 Cockpit is a web-based server management tool that provides a user-friendly interface for administrators to manage their servers. In this article, we will walk through the process of setting up Cockpit with Nginx reverse proxy.
@@ -108,6 +108,10 @@ Restart the Nginx service to apply the changes we made using the following comma
 ```bash
 sudo systemctl restart nginx
 ```
+
+# Step 3: Make Cockpit proxy aware
+
+<https://github.com/cockpit-project/cockpit/wiki/Proxying-Cockpit-over-nginx#make-cockpit-proxy-aware>
 
 # See Also
 
