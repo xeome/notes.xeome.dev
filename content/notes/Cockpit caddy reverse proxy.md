@@ -14,7 +14,7 @@ Before we begin, make sure that you have the following:
 - Caddy installed on the server (<https://caddyserver.com/docs/install>)
 - A domain name pointing to your server's IP address
 
-# Step 1: Setup SSL Certificates
+# Step 1: Setup SSL Certificates (Optional)
 
 You can follow the steps for obtaining certificates in [[notes/Cockpit nginx reverse proxy]]
 Put the certificates to a different location, i.e. `/etc/caddy/certs`
@@ -25,6 +25,14 @@ Make sure the folder is owned by caddy user if you get permission errors.
 Create a new Caddyfile in your server's configuration directory (usually `/etc/caddy/`). This file will define the reverse proxy rules for Caddy.
 
 In the Caddyfile, add the following lines to define a reverse proxy rule for your Cockpit panel:
+
+```nginx
+panel.example.com {
+        reverse_proxy localhost:9090
+}
+```
+
+or if you want to manually specify which key to use instead of automatic ssl:
 
 ```nginx
 panel.example.com {
