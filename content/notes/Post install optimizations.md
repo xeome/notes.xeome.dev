@@ -64,7 +64,7 @@ Since it is enabled by default, [disable zswap](https://wiki.archlinux.org/titl
 # echo 10 > /sys/module/zswap/parameters/max_pool_percent
 ```
 
-Above will change zswap settings only for current session, to make the setting changes persist add `zswap.compressor=zstd zswap.max_pool_percent=10` to your bootloader's config file for the kernel command line.
+Above will change zswap settings only for current session, to make the setting changes persist add `zswap.compressor=lz4 zswap.max_pool_percent=10` to your bootloader's config file for the kernel command line.
 
 `/etc/sysctl.d/99-swap-tune.conf:`
 for ssd:
