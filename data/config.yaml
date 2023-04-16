@@ -1,5 +1,5 @@
 name: xeome
-enableToc: true
+enableToc: false
 openToc: false
 enableLinkPreview: true
 enableLatex: true
@@ -20,7 +20,7 @@ search:
 description:
   My markdown notes published using quartz
 page_title:
-  "🪴 Quartz 3.3"
+  "Xeome's Notes"
 links:
   - link_name: Github
     link: https://github.com/xeome
