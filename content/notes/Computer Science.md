@@ -1,6 +1,6 @@
 ---
 title: Computer Science
-date updated: 2023-02-19 02:45
+date updated: 2023-05-21 00:37
 ---
 
 # Index
@@ -9,3 +9,4 @@ date updated: 2023-02-19 02:45
 - [[notes/Networking]]
 - [[notes/Misc]]
 - [[notes/Resources]]
+- [[notes/Programming]]

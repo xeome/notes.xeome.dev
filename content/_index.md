@@ -17,16 +17,9 @@ Arch Linux based distribution with heavy optimizations and multi architecture su
 
 Link: <https://github.com/CachyOS>
 
-#### JomOS
-
-JomOS is a meta Linux distribution which allows users to mix-and-match well tested configurations and optimizations with little to no effort. JomOS integrates these configurations into one largely cohesive system.
-
-Link: <https://github.com/xeome/jomOS>
-
-Document: [[notes/JomOS]]
-
 #### xeome.github.io
 
 This site contains all the documents i write about Linux and other topics.
 
 To access all my notes, click here <https://xeome.github.io/notes/>.
+Categorized index, [[notes/Computer Science|Computer Science]]
