@@ -14,7 +14,7 @@ jobs:
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Build Link Index
-        uses: jackyzha0/hugo-obsidian@v2.19
+        uses: jackyzha0/hugo-obsidian@v2.20
         with:
           index: true
           input: content
@@ -36,4 +36,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: master  # deploying branch
-          cname: xeome.github.io
+          cname: quartz.jzhao.xyz

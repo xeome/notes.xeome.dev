@@ -69,7 +69,7 @@ To identify bottlenecks in my code, I turned to Cargo's built-in flamegraphs. Ge
 
 One of the first issues I discovered was that I was calling the update function twice, without any apparent reason. By removing one of the redundant calls, I managed to bring the runtime down to around 300ms.
 
-![[notes/assets/img/Pasted image 20230430222955.png]]
+![[notes/assets/img/0_Pasted image 20230430222955.png]]
 
 ## Parallelizing Update Function:
 
@@ -113,7 +113,7 @@ All I did was make the call to new process asynchronous.
 
 In an effort to further optimize the program, I added local variables where resources were being summed after parsing the smaps file. By doing this, I improved data locality, which in turn improved the performance of my code.
 
-![[notes/assets/img/Pasted image 20230430224031.png]]
+![[notes/assets/img/O_Pasted image 20230430224031.png]]
 
 ## Including Debug Information:
 
@@ -123,17 +123,17 @@ I realized that my release profile did not include debug information, which limi
 
 To further optimize my code and make it cleaner, I started using `filter_map` in some sections. Additionally, I realized I was creating a new `line` string for each iteration, leading to repeated calls to the allocator. By reusing the same string and clearing it after each iteration, I managed to improve performance by 5-10%.
 
-![[notes/assets/img/Pasted image 20230430224602.png]]
+![[notes/assets/img/O_Pasted image 20230430224602.png]]
 
 ## Switching to `smaps_rollup`:
 
 While implementing smaps to read data about processes, I initially assumed that it was the best option available. However, during my research, I discovered that the slowness of smaps had been a concern for others as well. To further complicate things, I found out that the default value of kernel.perf_event_paranoid was 2, which made my flamegraphs inaccurate. After setting it to 1, I noticed that the call to `__show_smap` was taking the most time. For more information about the kernel.perf_event_paranoid sysctl value, refer to <https://sysctl-explorer.net/kernel/perf_event_paranoid/>.
 
 Before:
-![[notes/assets/img/Pasted image 20230430232805.png]]
+![[notes/assets/img/O_Pasted image 20230430232805.png]]
 
 After:
-![[notes/assets/img/Pasted image 20230430232857.png]]
+![[notes/assets/img/O_Pasted image 20230430232857.png]]
 
 ```C
 /* Show the contents common for smaps and smaps_rollup */
@@ -183,7 +183,7 @@ Relevant section of linux kernel source:
 To solve this problem, I began searching for an alternative solution and found smaps_rollup just bellow in the source code. This more efficient alternative automatically sums up the data for me, eliminating the need for manual calculation. After replacing my original implementation with smaps_rollup, I was able to achieve an additional 35-40% performance improvement, bringing the runtime down to an impressive 30ms.
 
 Final version of the method after minor adjustments:
-![[notes/assets/img/Pasted image 20230430231620.png]]
+![[notes/assets/img/O_Pasted image 20230430231620.png]]
 
 ## Conclusion:
 
