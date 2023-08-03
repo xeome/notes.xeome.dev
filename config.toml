@@ -1,4 +1,4 @@
-baseURL = "https://xeome.github.io/"
+baseURL = "https://notes.xeome.dev/"
 languageCode = "en-us"
 relativeURLs = false
 disablePathToLower = true
