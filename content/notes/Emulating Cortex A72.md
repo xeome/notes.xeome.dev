@@ -1,19 +1,19 @@
 ---
 title: Emulating Cortex A72
-date updated: 2023-01-22 01:58
+date updated: 2023-08-27 14:29
 ---
 
 # Introduction
 
-This document provides a step-by-step guide on how to emulate Cortex A72 using a Debian RasPi4 image. Please note that this is not intended for production. Use at your own risk.
+This document provides a step-by-step guide on how to emulate Cortex A72 using a dietpi image. Please note that this is not intended for production. Use at your own risk.
 
 ## Prerequisites
 
 - A Linux or macOS (I haven't tried this on MacOS) system
-- `wget` to download the Debian RasPi4 image
-- `xz` to decompress the image
+- `wget` to download the dietpi image
+- `p7zip` to decompress the image
 - `fdisk` to determine the starting sector number
-- `qemu-img` to convert the image to qcow2
+- `kpartx` to create loop devices
 - `nano` or any other text editor of your choice to edit the fstab file
 
 # Preparation
@@ -32,232 +32,66 @@ $ cd rpi_image
 Download the Debian RasPi4 image and decompress it:
 
 ```sh
-$ wget https://raspi.debian.net/tested/20220808_raspi_4_bookworm.img.xz
-$ xz --decompress 20220808_raspi_4_bookworm.img.xz
+$ wget https://dietpi.com/downloads/images/DietPi_RPi-ARMv8-Bookworm.7z
+$ 7za x DietPi_RPi-ARMv8-Bookworm.7z
 ```
 
-### Determine the starting sector number
+### Mount partitions inside the image
 
-Using `fdisk`, determine the starting sector number of the image:
+Use kpartx to create loop devices :
 
 ```sh
-$ fdisk -l 20220808_raspi_4_bookworm.img
+$ sudo kpartx -a -v DietPi_RPi-ARMv8-Bookworm.img
+add map loop0p1 (254:0): 0 262144 linear 7:0 2048
+add map loop0p2 (254:1): 0 1832960 linear 7:0 264192
 ```
 
-This will give you output similar to this:
-
-```
-Disk 20220808_raspi_4_bookworm.img: 1,95 GiB, 2097152000 bytes, 4096000 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disklabel type: dos
-Disk identifier: 0xf7e489e2
-
-Device         Boot  Start     End Sectors  Size Id Type
-20220808_raspi_4_bookworm.img1        8192  819199  811008  396M  c W95 FAT32
-20220808_raspi_4_bookworm.img2      819200 4095999 3276800  1,6G 83 Linux
-```
-
-### Get offset for mounting
-
-To mount the image, we need to find the offset by finding the `Start` number in the second partition (in this case, `20220808_raspi_4_bookworm.img2`). In this example, the start number is 819200. Multiply this number by 512 to get the offset, which is 419430400.
-
-### Create a mount directory
-
-Create a mount directory:
+Mount them like this:
 
 ```sh
-$ mkdir /mnt/raspi4
+$ sudo mkdir /mnt/dietpi
+$ sudo mount /dev/mapper/loop0p2 /mnt/dietpi
+$ sudo mount /dev/mapper/loop0p1 /mnt/dietpi/boot
 ```
 
-### Mount the image
+### Copy the kernel and dtb from boot
 
-Mount the image using the offset:
+Copy the kernel to wherever you created your `rpi_image` folder
 
 ```sh
-$ sudo mount -o offset=419430400 20220808_raspi_4_bookworm.img /mnt/raspi4
+$ cp /mnt/dietpi/boot/kernel8.img ~/rpi_image/
+$ cp /mnt/dietpi/boot/bcm2710-rpi-3-b-plus.dtb ~/rpi_image/
 ```
 
-### Extract kernel and initrd
-
-Now we can extract kernel and initrd from image:<br>(NOTE: We are cd'd into rpi_image directory):
+#### Unmount the image
 
 ```sh
-$ cp /mnt/raspi4/vmlinuz .
-$ cp /mnt/raspi4/initrd.img .
+$ sudo umount /mnt/dietpi/boot
+$ sudo umount /mnt/dietpi
 ```
 
-### Edit fstab for slicker(?) QEMU operation
+### Resize the image
 
-Finally, we need to edit `fstab` for slicker(?) mounting via QEMU:
+You can use gparted to resize, first you need to create a loop device.
 
 ```
-$ nano /mnt/raspi4/etc/fstab
+$ sudo losetup /dev/loop10 DietPi_RPi-ARMv8-Bookworm.img
+$ gparted /dev/loop10
 ```
+
+### Start qemu
 
 ```sh
-# The root file system has fs_passno=1 as per fstab(5) for automatic fsck.
-LABEL=RASPIROOT / ext4 rw 0 1
-# All other file systems have fs_passno=2 as per fstab(5) for automatic fsck.
-LABEL=RASPIFIRM /boot/firmware vfat rw 0 2
+qemu-system-aarch64 \
+    -machine raspi3b \
+    -cpu cortex-a72 \
+    -dtb /home/<username>/rpi_image/bcm2710-rpi-3-b-plus.dtb \
+    -m 1G \
+    -smp 4 \
+    -kernel /home/<username>/rpi_image/kernel8.img \
+    -sd /home/<username>/rpi_image/DietPi_RPi-ARMv8-Bookworm.img \
+    -append "rw earlyprintk loglevel=8 console=ttyAMA0,115200 dwc_otg.lpm_enable=0 root=/dev/mmcblk0p2 rootdelay=1 modules-load=dwc2,g_ether" \
+    -device usb-net,netdev=eth0 \
+    -netdev user,id=eth0,net=42.42.42.0/24,hostfwd=tcp::2222-:22 \
+    -device usb-kbd \
 ```
-
-- Replace `LABEL=RASPIROOT` with `/dev/vda2`
-
-- Replace `LABEL=RASPIFIRM` with `/dev/vda1`
-
-The file should look something like this:
-
-```sh
-# The root file system has fs_passno=1 as per fstab(5) for automatic fsck.
-/dev/vda2 / ext4 rw 0 1
-# All other file systems have fs_passno=2 as per fstab(5) for automatic fsck.
-/dev/vda1 /boot/firmware vfat rw 0 2
-```
-
-We can now convert the image to qcow2:
-
-```sh
-qemu-img convert -f raw -O qcow2 20220808_raspi_4_bookworm.img rpi.qcow2
-```
-
-# Emulation Time!
-
-We can finally start making our launch script.
-
-```sh
-$ nano rpistart.sh
-```
-
-**rpistart.sh**
-
-```sh
-#!/bin/bash
-screen -mS raspberry-pi-4 \
-sudo qemu-system-aarch64 \
--M virt \
--m 4096 -smp 4 \
--cpu cortex-a72 \
--kernel vmlinuz \
--initrd initrd.img \
--append "root=/dev/vda2 panic=1 rootfstype=ext4 rw" \
--hda rpi.qcow2 \
--no-reboot \
--nographic
-```
-
-Paste the above into the script and save.
-
-### Some info about script
-
-- Since QEMU doesn't natively support Raspberry Pi 4(b), our only option is to virtualize Cortex A72 (Which is CPU used in Raspberry Pi 4(b)).
-
-- `-nographic` because _who needs graphics._
-
-- `screen` is used 'cuz _why not_.
-
-- Make script executable
-
-```sh
-$ chmod +x rpistart.sh
-```
-
-- __And you should_ be able to run QEMU instance._*
-- LAUNCH!
-
-```sh
-$ ./rpistart.sh
-```
-
-# Some wacky reality.
-
-You have booted into nice Debian. Oh, btw, username is passwordless `root`.<br>But there are two problems:
-
-- Not enough space!
-- No internet!
-
-## Not enough space!
-
-Very simple. Just:
-
-- poweroff the VM.
-
-```sh
-VM$ poweroff
-```
-
-- In our `rpi_image` directory, we can resize `qcow2` image via:
-
-```sh
-$ qemu-img resize rpi.qcow2 +4G
-```
-
-Side note: You can also set exact size by getting rid of that + sign.
-
-- Now we need to boot into VM once again:
-
-```sh
-$ ./rpistart.sh
-```
-
-- We have resized the image capacity, but not partition size. We can do that with:
-
-```sh
-VM$ resize2fs /dev/vda2
-```
-
-- You can check final result via
-
-```sh
-VM$ df -H
-```
-
-## No internet!
-
-Now we are going to configure our ethernet network interface.
-
-- You can check available network interfaces via:
-
-```sh
-VM$ ip addr
-```
-
-```
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host 
-       valid_lft forever preferred_lft forever
-2: enp0s1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether 52:54:00:12:34:56 brd ff:ff:ff:ff:ff:ff
-```
-
-- Notice, that `enp0s1` has zero IP addresses. We gotta fix that! _By creating another file._
-
-```sh
-VM$ nano /etc/network/interfaces.d/enp0s1
-```
-
-and paste this in:<br><br>
-**enp0s1**
-
-```sh
-auto enp0s1
-
-iface enp0s1 inet dhcp
-```
-
-- And delete eth0 interface
-- Reboot (Although config won't actually let you reboot.)
-
-```sh
-VM$ poweroff
-```
-
-```sh
-$ ./rpistart.sh
-```
-
-- You may still receive a networking service error, but you should be able to access the internet.
