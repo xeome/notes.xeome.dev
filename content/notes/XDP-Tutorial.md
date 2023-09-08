@@ -55,7 +55,7 @@ As previously described, change the interface name.
 
 ### Example 2 - Blocking ICMP packets
 
-```C
+```c
 #include <stdint.h>
 #include <arpa/inet.h>
 #include <linux/bpf.h>
@@ -159,7 +159,7 @@ Each map type has the following attributes:
 
 Example code:
 
-```C
+```c
 #include <stdint.h>
 #include <arpa/inet.h>
 #include <linux/bpf.h>
@@ -274,7 +274,7 @@ char _license[] SEC("license") = "GPL";
 
 In this example, we will set TTL to a pseudorandom number between 1-255.
 
-```C
+```c
 #include <stdint.h>
 #include <arpa/inet.h>
 #include <linux/bpf.h>
@@ -350,7 +350,7 @@ char _license[] SEC("license") = "GPL";
 
 In this example, we will respond to ICMP echo requests in XDP. 
 
-```C
+```c
 #include <arpa/inet.h>
 #include <linux/bpf.h>
 #include <bpf/bpf_helpers.h>
