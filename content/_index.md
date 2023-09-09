@@ -38,4 +38,5 @@ Link: <https://github.com/xeome/zmem>
 ---
 
 To access all my notes, click here <https://notes.xeome.dev/notes/>.
+
 Categorized index, [[notes/Computer Science|Computer Science]]
