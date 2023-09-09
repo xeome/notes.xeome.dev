@@ -38,7 +38,7 @@ These are just a few examples of the many options and parameters that are availa
 
 Example 1: How Valgrind can be used to detect a memory leak in a C program:
 
-```C
+```c
 #include <stdlib.h>
 
 int main(int argc, char** argv) {
@@ -80,7 +80,7 @@ $ valgrind --leak-check=full ./a.out
 
 Example 2: Detecting a buffer overflow:
 
-```C
+```c
 #include <stdio.h>
 
 int main(int argc, char** argv) {

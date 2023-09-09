@@ -18,20 +18,20 @@ Vector registers store 4 (SSE) or 8 (AVX) scalars. This means that the C# or C++
 
 If you're a C++ programmer, you're probably familiar with the basic types like char, short, int, and float. Each of these has a different size: A char has 8 bits, a short has 16, an int has 32, and a float has 32. Because bits are just bits, the only difference between a float and an int is in the interpretation. This enables us to do some nasty things:
 
-```Cpp
+```cpp
 int a;
 float& b = (float&)a;
 ```
 
 This creates one integer and a float reference to a. Because variables a and b now share the same memory location, changing one changes the other. An alternative way to achieve this is using a union:
 
-```C
+```c 
 union { int a; float b; };
 ```
 
 Again, a and b reside in the same memory location. Here’s another example:
 
-```C
+```c
 union { unsigned int a4; unsigned char a[4]; };
 ```
 
@@ -39,27 +39,27 @@ This time, a small array of four chars overlaps the 32-bit integer value a4. We 
 
 An SSE register is 128 bits in size and is labeled `__m128` if it stores four floats or `__m128i` if it stores ints. For simplicity, we will refer to `__m128` as 'quadfloat' and `__m128i` as 'quadint'. `__m256` ('octfloat') and `__m256i` ('octint') are the AVX versions. To use the SIMD types, we need to include the following headers:
 
-```C
+```c
 #include "nmmintrin.h" // for SSE4.2
 #include "immintrin.h" // for AVX
 ```
 
 A `__m128` variable contains four floats, so we can use the union trick again:
 
-```C
+```c
 union { __m128 a4; float a[4]; };
 ```
 
 Now we can conveniently access the individual floats in the `__m128` vector. We can also create the quadfloat directly:
 
-```C
+```c
 __m128 a4 = _mm_set_ps( 4.0f, 4.1f, 4.2f, 4.3f );
 __m128 b4 = _mm_set_ps( 1.0f, 1.0f, 1.0f, 1.0f );
 ```
 
 To add them together, we use `__mm_add_ps`:
 
-```C
+```c
 __m128 sum4 = _mm_add_ps( a4, b4 );
 ```
 
@@ -69,7 +69,7 @@ The `__mm_set_ps` and `_mm_add_ps` keywords are called intrinsics. SSE and AVX i
 
 ## Basic Addition
 
-```C
+```c
 #include <immintrin.h>
 #include <stdio.h>
 
@@ -102,7 +102,7 @@ This code performs element-wise addition of two arrays a and b, and stores the r
 
 ### One accumulator, no FMA
 
-```C
+```c
 float dotProduct(const float* p1, const float* p2, size_t count) {
     if (count % 8 != 0)
         return 0.0f;
@@ -143,7 +143,7 @@ This function calculates dot product without using FMA(Fused Multipy and Add) in
 
 Let’s compare code of two specific versions, `AvxVerticalFma` and `AvxVerticalFma2`. The former has the following main loop:
 
-```C
+```c
 for (; p1 < p1End; p1 += 8, p2 += 8) {  
     const __m256 a = __mm256_loadu_ps_(p1);  
     const __m256 b = __mm256_loadu_ps_(p2);  
@@ -153,7 +153,7 @@ for (; p1 < p1End; p1 += 8, p2 += 8) {
 
 `AvxVerticalFma2` version runs following code:
 
-```C
+```c
 for (; p1 < p1End; p1 += 16, p2 += 16) {  
     __m256 a = __mm256_loadu_ps_(p1);  
     __m256 b = __mm256_loadu_ps_(p2);  

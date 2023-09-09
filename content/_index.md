@@ -1,5 +1,5 @@
 ---
-title: notes.xeome.dev
+title: Emin's Notes
 date updated: 2023-09-03 22:43
 ---
 

@@ -20,7 +20,7 @@ I personally optimize with oxipng, a multithreaded lossless PNG compression opti
 
 #### Optimizing Every .png File In A Directory
 
-```C
+```c
 oxipng -o max --strip safe *.png
 ```
 
@@ -32,7 +32,7 @@ This command will optimize all png files in the current directory. This command 
 
 Optimization levels:
 
-```C
+```c
 -o 0   => --zc 5  --fast             (1 trial, determined heuristically)
 -o 1   => --zc 10 --fast             (1 trial, determined heuristically)
 -o 2   => --zc 11 -f 0,1,6,7 --fast  (1 trial, determined by fast evaluation)
@@ -49,7 +49,7 @@ Optimization levels:
 
 Following command can be used to losslessly compress a png file to webp with highest compression settings:
 
-```C
+```c
 cwebp -quiet -v -mt -lossless -z 9 input.png -o output.webp
 ```
 
@@ -64,7 +64,7 @@ values range from 0 to 6. Default value is 4.  When higher values are used, the 
 
 Following command can be used to lossy compress a png file to webp with highest compression settings:
 
-```C
+```c
 cwebp -quiet -v -mt -af -m 6 -q 97 input.png -o output.webp
 ```
 

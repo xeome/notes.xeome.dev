@@ -27,7 +27,7 @@ djb2 is a simple, fast hashing function created by Dan Bernstein. It is designed
 
 The function works by iterating over the characters in a string and performing a series of operations on each character to generate a numerical hash value. The basic structure of the function is as follows:
 
-```C
+```c
 unsigned long djb2_hash(unsigned char *str) {
     unsigned long hash = 5381;
     int c;
@@ -73,14 +73,14 @@ The do { ... } while (0) construct is used in the SIPROUND macro to create a loo
 
 For example, consider the following code:
 
-```C
+```c
 if (x > 0)
     MACRO;
 ```
 
 If MACRO is a simple macro that does not contain any control statements, it will be expanded as follows:
 
-```C
+```c
 if (x > 0)
     statement1;
     statement2;
@@ -90,7 +90,7 @@ if (x > 0)
 
 This will cause a syntax error, because the `if` statement is not properly terminated. To fix this, we can use the `do { ... } while (0)` construct in the macro to ensure that it is always treated as a single statement:
 
-```C
+```c
 #define MACRO                                                                 \
     do {                                                                     \
         statement1;                                                           \
@@ -102,7 +102,7 @@ This will cause a syntax error, because the `if` statement is not properly termi
 
 Now, the macro will be expanded as follows:
 
-```C
+```c
 if (x > 0)
     do {
         statement1;

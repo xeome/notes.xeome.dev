@@ -135,7 +135,7 @@ Before:
 After:
 ![[notes/assets/img/O_Pasted image 20230430232857.png]]
 
-```C
+```c
 /* Show the contents common for smaps and smaps_rollup */
 static void __show_smap(struct seq_file *m, const struct mem_size_stats *mss,
 	bool rollup_mode)

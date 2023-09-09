@@ -28,7 +28,7 @@ Socket programming is a powerful tool for developing networked applications that
 
 ## Server
 
-```C
+```c
 #include <arpa/inet.h>  
 #include <stdio.h>  
 #include <string.h>  
@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
 
 ## Client
 
-```C
+```c
 #include <arpa/inet.h>  
 #include <stdio.h>  
 #include <string.h>  

@@ -58,7 +58,7 @@ Since it is enabled by default, [disable zswap](https://wiki.archlinux.org/titl
 
 ##### Recommended configurations for zswap
 
-```C
+```c
 # echo lz4 > /sys/module/zswap/parameters/compressor
 
 # echo 10 > /sys/module/zswap/parameters/max_pool_percent

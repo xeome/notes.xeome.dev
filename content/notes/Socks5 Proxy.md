@@ -12,7 +12,7 @@ This is done by using the `-D` option with the `ssh` command. The `-D` option cr
 
 For example, the following command creates an SSH tunnel that listens on port 1080 on the client machine forwarding all connections to the server on IP address 10.0.0.5:
 
-```C
+```c
 ssh -D 1080 -f -q -N user@10.0.0.5
 ```
 
@@ -39,7 +39,7 @@ export SOCKS5_PROXY=socks5h://127.0.0.1:1080
 
 And then in your application, you can configure it to use the SOCKS5 proxy by specifying the proxy settings, for example in curl you can use `--proxy 'socks5h://localhost:1080'`.
 
-```C
+```c
 curl --proxy 'socks5h://localhost:1080' -O 'http://example.com/ex.txt'
 ```
 
