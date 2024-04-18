@@ -21,29 +21,31 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "Archivo",
+        body: "Noto Sans",
+        code: "JetBrains Mono",
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
+          // Catpuccin Latte
+          light: "#eff1f5", // Latte Base
+          lightgray: "#ccd0da", // Latte Surface0
+          gray: "#8c8fa1", // Latte Overlay1
+          darkgray: "#6c6f85", // Latte Subtext0
+          dark: "#4c4f69", // Latte Text
+          secondary: "#1e66f5", // Latte Blue
+          tertiary: "#7287fd", // Latte Lavender
           highlight: "rgba(143, 159, 169, 0.15)",
         },
         darkMode: {
-          light: "#101317",
-          lightgray: "#20252c",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7ab0df",
-          tertiary: "#84a59d",
+          // Catpuccin Mocha/Frappé
+          light: "#11111b", // Mocha Crust
+          lightgray: "#313244", // Mocha Surface0
+          gray: "#7f849c", // Mocha Overlay1
+          darkgray: "#a6adc8", // Mocha Subtext0
+          dark: "#c6d0f5", // Frappé Text
+          secondary: "#8caaee", // Frappé Blue
+          tertiary: "#babbf1", // Frappé Lavender
           highlight: "rgba(143, 159, 169, 0.15)",
         },
       },
