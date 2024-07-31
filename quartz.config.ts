@@ -36,6 +36,7 @@ const config: QuartzConfig = {
           secondary: "#1e66f5", // Latte Blue
           tertiary: "#7287fd", // Latte Lavender
           highlight: "rgba(143, 159, 169, 0.15)",
+          textHighlight: "#fff23688",
         },
         darkMode: {
           // Catpuccin Mocha/Frappé
@@ -47,6 +48,7 @@ const config: QuartzConfig = {
           secondary: "#8caaee", // Frappé Blue
           tertiary: "#babbf1", // Frappé Lavender
           highlight: "rgba(143, 159, 169, 0.15)",
+          textHighlight: "#b3aa0288",
         },
       },
     },
@@ -57,7 +59,6 @@ const config: QuartzConfig = {
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "filesystem"],
       }),
-      Plugin.Latex({ renderEngine: "katex" }),
       Plugin.SyntaxHighlighting({
         theme: {
           light: "github-light",
@@ -70,6 +71,7 @@ const config: QuartzConfig = {
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
+      Plugin.Latex({ renderEngine: "katex" }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
