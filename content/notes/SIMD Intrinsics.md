@@ -25,7 +25,7 @@ float& b = (float&)a;
 
 This creates one integer and a float reference to a. Because variables a and b now share the same memory location, changing one changes the other. An alternative way to achieve this is using a union:
 
-```c 
+```c
 union { int a; float b; };
 ```
 
@@ -199,6 +199,6 @@ Evade fancy SIMD libraries Vectorization is hard, and it feels unnatural to writ
 - <http://ftp.cvut.cz/kernel/people/geoff/cell/ps3-linux-docs/CellProgrammingTutorial/BasicsOfSIMDProgramming.html>
 - <https://www.agner.org/optimize/>
 - <https://software.intel.com/sites/landingpage/IntrinsicsGuide/>
--  [http://www.cs.uu.nl/docs/vakken/magr/2017-2018/files/SIMD%20Tutorial.pdf](https://envs.sh/5o)
+- [http://www.cs.uu.nl/docs/vakken/magr/2017-2018/files/SIMD%20Tutorial.pdf](https://envs.sh/5o)
 - <https://en.wikipedia.org/wiki/Advanced_Vector_Extensions>
 - <https://stackoverflow.blog/2020/07/08/improving-performance-with-simd-intrinsics-in-three-use-cases/>
