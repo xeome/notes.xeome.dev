@@ -11,8 +11,8 @@ This document provides a step-by-step guide on how to emulate Cortex A72 using a
 
 - A Linux or macOS (I haven't tried this on MacOS) system
 - `wget` to download the dietpi image
-- `p7zip` to decompress the image
-- `fdisk` to determine the starting sector number
+- `xz` to decompress the image
+- `parted` to resize the image
 - `kpartx` to create loop devices
 - `nano` or any other text editor of your choice to edit the fstab file
 

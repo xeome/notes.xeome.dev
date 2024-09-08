@@ -45,8 +45,8 @@ const config: QuartzConfig = {
           gray: "#928374", // Hard Dark Overlay1
           darkgray: "#a89984", // Hard Dark Subtext0
           dark: "#ebdbb2", // Hard Dark Text
-          secondary: "#5ca9ac", // Hard Dark Blue
-          tertiary: "#b16286", // Hard Dark Lavender
+          secondary: "#83ba6f", // Hard Dark Blue
+          tertiary: "#aff894", // Hard Dark Lavender
           highlight: "rgba(199, 207, 212, 0.15)",
           textHighlight: "#b3aa0288",
         },
