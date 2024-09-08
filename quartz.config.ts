@@ -45,9 +45,9 @@ const config: QuartzConfig = {
           gray: "#928374", // Hard Dark Overlay1
           darkgray: "#a89984", // Hard Dark Subtext0
           dark: "#ebdbb2", // Hard Dark Text
-          secondary: "#83ba6f", // Hard Dark Blue
-          tertiary: "#aff894", // Hard Dark Lavender
-          highlight: "rgba(199, 207, 212, 0.15)",
+          secondary: "#83ba6f",
+          tertiary: "#6b985b",
+          highlight: "rgba(143, 159, 169, 0.15)",
           textHighlight: "#b3aa0288",
         },
       },
@@ -64,7 +64,7 @@ const config: QuartzConfig = {
           light: "github-light",
           dark: "github-dark",
         },
-        keepBackground: false,
+        keepBackground: true,
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
