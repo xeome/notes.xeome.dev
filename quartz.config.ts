@@ -39,16 +39,16 @@ const config: QuartzConfig = {
           textHighlight: "#fff23688",
         },
         darkMode: {
-          // Gruvbox Material Hard Dark
-          light: "#1d2021", // Hard Dark Background
-          lightgray: "#3c3836", // Hard Dark Surface0
-          gray: "#928374", // Hard Dark Overlay1
-          darkgray: "#a89984", // Hard Dark Subtext0
-          dark: "#ebdbb2", // Hard Dark Text
-          secondary: "#83ba6f",
-          tertiary: "#6b985b",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          // Tango Dark Theme Colors
+          light: "#0f0e0f", // Dark gray (background)
+          lightgray: "#555753", // Medium gray (surface)
+          gray: "#888a85", // Light gray (overlay)
+          darkgray: "#babdb6", // Very light gray (subtext)
+          dark: "#eeeeec", // Almost white (text)
+          secondary: "#729fcf", // Tango green
+          tertiary: "#3465a4", // Tango bright green
+          highlight: "rgba(114, 159, 207, 0.15)", // Sky Blue 1 with opacity
+          textHighlight: "#204a8788", // Sky Blue 3 with opacity
         },
       },
     },
