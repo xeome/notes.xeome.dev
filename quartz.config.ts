@@ -17,6 +17,7 @@ const config: QuartzConfig = {
     baseUrl: "notes.xeome.dev",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
+    locale: "en-US",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
