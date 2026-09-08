@@ -30,16 +30,15 @@ I will share my experience with tuning the performance of OPNsense, an open sour
 ![[notes/assets/img/Pasted image 20230521002111.png]]
 
 4. OPNsense Tunables (sysctl):
-
    - Adjusted various sysctl values to optimize performance
-   - Here is a list of recommended sysctl tunables for optimizing OPNsense performance (* Means it depends on your hardware config, read bellow):
+   - Here is a list of recommended sysctl tunables for optimizing OPNsense performance (\* Means it depends on your hardware config, read bellow):
      - hw.ibrs_disable=1
      - net.isr.maxthreads=-1
      - net.isr.bindthreads=1
      - net.isr.dispatch=deferred
      - net.inet.rss.enabled=1
-     - net.inet.rss.bits=6 *
-     - kern.ipc.maxsockbuf=16777216 *
+     - net.inet.rss.bits=6 \*
+     - kern.ipc.maxsockbuf=16777216 \*
      - net.inet.tcp.recvbuf_max=4194304
      - net.inet.tcp.recvspace=262144
      - net.inet.tcp.sendbuf_inc=16384

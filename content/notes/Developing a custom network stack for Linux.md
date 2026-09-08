@@ -10,9 +10,9 @@ The daemon is responsible for the creation and management of the XSK sockets, as
 
 ## XDP
 
- [XDP (eXpress Data Path)](https://en.wikipedia.org/wiki/Express_Data_Path) is a Linux kernel technology that provides a high performance, programmable network data path. XDP is a general purpose packet processing engine that can be used for a variety of purposes, such as packet filtering, policing, load balancing, etc. XDP programs are *usually* written in C and compiled to BPF bytecode, which is then loaded into the kernel. XDP programs are executed at the earliest possible point in the packet processing pipeline, before any other kernel processing takes place. This allows for the most efficient packet processing possible.
+[XDP (eXpress Data Path)](https://en.wikipedia.org/wiki/Express_Data_Path) is a Linux kernel technology that provides a high performance, programmable network data path. XDP is a general purpose packet processing engine that can be used for a variety of purposes, such as packet filtering, policing, load balancing, etc. XDP programs are _usually_ written in C and compiled to BPF bytecode, which is then loaded into the kernel. XDP programs are executed at the earliest possible point in the packet processing pipeline, before any other kernel processing takes place. This allows for the most efficient packet processing possible.
 
- XDP programs can be loaded in using multiple modes. The valid values are 'native', which is the default in-driver XDP mode, 'skb', which causes the so-called skb mode (also known as generic XDP) to be used, 'hw' which causes the program to be offloaded to the hardware, or 'unspecified' which leaves it up to the kernel to pick a mode (which it will do by picking native mode if the driver supports it, or generic mode otherwise).
+XDP programs can be loaded in using multiple modes. The valid values are 'native', which is the default in-driver XDP mode, 'skb', which causes the so-called skb mode (also known as generic XDP) to be used, 'hw' which causes the program to be offloaded to the hardware, or 'unspecified' which leaves it up to the kernel to pick a mode (which it will do by picking native mode if the driver supports it, or generic mode otherwise).
 
 ![[xdp_redirect.png]]
 

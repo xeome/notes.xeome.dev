@@ -2,7 +2,7 @@
 
 Censorship has become a significant challenge in today's digital age, affecting internet freedom worldwide. Various tools and techniques have been developed to counteract these restrictions, allowing users to access blocked content. One such tool is Zapret, a stand-alone DPI circumvention tool designed primarily for the Russian audience to combat censorship imposed by Roskomnadzor. However, its utility extends beyond Russia, offering a solution for bypassing HTTP(S) website blocking and resisting signature TCP/UDP protocol discovery globally.
 
-Make sure to check for the legality of using such tools in your country before proceeding. This guide provides a technical overview of how to use Zapret to bypass censorship effectively. *For educational purposes only.*
+Make sure to check for the legality of using such tools in your country before proceeding. This guide provides a technical overview of how to use Zapret to bypass censorship effectively. _For educational purposes only._
 
 Also check for DNS poisoning first, it will be a lot easier to bypass than DPI and it prevents blockcheck.sh from working properly.
 

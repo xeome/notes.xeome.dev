@@ -32,7 +32,7 @@ BOLT runs passes with either code transformations or analyses, similar to a comp
 | 2. icf                | Identical code folding                                                                                            |
 | 3. icp                | Indirect call promotion                                                                                           |
 | 4. peepholes          | Simple peephole optimizations                                                                                     |
-| 5. simplify-ro-loads  | Fetch constant data in .rodata whose address is known   statically and mutate a load into a mov                   |
+| 5. simplify-ro-loads  | Fetch constant data in .rodata whose address is known statically and mutate a load into a mov                     |
 | 6. icf                | Identical code folding (second run)                                                                               |
 | 7. plt                | Remove indirection from PLT calls                                                                                 |
 | 8. reorder-bbs        | Reorder basic blocks and split hot/cold blocks into separate sections (layout optimization)                       |

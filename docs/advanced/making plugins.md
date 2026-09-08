@@ -15,9 +15,7 @@ All plugins are defined as a function that takes in a single parameter for optio
 type OptionType = object | undefined
 type QuartzPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzPluginInstance
 type QuartzPluginInstance =
-  | QuartzTransformerPluginInstance
-  | QuartzFilterPluginInstance
-  | QuartzEmitterPluginInstance
+  QuartzTransformerPluginInstance | QuartzFilterPluginInstance | QuartzEmitterPluginInstance
 ```
 
 The following sections will go into detail for what methods can be implemented for each plugin type. Before we do that, let's clarify a few more ambiguous types:

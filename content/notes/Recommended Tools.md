@@ -15,7 +15,6 @@ Ping, but with graph and statistics. Works fine on tty.
 Cat clone with syntax highlighting and git integration.
 ![[notes/assets/img/O_bat.png]]
 
-
 ## grc
 
 Generic colorizer that works on many commands.

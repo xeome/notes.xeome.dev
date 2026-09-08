@@ -97,11 +97,11 @@ lrwxrwxrwx 1 root root       7 Şub 11 00:17 loop0p3 -> ../dm-2
 Finally, create a directory and mount the LVM partition to the new directory:
 
 ```bash
-sudo mkdir /mnt/raw3  
+sudo mkdir /mnt/raw3
 sudo mount /dev/fedora/root /mnt/raw3
 ```
 
-### Step 4:  Working Directly Within The Image
+### Step 4: Working Directly Within The Image
 
 It's time to start making changes to the image. To do this, we'll use `chroot` to change the working root of our session to the root from the image, or alternatively `systemd-nspawn`. To support emulation between architectures, we'll need to install `qemu-user-static`, `qemu-user-static-binfmt` and restart `systemd-binfmt.service`.
 
@@ -116,17 +116,17 @@ Ensure that the architecture is `aarch64` and not `x86_64` (use `uname -a`).
 Next, we'll create a local user that we'll use to connect via SSH later. The following commands create a group and user named `pi`. The user will have a UID of 1000 and be assigned to the `pi` and `wheel` groups:
 
 ```bash
-/usr/sbin/groupadd pi  
+/usr/sbin/groupadd pi
 /usr/sbin/useradd -g pi -G wheel -m -u 1000 pi
 ```
 
 Create the `.ssh` directory, the `authorized_keys` file, and set proper permissions:
 
 ```bash
-mkdir /home/pi/.ssh  
-chmod 700 /home/pi/.ssh  
-touch /home/pi/.ssh/authorized_keys  
-chmod 600 /home/pi/.ssh/authorized_keys  
+mkdir /home/pi/.ssh
+chmod 700 /home/pi/.ssh
+touch /home/pi/.ssh/authorized_keys
+chmod 600 /home/pi/.ssh/authorized_keys
 chown -R pi.pi /home/pi/.ssh/
 ```
 
@@ -141,7 +141,7 @@ echo "%wheel ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/wheel-nopasswd
 Also, Fedora prompts you to finish the setup on the first boot. To avoid that, disable the initial setup:
 
 ```bash
-unlink /etc/systemd/system/multi-user.target.wants/initial-setup.service  
+unlink /etc/systemd/system/multi-user.target.wants/initial-setup.service
 unlink /etc/systemd/system/graphical.target.wants/initial-setup.service
 ```
 
@@ -187,7 +187,7 @@ dtoverlay=miniuart-bt
 That’s all we need to change. Exit the chroot and unmount the disk image:
 
 ```bash
-exit  
+exit
 sudo umount /mnt/raw3
 ```
 

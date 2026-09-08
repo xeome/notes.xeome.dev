@@ -11,15 +11,15 @@ Multithreading is a programming technique that allows a single process to execut
 To use concurrency in C++, you will need to use the `<thread>` header, which provides the `std::thread` class and other related types and functions for creating and managing threads. Here's a simple example of how to create and start a new thread:
 
 ```cpp
-#include <iostream>  
-#include <thread>  
-  
-void foo() { std::cout << "Hello from a new thread!" << std::endl; }  
-  
-int main() {  
-    std::thread t(foo);  
-    t.join();  
-    return 0;  
+#include <iostream>
+#include <thread>
+
+void foo() { std::cout << "Hello from a new thread!" << std::endl; }
+
+int main() {
+    std::thread t(foo);
+    t.join();
+    return 0;
 }
 ```
 
@@ -28,16 +28,16 @@ This program creates a new `std::thread` object, passing the function `foo` as t
 You can also use the `std::async` function to run a function asynchronously and get a `std::future` object that can be used to retrieve the result of the function when it becomes available. For example:
 
 ```cpp
-#include <future>  
-#include <iostream>  
-  
-int foo() { return 10; }  
-  
-int main() {  
-    std::future<int> f = std::async(foo);  
-    int x = f.get();  
-    std::cout << "x = " << x << std::endl;  
-    return 0;  
+#include <future>
+#include <iostream>
+
+int foo() { return 10; }
+
+int main() {
+    std::future<int> f = std::async(foo);
+    int x = f.get();
+    std::cout << "x = " << x << std::endl;
+    return 0;
 }
 ```
 
@@ -50,17 +50,17 @@ This program creates a new asynchronous task that executes the `foo` function an
 In this example, we pass two arguments to the thread function:
 
 ```cpp
-#include <iostream>  
-#include <thread>  
-  
-void foo(int x, std::string str) {  
-    std::cout << "x = " << x << ", str = " << str << std::endl;  
-}  
-  
-int main() {  
-    std::thread t(foo, 10, "Hello");  
-    t.join();  
-    return 0;  
+#include <iostream>
+#include <thread>
+
+void foo(int x, std::string str) {
+    std::cout << "x = " << x << ", str = " << str << std::endl;
+}
+
+int main() {
+    std::thread t(foo, 10, "Hello");
+    t.join();
+    return 0;
 }
 
 ```
@@ -72,16 +72,16 @@ When the `foo` function is executed by the new thread, it will receive the argum
 In this example, we use `std::move` to transfer ownership of a thread object to a new thread:
 
 ```cpp
-#include <iostream>  
-#include <thread>  
-  
-void foo() { std::cout << "Hello from a new thread!" << std::endl; }  
-  
-int main() {  
-    std::thread t1(foo);  
-    std::thread t2 = std::move(t1);  
-    t2.join();  
-    return 0;  
+#include <iostream>
+#include <thread>
+
+void foo() { std::cout << "Hello from a new thread!" << std::endl; }
+
+int main() {
+    std::thread t1(foo);
+    std::thread t2 = std::move(t1);
+    t2.join();
+    return 0;
 }
 ```
 
@@ -92,15 +92,15 @@ The `t1` thread object is created and starts executing the `foo` function. The `
 In this example, we create a thread and detach it from the main thread of execution:
 
 ```cpp
-#include <iostream>  
-#include <thread>  
-  
-void foo() { std::cout << "Hello from a new thread!" << std::endl; }  
-  
-int main() {  
-    std::thread t(foo);  
-    t.detach();  
-    return 0;  
+#include <iostream>
+#include <thread>
+
+void foo() { std::cout << "Hello from a new thread!" << std::endl; }
+
+int main() {
+    std::thread t(foo);
+    t.detach();
+    return 0;
 }
 
 ```
@@ -112,18 +112,18 @@ The `detach` member function of the `std::thread` object detaches the thread fro
 In this example, we pass an argument by reference to thread function:
 
 ```cpp
-#include <iostream>  
-#include <thread>  
-  
-void foo(int x, std::string &str) {  
-    std::cout << "x = " << x << ", str = " << str << std::endl;  
-}  
-  
-int main() {  
-    std::string str = "Hello";  
-    std::thread t(foo, 10, std::ref(str));  
-    t.join();  
-    return 0;  
+#include <iostream>
+#include <thread>
+
+void foo(int x, std::string &str) {
+    std::cout << "x = " << x << ", str = " << str << std::endl;
+}
+
+int main() {
+    std::string str = "Hello";
+    std::thread t(foo, 10, std::ref(str));
+    t.join();
+    return 0;
 }
 ```
 
@@ -177,10 +177,10 @@ void merge(int arr[], int l, int m, int r) {
         k++;
     }
 
-    // Copy the remaining elements of L[], if there are any 
+    // Copy the remaining elements of L[], if there are any
     std::copy(L + i, L + n1, arr + k);
 
-    // Copy the remaining elements of R[], if there are any 
+    // Copy the remaining elements of R[], if there are any
     std::copy(R + j, R + n2, arr + k);
 }
 

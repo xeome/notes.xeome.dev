@@ -44,9 +44,9 @@ MAKEFLAGS="-j12"
 
 ### Auto nice daemons and irq balance
 
-Ananicy-cpp can be installed to automatically set [nice](https://en.wikipedia.org/wiki/Nice_(Unix)) levels.
+Ananicy-cpp can be installed to automatically set [nice](<https://en.wikipedia.org/wiki/Nice_(Unix)>) levels.
 
-[Irq balance](https://wiki.archlinux.org/title/Improving_performance#irqbalance) distributes [hardware interrupts](https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)) across available processors to improve system performance.
+[Irq balance](https://wiki.archlinux.org/title/Improving_performance#irqbalance) distributes [hardware interrupts](<https://en.wikipedia.org/wiki/Interrupt_request_(PC_architecture)>) across available processors to improve system performance.
 
 ### Zram or Zswap
 

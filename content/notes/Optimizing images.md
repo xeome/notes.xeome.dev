@@ -55,10 +55,10 @@ cwebp -quiet -v -mt -lossless -z 9 input.png -o output.webp
 
 `-mt` Use multi-threading for encoding, if possible.
 
-`-lossless`  Enable lossless compression.
+`-lossless` Enable lossless compression.
 
-`-m 6` This parameter controls the trade off between encoding speed and the compressed file size and quality.  Possible
-values range from 0 to 6. Default value is 4.  When higher values are used, the encoder will spend more time inspecting additional encoding  possibilities  and  decide on the quality gain.  Lower value can result in faster processing time at the expense of larger file size and lower compression quality.
+`-m 6` This parameter controls the trade off between encoding speed and the compressed file size and quality. Possible
+values range from 0 to 6. Default value is 4. When higher values are used, the encoder will spend more time inspecting additional encoding possibilities and decide on the quality gain. Lower value can result in faster processing time at the expense of larger file size and lower compression quality.
 
 ### Lossy
 
@@ -72,8 +72,8 @@ cwebp -quiet -v -mt -af -m 6 -q 97 input.png -o output.webp
 
 `-af` Turns auto-filter on. This algorithm will spend additional time optimizing the filtering strength to reach a well-balanced quality.
 
-`-m 6` This parameter controls the trade off between encoding speed and the compressed file size and quality.  Possible
-values range from 0 to 6. Default value is 4.  When higher values are used, the encoder will spend more time inspecting additional encoding  possibilities  and  decide on the quality gain.  Lower value can result in faster processing time at the expense of larger file size and lower compression quality.
+`-m 6` This parameter controls the trade off between encoding speed and the compressed file size and quality. Possible
+values range from 0 to 6. Default value is 4. When higher values are used, the encoder will spend more time inspecting additional encoding possibilities and decide on the quality gain. Lower value can result in faster processing time at the expense of larger file size and lower compression quality.
 
 `-q 97` Controls quality level.
 

@@ -127,7 +127,7 @@ float dotProduct(const float* p1, const float* p2, size_t count) {
                                                         // register into low half. vextractf128 instruction does that.
     // Add the first element of two __m128 vectors (low and high)
     const __m128 result = _mm_add_ss(low, high);
-    // By the way, the intrinsic below compiles into no instructions.  
+    // By the way, the intrinsic below compiles into no instructions.
 	// When a function is returning a float, modern compilers pass the return value in the lowest lane of xmm0 vector register.
     return _mm_cvtss_f32(result);
 }
@@ -139,32 +139,32 @@ This function calculates dot product without using FMA(Fused Multipy and Add) in
 
 > Data dependencies is the main thing I’d like to illustrate with this example.
 
-> From a computer scientist point of view, dot product is a form of [reduction](https://en.wikipedia.org/wiki/Reduce_(parallel_pattern)). [](https://en.wikipedia.org/wiki/Reduce_(parallel_pattern))The algorithm needs to process large input vectors, and compute just a single value. When the computations are fast (like in this case, multiplying floats from sequential blocks of memory is very fast), the throughput is often limited by latency of the reduce operation.
+> From a computer scientist point of view, dot product is a form of [reduction](<https://en.wikipedia.org/wiki/Reduce_(parallel_pattern)>). [](<https://en.wikipedia.org/wiki/Reduce_(parallel_pattern)>)The algorithm needs to process large input vectors, and compute just a single value. When the computations are fast (like in this case, multiplying floats from sequential blocks of memory is very fast), the throughput is often limited by latency of the reduce operation.
 
 Let’s compare code of two specific versions, `AvxVerticalFma` and `AvxVerticalFma2`. The former has the following main loop:
 
 ```c
-for (; p1 < p1End; p1 += 8, p2 += 8) {  
-    const __m256 a = __mm256_loadu_ps_(p1);  
-    const __m256 b = __mm256_loadu_ps_(p2);  
-    acc = _mm256_fmadd_ps(a, b, acc);  // Update the only accumulator  
+for (; p1 < p1End; p1 += 8, p2 += 8) {
+    const __m256 a = __mm256_loadu_ps_(p1);
+    const __m256 b = __mm256_loadu_ps_(p2);
+    acc = _mm256_fmadd_ps(a, b, acc);  // Update the only accumulator
 }
 ```
 
 `AvxVerticalFma2` version runs following code:
 
 ```c
-for (; p1 < p1End; p1 += 16, p2 += 16) {  
-    __m256 a = __mm256_loadu_ps_(p1);  
-    __m256 b = __mm256_loadu_ps_(p2);  
-    dot0 = __mm256_fmadd_ps_(a, b, dot0);  // Update the first accumulator  
-    a = __mm256_loadu_ps_(p1 + 8);  
-    b = __mm256_loadu_ps_(p2 + 8);  
-    dot1 = __mm256_fmadd_ps_(a, b, dot1);  // Update the second accumulator  
+for (; p1 < p1End; p1 += 16, p2 += 16) {
+    __m256 a = __mm256_loadu_ps_(p1);
+    __m256 b = __mm256_loadu_ps_(p2);
+    dot0 = __mm256_fmadd_ps_(a, b, dot0);  // Update the first accumulator
+    a = __mm256_loadu_ps_(p1 + 8);
+    b = __mm256_loadu_ps_(p2 + 8);
+    dot1 = __mm256_fmadd_ps_(a, b, dot1);  // Update the second accumulator
 }
 ```
 
-> `_mm256_fmadd_ps` intrinsic computes (a*b)+c for arrays of eight float values, that instruction is part of [FMA3](https://en.wikipedia.org/wiki/FMA_instruction_set#FMA3_instruction_set) instruction set. The reason why `AvxVerticalFma2` version is almost 2x faster—deeper pipelining hiding the latency.
+> `_mm256_fmadd_ps` intrinsic computes (a\*b)+c for arrays of eight float values, that instruction is part of [FMA3](https://en.wikipedia.org/wiki/FMA_instruction_set#FMA3_instruction_set) instruction set. The reason why `AvxVerticalFma2` version is almost 2x faster—deeper pipelining hiding the latency.
 
 > When the processor submits an instruction, it needs values of the arguments. If some of them are not yet available, the processor waits for them to arrive. The tables on <https://www.agner.org/> say on AMD Ryzen the latency of that FMA instruction is five cycles. This means once the processor started to execute that instruction, the result of the computation will only arrive five CPU cycles later. When the loop is running a single FMA instruction which needs the result computed by the previous loop iteration, that loop can only run one iteration in five CPU cycles.
 

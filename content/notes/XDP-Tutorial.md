@@ -74,7 +74,7 @@ int xdp_prog_simple(struct xdp_md *ctx)
     to perform the casts */
     void *data_end = (void *)(uintptr_t)ctx->data_end;
     void *data = (void *)(uintptr_t)ctx->data;
-    
+
     struct ethhdr *eth = data;
     struct iphdr *iph = (struct iphdr *)(eth + 1);
     struct icmphdr *icmph = (struct icmphdr *)(iph + 1);
@@ -98,7 +98,7 @@ int xdp_prog_simple(struct xdp_md *ctx)
     if (OVER(icmph, data_end))
         return XDP_DROP;
 
-    /* 
+    /*
 	struct iphdr {
 	#if defined(__LITTLE_ENDIAN_BITFIELD)
 		__u8	ihl:4,
@@ -117,10 +117,10 @@ int xdp_prog_simple(struct xdp_md *ctx)
 		__u8	protocol;
 		__sum16	check;
 		__be32	saddr;
-		__be32	daddr;     
-	}; 
-	This is the ipheader structure from ip.h; we can see the elements we can access 
-    and their types. We can use iph->protocol to determine whether an incoming 
+		__be32	daddr;
+	};
+	This is the ipheader structure from ip.h; we can see the elements we can access
+    and their types. We can use iph->protocol to determine whether an incoming
     packet is an ICMP packet or not. */
     if (iph->protocol != IPPROTO_ICMP)
         return XDP_PASS;
@@ -128,7 +128,7 @@ int xdp_prog_simple(struct xdp_md *ctx)
     /* drop icmp */
     if (iph->protocol == IPPROTO_ICMP)
         return XDP_DROP;
-    
+
     return XDP_PASS;
 }
 
@@ -186,9 +186,9 @@ int xdp_prog_simple(struct xdp_md *ctx)
     to perform the casts */
 	void *data_end = (void *)(uintptr_t)ctx->data_end;
 	void *data = (void *)(uintptr_t)ctx->data;
-	
+
     long *value;
-    
+
     /* Define headers */
 	struct ethhdr *eth = data;
 	struct iphdr *iph = (struct iphdr *)(eth + 1);
@@ -214,7 +214,7 @@ int xdp_prog_simple(struct xdp_md *ctx)
 	if (OVER(icmph, data_end))
 		return XDP_DROP;
 
-	/* 
+	/*
 	struct iphdr {
 	#if defined(__LITTLE_ENDIAN_BITFIELD)
 		__u8	ihl:4,
@@ -233,10 +233,10 @@ int xdp_prog_simple(struct xdp_md *ctx)
 		__u8	protocol;
 		__sum16	check;
 		__be32	saddr;
-		__be32	daddr;     
-	}; 
-	This is the ipheader structure from ip.h; we can see the elements we can access 
-    and their types. We can use iph->protocol to determine whether an incoming 
+		__be32	daddr;
+	};
+	This is the ipheader structure from ip.h; we can see the elements we can access
+    and their types. We can use iph->protocol to determine whether an incoming
     packet is an ICMP packet or not. */
 
 	if (iph->protocol != IPPROTO_ICMP)
@@ -261,7 +261,7 @@ int xdp_prog_simple(struct xdp_md *ctx)
 
         return XDP_PASS;
     }
-    
+
 	return XDP_PASS;
 }
 
@@ -346,7 +346,7 @@ char _license[] SEC("license") = "GPL";
 
 ### Example 5 - Responding to ICMP echo requests in XDP
 
-In this example, we will respond to ICMP echo requests in XDP. 
+In this example, we will respond to ICMP echo requests in XDP.
 
 ```c
 #include <arpa/inet.h>

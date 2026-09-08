@@ -1,9 +1,9 @@
 ---
-title: Linux raw sockets 
+title: Linux raw sockets
 ---
 
 > [!warning]
-> 
+>
 > This post is still in progress. I will update it as soon as I have something to share.
 
 ## Introduction
