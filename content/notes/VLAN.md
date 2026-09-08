@@ -1,7 +1,7 @@
 ---
 title: VLAN
-date created: 2022-12-24 21:44
-date updated: 2022-12-25 00:12
+created: 2022-12-24 21:44
+modified: 2022-12-25 00:12
 ---
 
 A virtual LAN (VLAN) is a logical grouping of devices in a computer network that behaves as if they are part of the same LAN, despite the fact that the devices are physically connected to different switches or located in different parts of the network. VLANs are used to divide a network into smaller, more manageable segments, as well as to improve network performance and security. This is accomplished by allocating a VLAN to each device and configuring the switch to forward traffic between devices in the same VLAN.

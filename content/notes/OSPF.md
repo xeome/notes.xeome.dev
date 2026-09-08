@@ -1,7 +1,7 @@
 ---
 title: OSPF
-date created: 2022-12-24 21:18
-date updated: 2022-12-25 00:03
+created: 2022-12-24 21:18
+modified: 2022-12-25 00:03
 ---
 
 WIP

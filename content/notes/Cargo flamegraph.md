@@ -1,7 +1,7 @@
 ---
 title: Optimizing Rust Code with Cargo Flamegraphs
-date created: 2023-04-21 17:25
-date updated: 2023-04-21 17:44
+created: 2023-04-21 17:25
+modified: 2023-04-21 17:44
 ---
 
 ## Introduction

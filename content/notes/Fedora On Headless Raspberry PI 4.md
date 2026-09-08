@@ -1,7 +1,7 @@
 ---
 title: Fedora On Raspberry PI 4
-date created: 2023-02-10 23:58
-date updated: 2023-02-11 00:56
+created: 2023-02-10 23:58
+modified: 2023-02-11 00:56
 ---
 
 In this guide, we will walk through the steps to set up Fedora Server on your Raspberry Pi 4. This guide assumes that you have some knowledge of using Linux, and have access to the necessary hardware and software components. Note that this guide has been created based on multiple sources and has been modified to reflect the specific requirements for a successful installation on the author's device.

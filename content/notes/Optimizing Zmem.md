@@ -1,7 +1,7 @@
 ---
 title: Supercharging zmem, A Journey of Optimizing My Rust Program
-date created: 2023-04-30 21:18
-date updated: 2023-04-30 23:38
+created: 2023-04-30 21:18
+modified: 2023-04-30 23:38
 ---
 
 ## Introduction:

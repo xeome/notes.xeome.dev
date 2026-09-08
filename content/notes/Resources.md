@@ -1,7 +1,7 @@
 ---
 title: Resources
-date created: 2023-02-19 02:38
-date updated: 2023-02-19 02:44
+created: 2023-02-19 02:38
+modified: 2023-02-19 02:44
 ---
 
 This is an index for resources I collected for various topics

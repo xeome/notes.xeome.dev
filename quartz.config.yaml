@@ -47,9 +47,11 @@ plugins:
     enabled: true
     options:
       defaultDateType: modified
+      # frontmatter first: notes carry real Obsidian dates, and git history
+      # resets whenever content is reformatted or moved between branches
       priority:
-        - git
         - frontmatter
+        - git
         - filesystem
     order: 10
   - source: "@quartz-community/syntax-highlighting"

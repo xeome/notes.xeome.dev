@@ -1,6 +1,6 @@
 ---
 title: Thorium
-date updated: 2022-09-25 23:31
+modified: 2022-09-25 23:31
 ---
 
 Chromium fork for linux named after [radioactive element No. 90](https://en.wikipedia.org/wiki/Thorium) that takes pride in being a highly optimized web browser.

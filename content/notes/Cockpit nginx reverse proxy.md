@@ -1,7 +1,7 @@
 ---
 title: Setting up Cockpit with nginx reverse proxy
-date created: 2023-03-06 15:01
-date updated: 2023-03-16 12:32
+created: 2023-03-06 15:01
+modified: 2023-03-16 12:32
 ---
 
 Cockpit is a web-based server management tool that provides a user-friendly interface for administrators to manage their servers. In this article, we will walk through the process of setting up Cockpit with Nginx reverse proxy.

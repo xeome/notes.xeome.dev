@@ -1,3 +1,7 @@
+---
+modified: 2023-10-07
+---
+
 # What is an exokernel?
 
 An exokernel is a type of operating system (OS) kernel developed by the MIT Parallel and Distributed Operating Systems group. The idea behind exokernels is to impose as few abstractions as possible on application developers, allowing them to make many decisions about hardware abstractions

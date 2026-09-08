@@ -1,6 +1,6 @@
 ---
 title: Why do SSDs need trim
-date updated: 2022-09-25 23:31
+modified: 2022-09-25 23:31
 ---
 
 ## How does SSD store data

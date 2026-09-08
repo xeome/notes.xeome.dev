@@ -1,7 +1,7 @@
 ---
 title: Intel's Exploration of a 64-Bit Mode-Only Architecture, A Path to Simplicity
-date created: 2023-05-20 17:43
-date updated: 2023-05-20 18:05
+created: 2023-05-20 17:43
+modified: 2023-05-20 18:05
 ---
 
 ## Introduction

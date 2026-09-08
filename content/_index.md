@@ -1,6 +1,6 @@
 ---
 title: Emin's Notes
-date updated: 2024-08-06 23:38
+modified: 2024-08-06 23:38
 ---
 
 ## About me

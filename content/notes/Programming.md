@@ -1,7 +1,7 @@
 ---
 title: Programming stuff
-date created: 2023-05-21 00:27
-date updated: 2023-05-21 00:27
+created: 2023-05-21 00:27
+modified: 2023-05-21 00:27
 ---
 
 - [[notes/Valgrind|Valgrind]]

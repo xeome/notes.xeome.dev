@@ -1,3 +1,7 @@
+---
+modified: 2024-08-03
+---
+
 # Bypassing Censorship Using Zapret: A Technical Guide
 
 Censorship has become a significant challenge in today's digital age, affecting internet freedom worldwide. Various tools and techniques have been developed to counteract these restrictions, allowing users to access blocked content. One such tool is Zapret, a stand-alone DPI circumvention tool designed primarily for the Russian audience to combat censorship imposed by Roskomnadzor. However, its utility extends beyond Russia, offering a solution for bypassing HTTP(S) website blocking and resisting signature TCP/UDP protocol discovery globally.

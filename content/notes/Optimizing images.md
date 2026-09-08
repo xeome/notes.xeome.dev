@@ -1,7 +1,7 @@
 ---
 title: Optimizing images
-date created: 2023-01-19 21:47
-date updated: 2023-01-22 01:42
+created: 2023-01-19 21:47
+modified: 2023-01-22 01:42
 ---
 
 # Overview

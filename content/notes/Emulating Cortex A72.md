@@ -1,6 +1,6 @@
 ---
 title: Emulating Cortex A72
-date updated: 2023-08-27 14:29
+modified: 2023-08-27 14:29
 ---
 
 # Introduction

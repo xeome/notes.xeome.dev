@@ -1,7 +1,7 @@
 ---
 title: Secure SOCKS5 Proxy over SSH and ZeroTier
-date created: 2023-01-21 23:37
-date updated: 2023-01-21 23:59
+created: 2023-01-21 23:37
+modified: 2023-01-21 23:59
 ---
 
 SOCKS5 is a widely-used proxy protocol that allows for secure and flexible network connections. In this document, I will discuss how I create a secure SOCKS5 proxy over SSH and ZeroTier. ZeroTier is a virtual network that I use to connect different networks together. I personally use this setup to bypass network restrictions. ZeroTier allows me to connect to my RaspberryPI at home without the need for port forwarding or any similar configurations on my router.

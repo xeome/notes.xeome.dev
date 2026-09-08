@@ -1,7 +1,7 @@
 ---
 title: Data Structures
-date created: 2022-12-28 21:14
-date updated: 2023-01-07 02:34
+created: 2022-12-28 21:14
+modified: 2023-01-07 02:34
 ---
 
 # Overview

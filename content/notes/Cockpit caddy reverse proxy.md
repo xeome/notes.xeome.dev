@@ -1,7 +1,7 @@
 ---
 title: Setting up Cockpit with caddy reverse proxy
-date created: 2023-03-16 01:02
-date updated: 2023-03-16 12:33
+created: 2023-03-16 01:02
+modified: 2023-03-16 12:33
 ---
 
 Cockpit is a web-based server management tool that provides a user-friendly interface for administrators to manage their servers. In this article, we will walk through the process of setting up Cockpit with Caddy reverse proxy.

@@ -1,7 +1,7 @@
 ---
 title: C++ multithreading
-date created: 2022-12-29 21:37
-date updated: 2022-12-30 00:54
+created: 2022-12-29 21:37
+modified: 2022-12-30 00:54
 ---
 
 # Overview

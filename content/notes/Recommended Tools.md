@@ -1,6 +1,6 @@
 ---
 title: Recommended Tools
-date updated: 2022-09-25 23:30
+modified: 2022-09-25 23:30
 ---
 
 These are some of the tools and programs that I recommend and use. I'll keep adding more as I find them.

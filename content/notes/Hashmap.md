@@ -1,7 +1,7 @@
 ---
 title: Hashmap
-date created: 2023-01-07 02:20
-date updated: 2023-01-07 02:49
+created: 2023-01-07 02:20
+modified: 2023-01-07 02:49
 ---
 
 Following text is explanation for this code:

@@ -1,6 +1,6 @@
 ---
 title: Computer Science
-date updated: 2023-05-21 00:37
+modified: 2023-05-21 00:37
 ---
 
 # Index

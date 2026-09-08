@@ -1,6 +1,6 @@
 ---
 title: JomOS Optimizations
-date updated: 2022-09-25 23:30
+modified: 2022-09-25 23:30
 ---
 
 ## Optimized repositories

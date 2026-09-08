@@ -1,6 +1,6 @@
 ---
 title: VS Code Server
-date updated: 2022-09-25 23:31
+modified: 2022-09-25 23:31
 ---
 
 Run [VS Code](https://github.com/Microsoft/vscode) on any machine anywhere and access it in the browser.
