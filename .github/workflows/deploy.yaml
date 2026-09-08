@@ -1,9 +1,10 @@
 name: Deploy Quartz site to GitHub Pages
 
+# v4 is the pre-Quartz-5 rollback branch and must never auto-deploy over
+# the live v5 site. Manual dispatch only; a rollback also needs v4 re-added
+# to the github-pages environment's deployment branch allowlist.
 on:
-  push:
-    branches:
-      - v4
+  workflow_dispatch:
 
 permissions:
   contents: read
