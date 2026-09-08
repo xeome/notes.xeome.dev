@@ -2,6 +2,12 @@
 title: Supercharging zmem, A Journey of Optimizing My Rust Program
 created: 2023-04-30 21:18
 modified: 2023-04-30 23:38
+# absorbs the deleted Cargo flamegraph note; this page is the real version
+# of that content (perf_event_paranoid, release-profile debug info).
+# AliasRedirects lowercases aliases, so this only covers the lowercase URL;
+# the cased /notes/Cargo-flamegraph 404s.
+aliases:
+  - notes/Cargo-flamegraph
 ---
 
 ## Introduction:

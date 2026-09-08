@@ -11,5 +11,4 @@ modified: 2023-02-11 01:00
 - [[notes/Optimizing images]]
 - [[notes/Socks5 Proxy]]
 - [[notes/Optimization Techniques]]
-- [[notes/intel x86s|intel x86s]]
 - [[SV32]]

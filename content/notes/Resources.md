@@ -32,5 +32,6 @@ This is an index for resources I collected for various topics
 
 # Algorithms & Data Structures
 
-- [[notes/Data Structures]]
+- [[notes/Hashmap]]
+- <https://github.com/xeome/data-structures-implementations> (my C implementations: vector, linked list, queue, hashmap)
 - <https://github.com/jwasham/coding-interview-university> (this has alot of things)
