@@ -1,0 +1,258 @@
+# yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
+configuration:
+  pageTitle: Emin's Notes
+  pageTitleSuffix: ""
+  enableSPA: true
+  enablePopovers: true
+  analytics:
+    provider: plausible
+  locale: en-US
+  baseUrl: notes.xeome.dev
+  ignorePatterns:
+    - private
+    - templates
+    - .obsidian
+  theme:
+    fontOrigin: googleFonts
+    cdnCaching: true
+    typography:
+      header: Archivo
+      body: Noto Sans
+      code: JetBrains Mono
+    colors:
+      lightMode:
+        # Catppuccin Latte
+        light: "#eff1f5" # Latte Base
+        lightgray: "#ccd0da" # Latte Surface0
+        gray: "#8c8fa1" # Latte Overlay1
+        darkgray: "#6c6f85" # Latte Subtext0
+        dark: "#4c4f69" # Latte Text
+        secondary: "#1e66f5" # Latte Blue
+        tertiary: "#7287fd" # Latte Lavender
+        highlight: rgba(143, 159, 169, 0.15)
+        textHighlight: "#fff23688"
+      darkMode:
+        # Tango Dark
+        light: "#0f0e0f" # Dark gray (background)
+        lightgray: "#555753" # Medium gray (surface)
+        gray: "#888a85" # Light gray (overlay)
+        darkgray: "#babdb6" # Very light gray (subtext)
+        dark: "#eeeeec" # Almost white (text)
+        secondary: "#729fcf" # Tango blue
+        tertiary: "#3465a4" # Tango dark blue
+        highlight: rgba(114, 159, 207, 0.15) # Sky Blue 1 with opacity
+        textHighlight: "#204a8788" # Sky Blue 3 with opacity
+plugins:
+  - source: "@quartz-community/created-modified-date"
+    enabled: true
+    options:
+      defaultDateType: modified
+      priority:
+        - git
+        - frontmatter
+        - filesystem
+    order: 10
+  - source: "@quartz-community/syntax-highlighting"
+    enabled: true
+    options:
+      theme:
+        light: github-light
+        dark: github-dark
+      keepBackground: true
+    order: 20
+  - source: "@quartz-community/obsidian-flavored-markdown"
+    enabled: true
+    options:
+      enableInHtmlEmbed: false
+      enableCheckbox: true
+    order: 30
+  - source: "@quartz-community/github-flavored-markdown"
+    enabled: true
+    order: 40
+  - source: "@quartz-community/table-of-contents"
+    enabled: true
+    order: 50
+    layout:
+      position: right
+      priority: 30
+      display: desktop-only
+  - source: "@quartz-community/crawl-links"
+    enabled: true
+    options:
+      markdownLinkResolution: shortest
+    order: 60
+  - source: "@quartz-community/description"
+    enabled: true
+    order: 70
+  - source: "@quartz-community/latex"
+    enabled: true
+    options:
+      renderEngine: katex
+    order: 80
+  - source: "@quartz-community/quartz-fonts"
+    enabled: true
+  - source: "@quartz-community/remove-draft"
+    enabled: true
+  - source: "@quartz-community/alias-redirects"
+    enabled: true
+  - source: "@quartz-community/content-index"
+    enabled: true
+    options:
+      enableSiteMap: true
+      enableRSS: true
+  - source: "@quartz-community/favicon"
+    enabled: true
+  - source: "@quartz-community/og-image"
+    enabled: true
+  - source: "@quartz-community/cname"
+    enabled: true
+  - source: "@quartz-community/canvas-page"
+    enabled: true
+  - source: "@quartz-community/content-page"
+    enabled: true
+  - source: "@quartz-community/folder-page"
+    enabled: true
+  - source: "@quartz-community/tag-page"
+    enabled: true
+  - source: "@quartz-community/explorer"
+    enabled: true
+    layout:
+      position: left
+      priority: 50
+      display: desktop-only
+  - source: "@quartz-community/recent-notes"
+    enabled: true
+    layout:
+      position: left
+      priority: 60
+      display: desktop-only
+  - source: "@quartz-community/graph"
+    enabled: true
+    options:
+      localGraph:
+        depth: 3
+        scale: 1.1
+        showTags: true
+      globalGraph:
+        depth: -1
+        scale: 0.9
+        showTags: true
+    layout:
+      position: right
+      priority: 10
+  - source: "@quartz-community/search"
+    enabled: true
+    layout:
+      position: left
+      priority: 20
+  - source: "@quartz-community/backlinks"
+    enabled: true
+    layout:
+      position: right
+      priority: 50
+  - source: "@quartz-community/article-title"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 10
+  - source: "@quartz-community/content-meta"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 20
+  - source: "@quartz-community/tag-list"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 30
+  - source: "@quartz-community/page-title"
+    enabled: true
+    layout:
+      position: left
+      priority: 10
+  - source: "@quartz-community/darkmode"
+    enabled: true
+    layout:
+      position: left
+      priority: 30
+  # v4 layout omitted ReaderMode from the sidebar
+  - source: "@quartz-community/reader-mode"
+    enabled: false
+  - source: "@quartz-community/breadcrumbs"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 5
+      condition: not-index
+  - source: "@quartz-community/footer"
+    enabled: true
+    options:
+      links:
+        GitHub: https://github.com/jackyzha0/quartz
+        Discord Community: https://discord.gg/cRFFHYye7t
+    layout:
+      position: footer
+      priority: 50
+  - source: "@quartz-community/spacer"
+    enabled: true
+    options: {}
+    order: 25
+    layout:
+      position: left
+      priority: 25
+      display: mobile-only
+  - source: "@quartz-community/bases-page"
+    enabled: true
+    options: {}
+    order: 50
+  # replaces v4's Plugin.FrontMatter(); parses frontmatter but the
+  # properties panel is hidden to keep v4's page appearance
+  - source: "@quartz-community/note-properties"
+    enabled: true
+    options:
+      includeAll: false
+      includedProperties:
+        - description
+        - tags
+        - aliases
+      excludedProperties: []
+      hidePropertiesView: true
+      delimiters: ---
+      language: yaml
+    order: 5
+    layout:
+      position: beforeBody
+      priority: 15
+      display: all
+  - source: "@quartz-community/unlisted-pages"
+    enabled: true
+    options: {}
+    order: 45
+  - source: "@quartz-community/encrypted-pages"
+    enabled: true
+    options:
+      iterations: 600000
+      passwordField: password
+      unlistWhenEncrypted: false
+      outputPath: static/encryptedContentIndex.json
+    order: 900
+layout:
+  byPageType:
+    "404":
+      positions:
+        beforeBody: []
+        left: []
+        right: []
+    content: {}
+    folder:
+      exclude:
+        - tag-list
+      positions:
+        right: []
+    tag:
+      exclude:
+        - tag-list
+      positions:
+        right: []
+    canvas: {}
+    bases: {}
